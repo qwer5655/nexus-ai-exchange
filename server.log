@@ -1,0 +1,1835 @@
+   ▲ Next.js 15.5.19
+   - Local:        http://localhost:3000
+   - Network:      http://192.168.5.11:3000
+
+ ✓ Starting...
+ ✓ Ready in 3s
+ ○ Compiling / ...
+ ✓ Compiled / in 4.5s (1582 modules)
+ GET / 200 in 5134ms
+ GET / 200 in 185ms
+ GET / 200 in 122ms
+ ○ Compiling /ai-center ...
+ ✓ Compiled /ai-center in 6.9s (2691 modules)
+ GET /ai-center 200 in 7099ms
+ GET /ai-center 200 in 384ms
+ GET /ai-center 200 in 42ms
+ GET / 200 in 233ms
+ ✓ Compiled in 1526ms (2691 modules)
+ GET / 200 in 1425ms
+ GET /ai-center 200 in 184ms
+ GET / 200 in 32ms
+ ✓ Compiled in 390ms (1284 modules)
+ GET / 200 in 341ms
+ GET /ai-center 200 in 357ms
+ ✓ Compiled in 449ms (1284 modules)
+ GET / 200 in 73ms
+ GET /ai-center 200 in 73ms
+ ⨯ ./src/lib/i18n.ts
+Error:   [31mx[0m Expected '{', got 'NestedKey'
+     ,-[[36;1;4mC:\Users\benjo\Documents\Codex\2026-06-07\codex-claude-code-cursor-devin-50\fifa-arbitrage\src\lib\i18n.ts[0m:202:1]
+ [2m199[0m | 
+ [2m200[0m | export type Lang = 'en' | 'zh'
+ [2m201[0m | export type TranslationKey = keyof typeof translations
+ [2m202[0m | export type NestedKey<T, Prefix extends string = ''> = {
+     : [35;1m            ^^^^^^^^^[0m
+ [2m203[0m |   [K in keyof T]: T[K] extends Record<string, { en: string; zh: string }>
+ [2m204[0m |     ? ${Prefix}
+ [2m205[0m |     : T[K] extends object
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/lib/i18n.ts
+./src/components/layout/Header.tsx
+./src/app/page.tsx
+ ⨯ ./src/lib/i18n.ts
+Error:   [31mx[0m Expected '{', got 'NestedKey'
+     ,-[[36;1;4mC:\Users\benjo\Documents\Codex\2026-06-07\codex-claude-code-cursor-devin-50\fifa-arbitrage\src\lib\i18n.ts[0m:202:1]
+ [2m199[0m | 
+ [2m200[0m | export type Lang = 'en' | 'zh'
+ [2m201[0m | export type TranslationKey = keyof typeof translations
+ [2m202[0m | export type NestedKey<T, Prefix extends string = ''> = {
+     : [35;1m            ^^^^^^^^^[0m
+ [2m203[0m |   [K in keyof T]: T[K] extends Record<string, { en: string; zh: string }>
+ [2m204[0m |     ? ${Prefix}
+ [2m205[0m |     : T[K] extends object
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/lib/i18n.ts
+./src/components/layout/Header.tsx
+./src/app/page.tsx
+ ○ Compiling /_error ...
+ ⨯ ./src/lib/i18n.ts
+Error:   [31mx[0m Expected '{', got 'NestedKey'
+     ,-[[36;1;4mC:\Users\benjo\Documents\Codex\2026-06-07\codex-claude-code-cursor-devin-50\fifa-arbitrage\src\lib\i18n.ts[0m:202:1]
+ [2m199[0m | 
+ [2m200[0m | export type Lang = 'en' | 'zh'
+ [2m201[0m | export type TranslationKey = keyof typeof translations
+ [2m202[0m | export type NestedKey<T, Prefix extends string = ''> = {
+     : [35;1m            ^^^^^^^^^[0m
+ [2m203[0m |   [K in keyof T]: T[K] extends Record<string, { en: string; zh: string }>
+ [2m204[0m |     ? ${Prefix}
+ [2m205[0m |     : T[K] extends object
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/lib/i18n.ts
+./src/components/layout/Header.tsx
+./src/app/page.tsx
+ GET / 500 in 10325ms
+ GET / 500 in 6917ms
+ GET /ai-center 500 in 6978ms
+ GET /ai-center 500 in 57ms
+ GET /ai-center 500 in 49ms
+ ⨯ ./src/lib/i18n.ts
+Error:   [31mx[0m Expected '{', got 'NestedKey'
+     ,-[[36;1;4mC:\Users\benjo\Documents\Codex\2026-06-07\codex-claude-code-cursor-devin-50\fifa-arbitrage\src\lib\i18n.ts[0m:202:1]
+ [2m199[0m | 
+ [2m200[0m | export type Lang = 'en' | 'zh'
+ [2m201[0m | export type TranslationKey = keyof typeof translations
+ [2m202[0m | export type NestedKey<T, Prefix extends string = ''> = {
+     : [35;1m            ^^^^^^^^^[0m
+ [2m203[0m |   [K in keyof T]: T[K] extends Record<string, { en: string; zh: string }>
+ [2m204[0m |     ? ${Prefix}
+ [2m205[0m |     : T[K] extends object
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/lib/i18n.ts
+./src/components/hero/HeroSection.tsx
+./src/app/page.tsx
+ ⨯ ./src/lib/i18n.ts
+Error:   [31mx[0m Expected '{', got 'NestedKey'
+     ,-[[36;1;4mC:\Users\benjo\Documents\Codex\2026-06-07\codex-claude-code-cursor-devin-50\fifa-arbitrage\src\lib\i18n.ts[0m:202:1]
+ [2m199[0m | 
+ [2m200[0m | export type Lang = 'en' | 'zh'
+ [2m201[0m | export type TranslationKey = keyof typeof translations
+ [2m202[0m | export type NestedKey<T, Prefix extends string = ''> = {
+     : [35;1m            ^^^^^^^^^[0m
+ [2m203[0m |   [K in keyof T]: T[K] extends Record<string, { en: string; zh: string }>
+ [2m204[0m |     ? ${Prefix}
+ [2m205[0m |     : T[K] extends object
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/lib/i18n.ts
+./src/components/stats/LiveStats.tsx
+./src/app/page.tsx
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ✓ Compiled /_error in 1160ms (3040 modules)
+ GET / 200 in 1005ms
+ GET /ai-center 200 in 1032ms
+ GET / 200 in 75ms
+ GET /ai-center 200 in 93ms
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ ✓ Compiled in 1849ms (3040 modules)
+ ✓ Compiled in 1ms (1602 modules)
+ ✓ Compiled in 0ms (1602 modules)
+ ✓ Compiled in 0ms (1602 modules)
+ ⨯ ReferenceError: language is not defined
+    at eval (src\components\ai\AICenterDashboard.tsx:9:40)
+    at (ssr)/./src/components/ai/AICenterDashboard.tsx (C:\Users\benjo\Documents\Codex\2026-06-07\codex-claude-code-cursor-devin-50\fifa-arbitrage\.next\server\app\(main)\ai-center\page.js:179:1)
+    at eval (webpack-internal:///(ssr)/./src/app/(main)/ai-center/page.tsx:7:90)
+    at (ssr)/./src/app/(main)/ai-center/page.tsx (C:\Users\benjo\Documents\Codex\2026-06-07\codex-claude-code-cursor-devin-50\fifa-arbitrage\.next\server\app\(main)\ai-center\page.js:157:1)
+   7 |
+   8 | const aiModules = [
+>  9 |   { icon: Radar, name: t('ai.scanner', language), desc: t('ai.scannerDesc', language), color: '#00ff88' },
+     |                                        ^
+  10 |   { icon: TrendingUp, name: t('ai.detector', language), desc: t('ai.detectorDesc', language), color: '#00d9ff' },
+  11 |   { icon: Cpu, name: t('ai.engine', language), desc: t('ai.engineDesc', language), color: '#ffd700' },
+  12 |   { icon: Shield, name: t('ai.riskAnalyzer', language), desc: t('ai.riskAnalyzerDesc', language), color: '#ff4d4f' }, {
+  digest: '3355873540'
+}
+ GET /ai-center 200 in 1245ms
+ GET /ai-center 500 in 2102ms
+ GET / 200 in 1491ms
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ✓ Compiled in 576ms (3040 modules)
+ ✓ Compiled in 1ms (1602 modules)
+ ✓ Compiled in 1ms (1602 modules)
+ ✓ Compiled in 1ms (1602 modules)
+ GET /ai-center 200 in 1165ms
+ GET / 200 in 1167ms
+ GET /ai-center 200 in 218ms
+ ✓ Compiled in 267ms (1438 modules)
+ GET /ai-center 200 in 107ms
+ GET / 200 in 78ms
+ GET / 200 in 99ms
+ GET / 200 in 74ms
+ GET / 200 in 76ms
+ GET / 200 in 246ms
+ GET / 200 in 75ms
+ GET /ai-center 200 in 114ms
+ ✓ Compiled in 1117ms (3040 modules)
+ GET / 200 in 214ms
+ GET /ai-center 200 in 216ms
+ ✓ Compiled in 1224ms (3040 modules)
+ GET / 200 in 185ms
+ GET /ai-center 200 in 190ms
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ✓ Compiled in 1914ms (3046 modules)
+ GET / 200 in 311ms
+ GET /ai-center 200 in 285ms
+ ✓ Compiled in 631ms (3048 modules)
+ GET / 200 in 109ms
+ GET /ai-center 200 in 111ms
+ ✓ Compiled in 951ms (3052 modules)
+ GET / 200 in 111ms
+ GET /ai-center 200 in 116ms
+ GET / 200 in 147ms
+ GET / 200 in 210ms
+ GET / 200 in 100ms
+ ○ Compiling /support ...
+ ✓ Compiled /deposit in 3.4s (3081 modules)
+ GET /support 200 in 3680ms
+ GET /profile 200 in 2672ms
+ GET /deposit 200 in 2199ms
+ GET /ai-center 200 in 1569ms
+ GET /deposit 200 in 68ms
+ GET /ai-center 200 in 45ms
+ ○ Compiling /leaderboard ...
+ ✓ Compiled /leaderboard in 733ms (3090 modules)
+ GET /leaderboard 200 in 863ms
+ ○ Compiling /opportunities ...
+ ✓ Compiled /opportunities in 808ms (3097 modules)
+ GET /opportunities 200 in 903ms
+ GET / 200 in 34ms
+ GET /opportunities 200 in 28ms
+ GET / 200 in 21ms
+ GET / 200 in 21ms
+ GET / 200 in 22ms
+ GET / 200 in 22ms
+ GET / 200 in 22ms
+ ✓ Compiled in 2s (3091 modules)
+ GET /ai-center 200 in 178ms
+ GET / 200 in 165ms
+ GET / 200 in 183ms
+ ✓ Compiled in 1226ms (3090 modules)
+ GET / 200 in 178ms
+ GET /ai-center 200 in 183ms
+ ✓ Compiled in 1017ms (3090 modules)
+ GET / 200 in 106ms
+ GET /ai-center 200 in 110ms
+ GET / 200 in 177ms
+ GET /deposit 200 in 66ms
+ GET / 200 in 36ms
+ ✓ Compiled in 1687ms (3082 modules)
+ GET / 200 in 123ms
+ GET /ai-center 200 in 126ms
+ ✓ Compiled in 1635ms (3082 modules)
+ GET / 200 in 140ms
+ GET /ai-center 200 in 145ms
+ ✓ Compiled in 270ms (1462 modules)
+ GET / 200 in 82ms
+ GET /ai-center 200 in 87ms
+ GET / 200 in 314ms
+ ✓ Compiled in 898ms (3082 modules)
+ GET / 200 in 121ms
+ GET /ai-center 200 in 126ms
+ GET / 200 in 155ms
+ GET /opportunities 200 in 42ms
+ GET / 200 in 21ms
+ GET /deposit 200 in 43ms
+ GET / 200 in 30ms
+ GET / 200 in 84ms
+ ✓ Compiled in 793ms (1462 modules)
+ ✓ Compiled in 410ms (1462 modules)
+ GET / 200 in 404ms
+ GET /ai-center 200 in 424ms
+ GET / 200 in 75ms
+ GET /ai-center 200 in 74ms
+ ✓ Compiled in 1261ms (3082 modules)
+ GET / 200 in 119ms
+ GET /ai-center 200 in 121ms
+ ✓ Compiled in 325ms (1462 modules)
+ GET / 200 in 74ms
+ GET /ai-center 200 in 76ms
+ ✓ Compiled in 5.4s (3090 modules)
+ ✓ Compiled in 0ms (1624 modules)
+ ✓ Compiled in 1ms (1624 modules)
+ ✓ Compiled in 0ms (1624 modules)
+ GET / 200 in 1754ms
+ GET / 200 in 2144ms
+ GET /ai-center 200 in 2184ms
+ GET / 200 in 195ms
+ ○ Compiling /profile ...
+ ✓ Compiled /profile in 827ms (1634 modules)
+ GET /profile 200 in 928ms
+ ✓ Compiled /support in 394ms (1645 modules)
+ GET /support 200 in 488ms
+ GET /profile 200 in 38ms
+ GET /deposit 200 in 36ms
+ GET /ai-center 200 in 35ms
+ GET /leaderboard 200 in 42ms
+ GET /ai-center 200 in 26ms
+ GET /opportunities 200 in 39ms
+ GET / 200 in 27ms
+ ○ Compiling /matches ...
+ ✓ Compiled /matches in 1194ms (3112 modules)
+ GET /matches 200 in 1288ms
+ GET / 200 in 26ms
+ GET / 200 in 20ms
+ GET /matches 200 in 33ms
+ GET / 200 in 24ms
+ ✓ Compiled in 1745ms (3109 modules)
+ GET / 200 in 147ms
+ GET /ai-center 200 in 150ms
+ GET / 200 in 179ms
+ GET /matches 200 in 41ms
+ GET / 200 in 24ms
+ ✓ Compiled in 3.8s (3109 modules)
+ GET / 200 in 199ms
+ GET /ai-center 200 in 201ms
+ ✓ Compiled in 1702ms (3109 modules)
+ GET /ai-center 200 in 90ms
+ GET / 200 in 47ms
+ GET / 200 in 166ms
+ ✓ Compiled in 1586ms (3109 modules)
+ GET / 200 in 142ms
+ GET /ai-center 200 in 147ms
+ GET / 200 in 219ms
+ GET / 200 in 33ms
+ GET /matches 200 in 56ms
+ GET / 200 in 28ms
+ GET / 200 in 89ms
+ GET / 200 in 80ms
+ GET / 200 in 84ms
+ ✓ Compiled in 2.1s (3109 modules)
+ GET / 200 in 142ms
+ GET /ai-center 200 in 145ms
+ GET / 200 in 94ms
+ GET / 200 in 60ms
+ GET / 200 in 53ms
+ GET /?boot=true 200 in 192ms
+ GET /?boot=true 200 in 190ms
+ GET / 200 in 46ms
+ GET /?boot=true 200 in 66ms
+ GET /ai-center 200 in 289ms
+ GET /matches 200 in 48ms
+ GET / 200 in 26ms
+ GET /?boot=true 200 in 55ms
+ GET /?boot=true 200 in 60ms
+ GET /?boot=true 200 in 60ms
+ GET /?boot=true 200 in 74ms
+ ✓ Compiled in 1398ms (3109 modules)
+ GET /?boot=true 200 in 313ms
+ ✓ Compiled in 331ms (1472 modules)
+ GET /?boot=true 200 in 31ms
+ GET /?boot=true 200 in 137ms
+ GET /?boot=true 200 in 54ms
+ GET /?boot=true 200 in 64ms
+ GET /?boot=true 200 in 62ms
+ GET /?boot=true 200 in 96ms
+ GET /?boot=true 200 in 107ms
+ GET / 200 in 53ms
+ GET /?boot=true 200 in 58ms
+ GET /ai-center 200 in 299ms
+ GET /?boot=true 200 in 59ms
+ GET /?boot=true 200 in 59ms
+ GET /?boot=true 200 in 55ms
+ GET /?boot=true 200 in 61ms
+ GET /?boot=true 200 in 111ms
+ GET /?boot=true 200 in 121ms
+ GET /?boot=true 200 in 99ms
+ GET /?boot=true 200 in 112ms
+ GET / 200 in 52ms
+ GET /?boot=true 200 in 57ms
+ GET /ai-center 200 in 178ms
+ GET /?boot=true 200 in 65ms
+ GET /?boot=true 200 in 65ms
+ GET /?boot=true 200 in 85ms
+ ✓ Compiled in 2.3s (3109 modules)
+ GET /?boot=true 200 in 177ms
+ GET /?boot=true 200 in 179ms
+ GET /?boot=true 200 in 106ms
+ GET /?boot=true 200 in 54ms
+ GET /?boot=true 200 in 72ms
+ GET /?boot=true 200 in 76ms
+ ✓ Compiled in 1412ms (3109 modules)
+ GET /?boot=true 200 in 462ms
+ ✓ Compiled in 525ms (1472 modules)
+ GET /?boot=true 200 in 478ms
+ GET /?boot=true 200 in 44ms
+ GET /?boot=true 200 in 35ms
+ GET /?boot=true 200 in 93ms
+ GET /?boot=true 200 in 100ms
+ GET /?boot=true 200 in 62ms
+ ✓ Compiled in 3.6s (3109 modules)
+ GET /?boot=true 200 in 262ms
+ GET /?boot=true 200 in 257ms
+ GET /?boot=true 200 in 129ms
+ GET /matches 200 in 54ms
+ ○ Compiling /opportunities ...
+ ✓ Compiled /opportunities in 1054ms (1642 modules)
+ GET /opportunities 200 in 1192ms
+ ✓ Compiled /leaderboard in 450ms (1648 modules)
+ GET /leaderboard 200 in 593ms
+ GET /ai-center 200 in 40ms
+ ✓ Compiled /deposit in 385ms (1654 modules)
+ GET /deposit 200 in 475ms
+ GET /deposit 200 in 267ms
+ GET /deposit 200 in 111ms
+ GET /deposit 200 in 110ms
+ GET /deposit 200 in 129ms
+ GET / 200 in 32ms
+ GET / 200 in 72ms
+ GET / 200 in 58ms
+ GET /?boot=true 200 in 80ms
+ GET /?boot=true 200 in 72ms
+ GET /support 200 in 49ms
+ GET /profile 200 in 45ms
+ GET / 200 in 66ms
+ GET /opportunities 200 in 51ms
+ GET / 200 in 30ms
+ GET /deposit 200 in 36ms
+ GET /ai-center 200 in 46ms
+ GET /leaderboard 200 in 48ms
+ GET /opportunities 200 in 32ms
+ GET /matches 200 in 40ms
+ GET / 200 in 29ms
+ GET /opportunities 200 in 40ms
+ GET /profile 200 in 160ms
+ GET / 200 in 33ms
+ ✓ Compiled in 1328ms (2544 modules)
+ GET / 200 in 131ms
+ GET / 200 in 92ms
+ ✓ Compiled in 1442ms (2544 modules)
+ GET / 200 in 131ms
+ GET / 200 in 116ms
+ GET / 200 in 59ms
+ ✓ Compiled in 1723ms (2542 modules)
+ GET / 200 in 71ms
+ GET / 200 in 92ms
+ GET /deposit 200 in 50ms
+ ✓ Compiled in 1330ms (2542 modules)
+ GET / 200 in 73ms
+ GET / 200 in 92ms
+ GET / 200 in 67ms
+ GET / 200 in 66ms
+ GET / 200 in 61ms
+ ✓ Compiled in 1782ms (2542 modules)
+ GET / 200 in 84ms
+ GET / 200 in 93ms
+ ✓ Compiled in 1413ms (2542 modules)
+ GET / 200 in 77ms
+ GET / 200 in 97ms
+ GET / 200 in 52ms
+ GET /?boot=true 200 in 96ms
+ GET /?boot=true 200 in 110ms
+ GET / 200 in 48ms
+ ○ Compiling /ai-center ...
+ GET /?boot=true 200 in 845ms
+ ✓ Compiled /ai-center in 2.6s (1636 modules)
+ GET /deposit 200 in 51ms
+ GET / 200 in 28ms
+ GET / 200 in 83ms
+ GET / 200 in 78ms
+ ✓ Compiled in 1804ms (2542 modules)
+ GET / 200 in 82ms
+ GET / 200 in 115ms
+ GET / 200 in 53ms
+ GET /?boot=true 200 in 89ms
+ GET /?boot=true 200 in 76ms
+ GET / 200 in 46ms
+ ✓ Compiled /ai-center in 382ms (1636 modules)
+ GET /?boot=true 200 in 838ms
+ GET /ai-center 200 in 841ms
+ GET / 200 in 81ms
+ GET /?boot=true 200 in 103ms
+ ✓ Compiled in 1729ms (2542 modules)
+ GET /?boot=true 200 in 471ms
+ GET / 200 in 467ms
+ ✓ Compiled in 488ms (1471 modules)
+ GET / 200 in 58ms
+ GET /?boot=true 200 in 60ms
+ GET / 200 in 118ms
+ GET / 200 in 51ms
+ ○ Compiling /leaderboard ...
+ ✓ Compiled /leaderboard in 1017ms (1077 modules)
+ GET /leaderboard 200 in 1113ms
+ GET /?boot=true 200 in 158ms
+ GET /?boot=true 200 in 86ms
+ GET / 200 in 52ms
+ ✓ Compiled /ai-center in 381ms (1642 modules)
+ GET /?boot=true 200 in 872ms
+ GET /ai-center 200 in 875ms
+ GET / 200 in 28ms
+ GET /deposit 200 in 54ms
+ GET / 200 in 25ms
+ ○ Compiling /support ...
+ ✓ Compiled /support in 1347ms (1079 modules)
+ GET /support 200 in 1440ms
+ GET /profile 200 in 47ms
+ GET / 200 in 33ms
+ GET /deposit 200 in 53ms
+ GET / 200 in 29ms
+ GET / 200 in 31ms
+ GET / 200 in 30ms
+ GET / 200 in 32ms
+ GET / 200 in 28ms
+ GET / 200 in 26ms
+ GET / 200 in 25ms
+ GET / 200 in 25ms
+ GET / 200 in 25ms
+ GET / 200 in 23ms
+ GET / 200 in 26ms
+ ○ Compiling /matches ...
+ ✓ Compiled /matches in 790ms (1077 modules)
+ GET /matches 200 in 893ms
+ GET /opportunities 200 in 38ms
+ GET / 200 in 32ms
+ ⨯ ./src/components/layout/WinningFeed.tsx
+Error:   [31mx[0m The "use client" directive must be placed before other expressions. Move it to the top of the file to resolve this issue.
+   ,-[[36;1;4mC:\Users\benjo\Documents\Codex\2026-06-07\codex-claude-code-cursor-devin-50\fifa-arbitrage\src\components\layout\WinningFeed.tsx[0m:3:1]
+ [2m1[0m | import { useStore } from '@/store/useStore'
+ [2m2[0m | import { t } from '@/lib/i18n'
+ [2m3[0m | ﻿'use client'
+   : [35;1m^^^^^^^^^^^^[0m
+ [2m4[0m | import { useEffect, useState } from 'react'
+ [2m5[0m | import { TrendingUp } from 'lucide-react'
+ [2m6[0m | import { initialWinningEntries, generateWinningEntry } from '@/data/winning-feed'
+   `----
+
+Import trace for requested module:
+./src/components/layout/WinningFeed.tsx
+./src/app/page.tsx
+ ⨯ ./src/app/(main)/matches/page.tsx
+Error:   [31mx[0m The "use client" directive must be placed before other expressions. Move it to the top of the file to resolve this issue.
+   ,-[[36;1;4mC:\Users\benjo\Documents\Codex\2026-06-07\codex-claude-code-cursor-devin-50\fifa-arbitrage\src\app\(main)\matches\page.tsx[0m:3:1]
+ [2m1[0m | import { useStore } from '@/store/useStore'
+ [2m2[0m | import { t } from '@/lib/i18n'
+ [2m3[0m | ﻿'use client'
+   : [35;1m^^^^^^^^^^^^[0m
+ [2m4[0m | import { motion } from 'framer-motion'
+ [2m5[0m | import { CalendarDays, Clock, MapPin } from 'lucide-react'
+ [2m6[0m | import { matchSchedule } from '@/data/matches'
+   `----
+
+Import trace for requested module:
+./src/app/(main)/matches/page.tsx
+ ⨯ ./src/app/(main)/matches/page.tsx
+Error:   [31mx[0m The "use client" directive must be placed before other expressions. Move it to the top of the file to resolve this issue.
+   ,-[[36;1;4mC:\Users\benjo\Documents\Codex\2026-06-07\codex-claude-code-cursor-devin-50\fifa-arbitrage\src\app\(main)\matches\page.tsx[0m:3:1]
+ [2m1[0m | import { useStore } from '@/store/useStore'
+ [2m2[0m | import { t } from '@/lib/i18n'
+ [2m3[0m | ﻿'use client'
+   : [35;1m^^^^^^^^^^^^[0m
+ [2m4[0m | import { motion } from 'framer-motion'
+ [2m5[0m | import { CalendarDays, Clock, MapPin } from 'lucide-react'
+ [2m6[0m | import { matchSchedule } from '@/data/matches'
+   `----
+
+Import trace for requested module:
+./src/app/(main)/matches/page.tsx
+ ⨯ ./src/app/(main)/matches/page.tsx
+Error:   [31mx[0m The "use client" directive must be placed before other expressions. Move it to the top of the file to resolve this issue.
+   ,-[[36;1;4mC:\Users\benjo\Documents\Codex\2026-06-07\codex-claude-code-cursor-devin-50\fifa-arbitrage\src\app\(main)\matches\page.tsx[0m:3:1]
+ [2m1[0m | import { useStore } from '@/store/useStore'
+ [2m2[0m | import { t } from '@/lib/i18n'
+ [2m3[0m | ﻿'use client'
+   : [35;1m^^^^^^^^^^^^[0m
+ [2m4[0m | import { motion } from 'framer-motion'
+ [2m5[0m | import { CalendarDays, Clock, MapPin } from 'lucide-react'
+ [2m6[0m | import { matchSchedule } from '@/data/matches'
+   `----
+
+Import trace for requested module:
+./src/app/(main)/matches/page.tsx
+ ⨯ ./src/app/(main)/support/page.tsx
+Error:   [31mx[0m Expected ',', got 'support'
+    ,-[[36;1;4mC:\Users\benjo\Documents\Codex\2026-06-07\codex-claude-code-cursor-devin-50\fifa-arbitrage\src\app\(main)\support\page.tsx[0m:8:1]
+ [2m 5[0m | import { HeadphonesIcon, MessageCircle, Mail, HelpCircle, FileText, BookOpen } from 'lucide-react'
+ [2m 6[0m | 
+ [2m 7[0m | const supportItems = [
+ [2m 8[0m |   { icon: MessageCircle, name: '{t('support.liveChat', language)}', desc: '{t('support.liveChatDesc', language)}', color: '#00ff88' },
+    : [35;1m                                    ^^^^^^^[0m
+ [2m 9[0m |   { icon: Mail, name: '{t('support.email', language)}', desc: 'support@arbitrage.ai', color: '#00d9ff' },
+ [2m10[0m |   { icon: HelpCircle, name: '{t('support.faq', language)}', desc: '{t('support.faqDesc', language)}', color: '#ffd700' },
+ [2m11[0m |   { icon: FileText, name: '{t('support.docs', language)}', desc: '{t('support.docsDesc', language)}', color: '#00ff88' },
+    `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/app/(main)/support/page.tsx
+ ⨯ ./src/app/(main)/support/page.tsx
+Error:   [31mx[0m Expected ',', got 'support'
+    ,-[[36;1;4mC:\Users\benjo\Documents\Codex\2026-06-07\codex-claude-code-cursor-devin-50\fifa-arbitrage\src\app\(main)\support\page.tsx[0m:9:1]
+ [2m 6[0m | import { HeadphonesIcon, MessageCircle, Mail, HelpCircle, FileText, BookOpen } from 'lucide-react'
+ [2m 7[0m | 
+ [2m 8[0m | const supportItems = [
+ [2m 9[0m |   { icon: MessageCircle, name: '{t('support.liveChat', language)}', desc: '{t('support.liveChatDesc', language)}', color: '#00ff88' },
+    : [35;1m                                    ^^^^^^^[0m
+ [2m10[0m |   { icon: Mail, name: '{t('support.email', language)}', desc: 'support@arbitrage.ai', color: '#00d9ff' },
+ [2m11[0m |   { icon: HelpCircle, name: '{t('support.faq', language)}', desc: '{t('support.faqDesc', language)}', color: '#ffd700' },
+ [2m12[0m |   { icon: FileText, name: '{t('support.docs', language)}', desc: '{t('support.docsDesc', language)}', color: '#00ff88' },
+    `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/app/(main)/support/page.tsx
+ ✓ Compiled in 1692ms (1471 modules)
+ GET /?boot=true 200 in 294ms
+ GET / 200 in 79ms
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ GET / 200 in 226ms
+ ○ Compiling /support ...
+ ✓ Compiled /support in 2.2s (1079 modules)
+ GET /support 200 in 2351ms
+ GET /support 200 in 48ms
+ GET / 200 in 125ms
+ GET /profile 200 in 45ms
+ GET /deposit 200 in 38ms
+ ○ Compiling /ai-center ...
+ ✓ Compiled /ai-center in 3s (1644 modules)
+ GET /ai-center 200 in 3146ms
+ GET /leaderboard 200 in 39ms
+ GET /opportunities 200 in 37ms
+ GET /profile 200 in 50ms
+ GET /leaderboard 200 in 37ms
+ ⨯ ./src/lib/i18n.ts
+Error:   [31mx[0m Expected ',', got 'export'
+     ,-[[36;1;4mC:\Users\benjo\Documents\Codex\2026-06-07\codex-claude-code-cursor-devin-50\fifa-arbitrage\src\lib\i18n.ts[0m:163:1]
+ [2m160[0m |   },
+ [2m161[0m | }
+ [2m162[0m | 
+ [2m163[0m | export type Lang = 'en' | 'zh'
+     : [35;1m^^^^^^[0m
+ [2m164[0m | 
+ [2m165[0m | export function t(path: string, lang: Lang): string {
+ [2m166[0m |   const keys = path.split('.')
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/lib/i18n.ts
+./src/app/(main)/support/page.tsx
+ ⨯ ./src/components/layout/HUDPanels.tsx
+Error:   [31mx[0m The "use client" directive must be placed before other expressions. Move it to the top of the file to resolve this issue.
+   ,-[[36;1;4mC:\Users\benjo\Documents\Codex\2026-06-07\codex-claude-code-cursor-devin-50\fifa-arbitrage\src\components\layout\HUDPanels.tsx[0m:3:1]
+ [2m1[0m | import { useStore } from '@/store/useStore'
+ [2m2[0m | import { t } from '@/lib/i18n'
+ [2m3[0m | ﻿'use client'
+   : [35;1m^^^^^^^^^^^^[0m
+ [2m4[0m | import { motion } from 'framer-motion'
+ [2m5[0m | import { TrendingUp, Cpu, Shield, DollarSign, BarChart3, Activity } from 'lucide-react'
+   `----
+
+Import trace for requested module:
+./src/components/layout/HUDPanels.tsx
+./src/app/page.tsx
+ ⨯ ./src/components/layout/HUDPanels.tsx
+Error:   [31mx[0m The "use client" directive must be placed before other expressions. Move it to the top of the file to resolve this issue.
+   ,-[[36;1;4mC:\Users\benjo\Documents\Codex\2026-06-07\codex-claude-code-cursor-devin-50\fifa-arbitrage\src\components\layout\HUDPanels.tsx[0m:3:1]
+ [2m1[0m | import { useStore } from '@/store/useStore'
+ [2m2[0m | import { t } from '@/lib/i18n'
+ [2m3[0m | ﻿'use client'
+   : [35;1m^^^^^^^^^^^^[0m
+ [2m4[0m | import { motion } from 'framer-motion'
+ [2m5[0m | import { TrendingUp, Cpu, Shield, DollarSign, BarChart3, Activity } from 'lucide-react'
+   `----
+
+Import trace for requested module:
+./src/components/layout/HUDPanels.tsx
+./src/app/page.tsx
+ ⨯ ./src/components/layout/HUDPanels.tsx
+Error:   [31mx[0m The "use client" directive must be placed before other expressions. Move it to the top of the file to resolve this issue.
+   ,-[[36;1;4mC:\Users\benjo\Documents\Codex\2026-06-07\codex-claude-code-cursor-devin-50\fifa-arbitrage\src\components\layout\HUDPanels.tsx[0m:3:1]
+ [2m1[0m | import { useStore } from '@/store/useStore'
+ [2m2[0m | import { t } from '@/lib/i18n'
+ [2m3[0m | ﻿'use client'
+   : [35;1m^^^^^^^^^^^^[0m
+ [2m4[0m | import { motion } from 'framer-motion'
+ [2m5[0m | import { TrendingUp, Cpu, Shield, DollarSign, BarChart3, Activity } from 'lucide-react'
+   `----
+
+Import trace for requested module:
+./src/components/layout/HUDPanels.tsx
+./src/app/page.tsx
+ ⨯ ./src/lib/i18n.ts
+Error:   [31mx[0m Expected ',', got 'export'
+     ,-[[36;1;4mC:\Users\benjo\Documents\Codex\2026-06-07\codex-claude-code-cursor-devin-50\fifa-arbitrage\src\lib\i18n.ts[0m:163:1]
+ [2m160[0m |   },
+ [2m161[0m | }
+ [2m162[0m | 
+ [2m163[0m | export type Lang = 'en' | 'zh'
+     : [35;1m^^^^^^[0m
+ [2m164[0m | 
+ [2m165[0m | export function t(path: string, lang: Lang): string {
+ [2m166[0m |   const keys = path.split('.')
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/lib/i18n.ts
+./src/app/(main)/support/page.tsx
+ ⨯ ./src/lib/i18n.ts
+Error:   [31mx[0m Expected ',', got 'export'
+     ,-[[36;1;4mC:\Users\benjo\Documents\Codex\2026-06-07\codex-claude-code-cursor-devin-50\fifa-arbitrage\src\lib\i18n.ts[0m:163:1]
+ [2m160[0m |   },
+ [2m161[0m | }
+ [2m162[0m | 
+ [2m163[0m | export type Lang = 'en' | 'zh'
+     : [35;1m^^^^^^[0m
+ [2m164[0m | 
+ [2m165[0m | export function t(path: string, lang: Lang): string {
+ [2m166[0m |   const keys = path.split('.')
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/lib/i18n.ts
+./src/app/(main)/support/page.tsx
+ ⨯ ./src/lib/i18n.ts
+Error:   [31mx[0m Expected ',', got 'export'
+     ,-[[36;1;4mC:\Users\benjo\Documents\Codex\2026-06-07\codex-claude-code-cursor-devin-50\fifa-arbitrage\src\lib\i18n.ts[0m:139:1]
+ [2m136[0m |   },
+ [2m137[0m | }
+ [2m138[0m | 
+ [2m139[0m | export type Lang = 'en' | 'zh'
+     : [35;1m^^^^^^[0m
+ [2m140[0m | 
+ [2m141[0m | export function t(path: string, lang: Lang): string {
+ [2m142[0m |   const keys = path.split('.')
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/lib/i18n.ts
+./src/app/(main)/support/page.tsx
+ ⨯ ./src/lib/i18n.ts
+Error:   [31mx[0m Expected ',', got 'export'
+     ,-[[36;1;4mC:\Users\benjo\Documents\Codex\2026-06-07\codex-claude-code-cursor-devin-50\fifa-arbitrage\src\lib\i18n.ts[0m:163:1]
+ [2m160[0m |   },
+ [2m161[0m | }
+ [2m162[0m | 
+ [2m163[0m | export type Lang = 'en' | 'zh'
+     : [35;1m^^^^^^[0m
+ [2m164[0m | 
+ [2m165[0m | export function t(path: string, lang: Lang): string {
+ [2m166[0m |   const keys = path.split('.')
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/lib/i18n.ts
+./src/app/(main)/support/page.tsx
+ ✓ Compiled in 752ms (3084 modules)
+ GET /leaderboard 200 in 256ms
+ GET /opportunities 200 in 257ms
+ GET /leaderboard 200 in 348ms
+ ○ Compiling / ...
+ ✓ Compiled / in 4.2s (1633 modules)
+ GET / 200 in 4332ms
+ GET / 200 in 39ms
+ GET / 200 in 29ms
+ GET / 200 in 33ms
+ GET / 200 in 42ms
+ GET / 200 in 30ms
+ GET / 200 in 44ms
+ GET / 200 in 27ms
+ GET / 200 in 31ms
+ ○ Compiling /support ...
+ ✓ Compiled /support in 1635ms (1638 modules)
+ GET /support 200 in 1734ms
+ ⨯ ReferenceError: language is not defined
+    at eval (src\app\(main)\support\page.tsx:9:54)
+    at (ssr)/./src/app/(main)/support/page.tsx (C:\Users\benjo\Documents\Codex\2026-06-07\codex-claude-code-cursor-devin-50\fifa-arbitrage\.next\server\app\(main)\support\page.js:168:1)
+   7 |
+   8 | const supportItems = [
+>  9 |   { icon: MessageCircle, name: t('support.liveChat', language), desc: t('support.liveChatDesc', language), color: '#00ff88' },
+     |                                                      ^
+  10 |   { icon: Mail, name: t('support.email', language), desc: 'support@arbitrage.ai', color: '#00d9ff' },
+  11 |   { icon: HelpCircle, name: t('support.faq', language), desc: t('support.faqDesc', language), color: '#ffd700' },
+  12 |   { icon: FileText, name: t('support.docs', language), desc: t('support.docsDesc', language), color: '#00ff88' }, {
+  digest: '3355873540'
+}
+ GET /support 500 in 440ms
+ ✓ Compiled /deposit in 288ms (1079 modules)
+ GET /deposit 200 in 531ms
+ GET / 200 in 33ms
+ ○ Compiling /matches ...
+ ✓ Compiled /matches in 1021ms (1083 modules)
+ GET /matches 200 in 1140ms
+ ✓ Compiled /opportunities in 301ms (1078 modules)
+ GET /opportunities 200 in 401ms
+ GET /leaderboard 200 in 43ms
+ ✓ Compiled /ai-center in 390ms (1643 modules)
+ GET /ai-center 200 in 480ms
+ GET /deposit 200 in 41ms
+ ✓ Compiled /profile in 327ms (1642 modules)
+ GET /profile 200 in 419ms
+ ✓ Compiled /support in 368ms (1653 modules)
+ GET /support 200 in 455ms
+ GET /support 200 in 35ms
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ✓ Compiled in 3.1s (3104 modules)
+ ⨯ ReferenceError: lang is not defined
+    at SupportPage (src\app\(main)\support\page.tsx:24:73)
+  22 |           <HeadphonesIcon size={24} className="text-[#00ff88]" />
+  23 |           <h1 className="text-2xl md:text-3xl font-orbitron font-bold">
+> 24 |             <span className="text-gradient-primary">{t('support.title', lang)}</span>
+     |                                                                         ^
+  25 |           </h1>
+  26 |         </div>
+  27 |         <p className="text-white/40 text-sm">{t('support.subtitle', lang)}</p> {
+  digest: '2540962795'
+}
+ ⨯ ReferenceError: lang is not defined
+    at SupportPage (src\app\(main)\support\page.tsx:24:73)
+  22 |           <HeadphonesIcon size={24} className="text-[#00ff88]" />
+  23 |           <h1 className="text-2xl md:text-3xl font-orbitron font-bold">
+> 24 |             <span className="text-gradient-primary">{t('support.title', lang)}</span>
+     |                                                                         ^
+  25 |           </h1>
+  26 |         </div>
+  27 |         <p className="text-white/40 text-sm">{t('support.subtitle', lang)}</p> {
+  digest: '2540962795'
+}
+ GET /support 500 in 2351ms
+ GET /support 500 in 2331ms
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ✓ Compiled in 671ms (3104 modules)
+ GET /support 200 in 954ms
+ GET /support 200 in 953ms
+ GET /profile 200 in 56ms
+ ✓ Compiled in 4.6s (3104 modules)
+ GET /profile 200 in 205ms
+ GET /support 200 in 211ms
+ GET /profile 200 in 464ms
+ GET / 200 in 33ms
+ ○ Compiling /matches ...
+ ✓ Compiled /matches in 5.1s (1642 modules)
+ GET /matches 200 in 5672ms
+ GET /matches 200 in 84ms
+ GET /matches 200 in 90ms
+ ○ Compiling /opportunities ...
+ ✓ Compiled /opportunities in 1689ms (1647 modules)
+ GET /opportunities 200 in 2912ms
+ GET /matches 200 in 2874ms
+ GET /matches 200 in 116ms
+ GET /matches 200 in 81ms
+ ○ Compiling /leaderboard ...
+ ✓ Compiled /leaderboard in 2.2s (1088 modules)
+ GET /leaderboard 200 in 2398ms
+ ✓ Compiled /ai-center in 479ms (1653 modules)
+ GET /ai-center 200 in 575ms
+ GET /deposit 200 in 42ms
+ GET / 200 in 41ms
+ ✓ Compiled in 5.1s (3100 modules)
+ GET / 200 in 208ms
+ GET /support 200 in 212ms
+ GET / 200 in 124ms
+ ✓ Compiled in 5.9s (3100 modules)
+ GET / 200 in 213ms
+ GET /support 200 in 125ms
+ GET / 200 in 129ms
+ ⨯ ./src/lib/i18n.ts
+Error:   [31mx[0m Expected ';', '}' or <eof>
+     ,-[[36;1;4mC:\Users\benjo\Documents\Codex\2026-06-07\codex-claude-code-cursor-devin-50\fifa-arbitrage\src\lib\i18n.ts[0m:166:1]
+ [2m163[0m |   }
+ [2m164[0m |   return result?.[lang] || result?.en || path
+ [2m165[0m |   common: {
+ [2m166[0m |     all: { en: 'All', zh: '全部' },
+     : [35;1m               ^^^^|^^^^[0m[33;1m^[0m
+     :                    [35;1m`-- [35;1mThis is the expression part of an expression statement[0m[0m
+ [2m167[0m |     hot: { en: 'HOT', zh: '热门' },
+ [2m168[0m |     limited: { en: 'LIMITED', zh: '限量' },
+ [2m169[0m |     premium: { en: 'PREMIUM', zh: '优质' },
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/lib/i18n.ts
+./src/app/(main)/support/page.tsx
+ ⨯ ./src/lib/i18n.ts
+Error:   [31mx[0m Expected ';', '}' or <eof>
+     ,-[[36;1;4mC:\Users\benjo\Documents\Codex\2026-06-07\codex-claude-code-cursor-devin-50\fifa-arbitrage\src\lib\i18n.ts[0m:167:1]
+ [2m164[0m |   }
+ [2m165[0m |   return result?.[lang] || result?.en || path
+ [2m166[0m |   common: {
+ [2m167[0m |     all: { en: 'All', zh: '全部' },
+     : [35;1m               ^^^^|^^^^[0m[33;1m^[0m
+     :                    [35;1m`-- [35;1mThis is the expression part of an expression statement[0m[0m
+ [2m168[0m |     hot: { en: 'HOT', zh: '热门' },
+ [2m169[0m |     limited: { en: 'LIMITED', zh: '限量' },
+ [2m170[0m |     premium: { en: 'PREMIUM', zh: '优质' },
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/lib/i18n.ts
+./src/app/(main)/support/page.tsx
+ ✓ Compiled in 2.7s (3100 modules)
+ GET / 200 in 245ms
+ GET /support 200 in 244ms
+ ✓ Compiled in 2.8s (3100 modules)
+ GET / 200 in 256ms
+ GET /support 200 in 260ms
+ ✓ Compiled in 4.1s (3100 modules)
+ GET / 200 in 170ms
+ GET /support 200 in 110ms
+ GET / 200 in 129ms
+ GET / 200 in 88ms
+ ✓ Compiled in 4.6s (3100 modules)
+ GET / 200 in 242ms
+ GET / 200 in 1165ms
+ GET /support 200 in 83ms
+ ○ Compiling /matches ...
+ ✓ Compiled /matches in 3.8s (1638 modules)
+ GET /matches 200 in 4000ms
+ GET /matches 200 in 48ms
+ ○ Compiling /opportunities ...
+ ✓ Compiled /opportunities in 1245ms (1637 modules)
+ GET /opportunities 200 in 1349ms
+ ✓ Compiled in 3.4s (2543 modules)
+ GET /support 200 in 216ms
+ GET /opportunities 200 in 217ms
+ ○ Compiling /leaderboard ...
+ ✓ Compiled /leaderboard in 1250ms (1078 modules)
+ GET /leaderboard 200 in 1391ms
+ ✓ Compiled in 5.2s (2543 modules)
+ GET /leaderboard 200 in 286ms
+ GET /support 200 in 290ms
+ ✓ Compiled /ai-center in 429ms (1637 modules)
+ GET /ai-center 200 in 537ms
+ ○ Compiling /deposit ...
+ ✓ Compiled /deposit in 535ms (1623 modules)
+ GET /deposit 200 in 643ms
+ GET /deposit 200 in 466ms
+ GET /deposit 200 in 267ms
+ ✓ Compiled in 8.4s (3085 modules)
+ GET /deposit 200 in 272ms
+ GET /support 200 in 266ms
+ GET /deposit 200 in 272ms
+ ✓ Compiled in 828ms (3085 modules)
+ GET /support 200 in 178ms
+ GET /deposit 200 in 178ms
+ ○ Compiling /profile ...
+ ✓ Compiled /profile in 3.1s (1624 modules)
+ GET /profile 200 in 3195ms
+ ⨯ ./src/app/(main)/profile/page.tsx
+Error:   [31mx[0m Expected ',', got '('
+   ,-[[36;1;4mC:\Users\benjo\Documents\Codex\2026-06-07\codex-claude-code-cursor-devin-50\fifa-arbitrage\src\app\(main)\profile\page.tsx[0m:3:1]
+ [2m1[0m | 'use client'
+ [2m2[0m | import { motion } from 'framer-motion'
+ [2m3[0m | import { User, t('profile.copy', language), Share2, Award, Check, Bell, Shield } from 'lucide-react'
+   : [35;1m                ^[0m
+ [2m4[0m | import { useStore } from '@/store/useStore'
+ [2m5[0m | import { t } from '@/lib/i18n'
+ [2m6[0m | import { achievements } from '@/data/achievements'
+   `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/app/(main)/profile/page.tsx
+ GET /profile 500 in 1524ms
+ GET /profile 500 in 125ms
+ GET /support 500 in 125ms
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ GET /support 500 in 53ms
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ GET /support 500 in 1086ms
+ GET /profile 500 in 1094ms
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ⨯ ./src/app/(main)/profile/page.tsx
+Error:   [31mx[0m Expected ',', got '('
+    ,-[[36;1;4mC:\Users\benjo\Documents\Codex\2026-06-07\codex-claude-code-cursor-devin-50\fifa-arbitrage\src\app\(main)\profile\page.tsx[0m:12:1]
+ [2m 9[0m | 
+ [2m10[0m | export default function ProfilePage() {
+ [2m11[0m |   const { userBalance, userDeposits, language } = useStore()
+ [2m12[0m |   const [referralt('profile.copied', language), setReferralCopied] = useState(false)
+    : [35;1m                  ^[0m
+ [2m13[0m | 
+ [2m14[0m |   const referralLink = 'https://arbitrage.ai/ref/USER123'
+    `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/app/(main)/profile/page.tsx
+ GET /support 200 in 588ms
+ GET /profile 200 in 589ms
+ GET /support 500 in 77ms
+ GET /profile 500 in 76ms
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ GET /support 500 in 1134ms
+ GET /profile 500 in 1135ms
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ⨯ ./src/app/(main)/profile/page.tsx
+Error:   [31mx[0m Expected ',', got '('
+    ,-[[36;1;4mC:\Users\benjo\Documents\Codex\2026-06-07\codex-claude-code-cursor-devin-50\fifa-arbitrage\src\app\(main)\profile\page.tsx[0m:12:1]
+ [2m 9[0m | 
+ [2m10[0m | export default function ProfilePage() {
+ [2m11[0m |   const { userBalance, userDeposits, language } = useStore()
+ [2m12[0m |   const [referralt('profile.copied', language), setReferralCopied] = useState(false)
+    : [35;1m                  ^[0m
+ [2m13[0m | 
+ [2m14[0m |   const referralLink = 'https://arbitrage.ai/ref/USER123'
+    `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/app/(main)/profile/page.tsx
+ GET /support 200 in 507ms
+ GET /profile 200 in 508ms
+ GET /support 500 in 64ms
+ GET /profile 500 in 64ms
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ GET /support 500 in 1112ms
+ GET /profile 500 in 1113ms
+ ✓ Compiled in 11.7s (3071 modules)
+ GET /support 200 in 10523ms
+ GET /profile 200 in 10523ms
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ GET /profile 200 in 1645ms
+ GET /support 200 in 1495ms
+ ✓ Compiled in 3.2s (3085 modules)
+ GET /support 200 in 173ms
+ GET /profile 200 in 173ms
+ ✓ Compiled in 2.8s (3085 modules)
+ GET /support 200 in 135ms
+ GET /profile 200 in 139ms
+ ✓ Compiled in 2.8s (3085 modules)
+ GET /profile 200 in 126ms
+ GET /support 200 in 126ms
+ GET /support 200 in 46ms
+ GET /support 200 in 554ms
+ GET /support 200 in 202ms
+ ✓ Compiled in 3.4s (3085 modules)
+ GET /support 200 in 126ms
+ GET /support 200 in 143ms
+ ○ Compiling / ...
+ ✓ Compiled / in 4.8s (1639 modules)
+ GET / 200 in 4896ms
+ GET / 200 in 30ms
+ ○ Compiling /matches ...
+ ✓ Compiled /matches in 2.2s (1642 modules)
+ GET /matches 200 in 2359ms
+ ✓ Compiled /opportunities in 482ms (1647 modules)
+ GET /opportunities 200 in 587ms
+ ✓ Compiled in 4.3s (2547 modules)
+ GET /opportunities 200 in 427ms
+ GET /support 200 in 152ms
+ ✓ Compiled in 899ms (2547 modules)
+ GET /support 200 in 151ms
+ GET /opportunities 200 in 153ms
+ GET /opportunities 200 in 541ms
+ ✓ Compiled in 6.1s (2547 modules)
+ GET /opportunities 200 in 260ms
+ GET /support 200 in 255ms
+ GET / 200 in 35ms
+ GET /matches 200 in 52ms
+ ✓ Compiled in 8.3s (2547 modules)
+ GET /matches 200 in 172ms
+ GET /support 200 in 71ms
+ GET /opportunities 200 in 42ms
+ ○ Compiling /leaderboard ...
+ ✓ Compiled /leaderboard in 1388ms (1082 modules)
+ GET /leaderboard 200 in 1535ms
+ ○ Compiling /ai-center ...
+ ✓ Compiled /ai-center in 3.1s (1647 modules)
+ GET /ai-center 200 in 3225ms
+ ○ Compiling /deposit ...
+ ✓ Compiled /deposit in 1375ms (1653 modules)
+ GET /deposit 200 in 2583ms
+ GET /profile 200 in 42ms
+ GET /support 200 in 51ms
+ GET /deposit 200 in 33ms
+ ✓ Compiled in 8.3s (3088 modules)
+ GET /deposit 200 in 343ms
+ GET /support 200 in 307ms
+ ✓ Compiled in 2.9s (3088 modules)
+ GET /support 200 in 180ms
+ GET /deposit 200 in 181ms
+ GET /deposit 200 in 316ms
+ ✓ Compiled in 3.2s (3088 modules)
+ GET /support 200 in 178ms
+ GET /deposit 200 in 178ms
+ GET /deposit 200 in 271ms
+ GET /deposit 200 in 203ms
+ GET /deposit 200 in 132ms
+ GET /profile 200 in 54ms
+ GET /deposit 200 in 32ms
+ GET /support 200 in 35ms
+ GET /profile 200 in 30ms
+ GET /deposit 200 in 35ms
+ GET /deposit 200 in 29ms
+ ✓ Compiled in 3.9s (3088 modules)
+ GET /deposit 200 in 278ms
+ GET /deposit 200 in 64ms
+ ✓ Compiled in 846ms (3088 modules)
+ GET /deposit 200 in 182ms
+ GET /deposit 200 in 183ms
+ GET /deposit 200 in 365ms
+ ✓ Compiled in 3.5s (3088 modules)
+ GET /deposit 200 in 220ms
+ GET /deposit 200 in 223ms
+ ✓ Compiled in 887ms (3086 modules)
+ GET /deposit 200 in 142ms
+ GET /deposit 200 in 148ms
+ GET /profile 200 in 56ms
+ GET /deposit 200 in 28ms
+ GET /profile 200 in 30ms
+ GET /deposit 200 in 38ms
+ GET /deposit 200 in 225ms
+ ✓ Compiled in 3.2s (3086 modules)
+ GET /deposit 200 in 194ms
+ GET /deposit 200 in 196ms
+ ✓ Compiled in 1173ms (3086 modules)
+ GET /deposit 200 in 171ms
+ GET /deposit 200 in 175ms
+ GET /deposit 200 in 221ms
+ GET /deposit 200 in 148ms
+ ✓ Compiled in 3.9s (3086 modules)
+ GET /deposit 200 in 136ms
+ GET /deposit 200 in 138ms
+ GET /deposit 200 in 234ms
+ GET /deposit 200 in 127ms
+ GET /deposit 200 in 116ms
+ GET /deposit 200 in 122ms
+ GET /deposit 200 in 111ms
+ GET /deposit 200 in 127ms
+ GET /deposit 200 in 121ms
+ GET /deposit 200 in 146ms
+ ✓ Compiled in 5.7s (3086 modules)
+ GET /deposit 200 in 220ms
+ ✓ Compiled in 840ms (3086 modules)
+ GET /deposit 200 in 133ms
+ GET /deposit 200 in 1440ms
+ GET /profile 200 in 46ms
+ GET /deposit 200 in 29ms
+ ✓ Compiled in 3.2s (3086 modules)
+ GET /deposit 200 in 140ms
+ GET /deposit 200 in 280ms
+ ✓ Compiled in 3s (3086 modules)
+ GET /deposit 200 in 89ms
+ GET /deposit 200 in 215ms
+ ✓ Compiled in 3.1s (3086 modules)
+ GET /deposit 200 in 93ms
+ GET /deposit 200 in 173ms
+ GET /ai-center 200 in 43ms
+ GET /deposit 200 in 33ms
+ ✓ Compiled in 2.2s (1471 modules)
+ GET /deposit 200 in 71ms
+ GET /deposit 200 in 322ms
+ ✓ Compiled in 431ms (1471 modules)
+ ✓ Compiled in 506ms (1471 modules)
+ GET /deposit 200 in 56ms
+ ✓ Compiled in 463ms (1471 modules)
+ GET /deposit 200 in 54ms
+ GET /deposit 200 in 126ms
+ ✓ Compiled in 4.1s (3086 modules)
+ GET /deposit 200 in 143ms
+ ✓ Compiled in 3.9s (3086 modules)
+ GET /deposit 200 in 131ms
+ GET /deposit 200 in 205ms
+ GET /deposit 200 in 105ms
+ GET /deposit 200 in 111ms
+ GET /deposit 200 in 123ms
+ GET /deposit 200 in 123ms
+ ✓ Compiled in 6.1s (3086 modules)
+ GET /deposit 200 in 166ms
+ GET /deposit 200 in 204ms
+ GET /deposit 200 in 127ms
+ ⨯ ./src/app/(main)/deposit/page.tsx
+Error:   [31mx[0m Unexpected token. Did you mean `{'>'}` or `&gt;`?
+    ,-[[36;1;4mC:\Users\benjo\Documents\Codex\2026-06-07\codex-claude-code-cursor-devin-50\fifa-arbitrage\src\app\(main)\deposit\page.tsx[0m:67:1]
+ [2m64[0m |               )
+ [2m65[0m |             })}
+ [2m66[0m |           </div>
+ [2m67[0m |         </div>className="lg:col-span-3">
+    : [35;1m                                       ^[0m
+ [2m68[0m |           {selectedMethod ? (
+ [2m69[0m |             <div className="space-y-4">
+ [2m70[0m |               {/* Coin Header */}
+    `----
+  [31mx[0m Expected ',', got '{'
+     ,-[[36;1;4mC:\Users\benjo\Documents\Codex\2026-06-07\codex-claude-code-cursor-devin-50\fifa-arbitrage\src\app\(main)\deposit\page.tsx[0m:162:1]
+ [2m159[0m |         </div>
+ [2m160[0m |       </div>
+ [2m161[0m | 
+ [2m162[0m |       {/* Footer */}
+     : [35;1m      ^[0m
+ [2m163[0m |       <div className="mt-8 text-center text-[11px] text-white/20">
+ [2m164[0m |         <p>Only send selected crypto to this address. Verify the network before confirming.</p>
+ [2m165[0m |       </div>
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/app/(main)/deposit/page.tsx
+ GET /deposit 500 in 43ms
+ GET /deposit 500 in 29ms
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ GET /deposit 500 in 330ms
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ⨯ ./src/app/(main)/deposit/page.tsx
+Error:   [31mx[0m Unexpected token. Did you mean `{'>'}` or `&gt;`?
+    ,-[[36;1;4mC:\Users\benjo\Documents\Codex\2026-06-07\codex-claude-code-cursor-devin-50\fifa-arbitrage\src\app\(main)\deposit\page.tsx[0m:67:1]
+ [2m64[0m |               )
+ [2m65[0m |             })}
+ [2m66[0m |           </div>
+ [2m67[0m |         </div>className="lg:col-span-3">
+    : [35;1m                                       ^[0m
+ [2m68[0m |           {selectedMethod ? (
+ [2m69[0m |             <div className="space-y-4">
+ [2m70[0m |               {/* Coin Header */}
+    `----
+  [31mx[0m Expected ',', got '{'
+     ,-[[36;1;4mC:\Users\benjo\Documents\Codex\2026-06-07\codex-claude-code-cursor-devin-50\fifa-arbitrage\src\app\(main)\deposit\page.tsx[0m:161:1]
+ [2m158[0m |         </div>
+ [2m159[0m |       </div>
+ [2m160[0m | 
+ [2m161[0m |       {/* Footer */}
+     : [35;1m      ^[0m
+ [2m162[0m |       <div className="mt-8 text-center text-[11px] text-white/20">
+ [2m163[0m |         <p>Only send selected crypto to this address. Verify the network before confirming.</p>
+ [2m164[0m |       </div>
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/app/(main)/deposit/page.tsx
+ GET /deposit 200 in 271ms
+ GET /deposit 500 in 46ms
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ⨯ ./src/app/(main)/deposit/page.tsx
+Error:   [31mx[0m Unexpected token. Did you mean `{'>'}` or `&gt;`?
+    ,-[[36;1;4mC:\Users\benjo\Documents\Codex\2026-06-07\codex-claude-code-cursor-devin-50\fifa-arbitrage\src\app\(main)\deposit\page.tsx[0m:67:1]
+ [2m64[0m |               )
+ [2m65[0m |             })}
+ [2m66[0m |           </div>
+ [2m67[0m |         </div>className="lg:col-span-3">
+    : [35;1m                                       ^[0m
+ [2m68[0m |           {selectedMethod ? (
+ [2m69[0m |             <div className="space-y-4">
+ [2m70[0m |               {/* Coin Header */}
+    `----
+  [31mx[0m Expected ',', got '{'
+     ,-[[36;1;4mC:\Users\benjo\Documents\Codex\2026-06-07\codex-claude-code-cursor-devin-50\fifa-arbitrage\src\app\(main)\deposit\page.tsx[0m:161:1]
+ [2m158[0m |         </div>
+ [2m159[0m |       </div>
+ [2m160[0m | 
+ [2m161[0m |       {/* Footer */}
+     : [35;1m      ^[0m
+ [2m162[0m |       <div className="mt-8 text-center text-[11px] text-white/20">
+ [2m163[0m |         <p>Only send selected crypto to this address. Verify the network before confirming.</p>
+ [2m164[0m |       </div>
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/app/(main)/deposit/page.tsx
+ GET /deposit 200 in 281ms
+ GET /deposit 500 in 51ms
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ GET /deposit 500 in 1435ms
+ ✓ Compiled in 9.1s (3072 modules)
+ GET /deposit 200 in 7585ms
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ GET /deposit 200 in 868ms
+ GET /profile 200 in 47ms
+ GET /deposit 200 in 42ms
+ GET /deposit 200 in 121ms
+ GET /profile 200 in 46ms
+ GET /support 200 in 58ms
+ GET /deposit 200 in 43ms
+ ○ Compiling / ...
+ ✓ Compiled / in 8.1s (1638 modules)
+ GET / 200 in 8271ms
+ GET / 200 in 35ms
+ GET / 200 in 29ms
+ GET / 200 in 31ms
+ GET / 200 in 30ms
+ GET / 200 in 31ms
+ GET / 200 in 34ms
+ GET / 200 in 26ms
+ GET / 200 in 154ms
+ GET /deposit 200 in 43ms
+ GET / 200 in 31ms
+ ○ Compiling /matches ...
+ ✓ Compiled /matches in 7.4s (1642 modules)
+ GET /deposit 200 in 2849ms
+ GET /matches 200 in 8067ms
+ GET /profile 200 in 4301ms
+ GET / 200 in 34ms
+ GET /matches 200 in 33ms
+ ✓ Compiled /opportunities in 281ms (1082 modules)
+ GET /opportunities 200 in 421ms
+ ✓ Compiled /leaderboard in 330ms (1088 modules)
+ GET /leaderboard 200 in 424ms
+ ✓ Compiled /ai-center in 405ms (1653 modules)
+ GET /ai-center 200 in 508ms
+ GET /deposit 200 in 43ms
+ GET /deposit 200 in 194ms
+ GET /profile 200 in 39ms
+ GET /support 200 in 41ms
+ GET /deposit 200 in 114ms
+ GET /deposit 200 in 134ms
+ GET /deposit 200 in 156ms
+ GET /deposit 200 in 136ms
+ GET /deposit 200 in 132ms
+ GET /deposit 200 in 121ms
+ GET /deposit 200 in 162ms
+ GET / 200 in 1564ms
+ ✓ Compiled in 10s (3110 modules)
+ ✓ Compiled in 1ms (1639 modules)
+ ✓ Compiled in 0ms (1639 modules)
+ GET /profile 200 in 1066ms
+ ✓ Compiled in 0ms (1639 modules)
+ GET / 200 in 9620ms
+ ✓ Compiled in 1ms (1639 modules)
+ GET /support 200 in 1970ms
+ ✓ Compiled in 0ms (1639 modules)
+ ✓ Compiled in 1ms (1639 modules)
+ GET /profile 200 in 1725ms
+ GET / 200 in 1648ms
+ GET /deposit 200 in 50ms
+ ✓ Compiled in 4.4s (3085 modules)
+ GET /support 200 in 260ms
+ GET /deposit 200 in 260ms
+ ✓ Compiled in 6.5s (3085 modules)
+ GET /support 200 in 2126ms
+ GET /support 200 in 476ms
+ GET /deposit 200 in 478ms
+ ✓ Compiled / in 330ms (1639 modules)
+ GET / 200 in 445ms
+ GET / 200 in 25ms
+ GET /deposit 200 in 52ms
+ GET / 200 in 36ms
+ ○ Compiling /matches ...
+ ✓ Compiled /matches in 5.9s (1642 modules)
+ ✓ Compiled in 3.4s (3104 modules)
+ GET /deposit 200 in 135ms
+ GET /deposit 200 in 135ms
+ GET /deposit 200 in 225ms
+ GET /profile 200 in 42ms
+ GET /deposit 200 in 32ms
+ GET /support 200 in 51ms
+ GET /deposit 200 in 30ms
+ GET /ai-center 200 in 38ms
+ GET /profile 200 in 29ms
+ GET /deposit 200 in 30ms
+ ✓ Compiled in 5.9s (3104 modules)
+ GET /deposit 200 in 335ms
+ GET /deposit 200 in 315ms
+ GET / 200 in 59ms
+ ○ Compiling /matches ...
+ ✓ Compiled /matches in 1736ms (1642 modules)
+ GET /matches 200 in 1862ms
+ GET /matches 200 in 43ms
+ ○ Compiling /opportunities ...
+ ✓ Compiled /opportunities in 2.9s (1647 modules)
+ GET /opportunities 200 in 2994ms
+ GET /opportunities 200 in 37ms
+ GET /opportunities 200 in 33ms
+ ○ Compiling /leaderboard ...
+ ✓ Compiled /leaderboard in 1516ms (1088 modules)
+ GET /leaderboard 200 in 1648ms
+ GET /leaderboard 200 in 46ms
+ GET /leaderboard 200 in 48ms
+ GET /leaderboard 200 in 52ms
+ ○ Compiling /ai-center ...
+ ✓ Compiled /ai-center in 640ms (1653 modules)
+ GET /ai-center 200 in 761ms
+ GET /leaderboard 200 in 69ms
+ GET /ai-center 200 in 29ms
+ GET /deposit 200 in 38ms
+ GET /profile 200 in 43ms
+ GET /support 200 in 53ms
+ GET /profile 200 in 33ms
+ GET / 200 in 36ms
+ GET /matches 200 in 48ms
+ GET / 200 in 151ms
+ GET /opportunities 200 in 429ms
+ GET /opportunities 200 in 171ms
+ GET /matches 200 in 34ms
+ GET /opportunities 200 in 32ms
+ GET /opportunities 200 in 29ms
+ GET /leaderboard 200 in 33ms
+ GET /ai-center 200 in 28ms
+ GET /deposit 200 in 36ms
+ GET /profile 200 in 32ms
+ GET /support 200 in 33ms
+ GET / 200 in 22ms
+ GET /matches 200 in 34ms
+ GET /opportunities 200 in 29ms
+ GET /leaderboard 200 in 28ms
+ GET /ai-center 200 in 27ms
+ GET /deposit 200 in 27ms
+ GET /profile 200 in 35ms
+ GET /support 200 in 26ms
+ GET / 200 in 23ms
+ GET /matches 200 in 30ms
+ GET /opportunities 200 in 34ms
+ GET / 200 in 28ms
+ GET /deposit 200 in 36ms
+ GET /profile 200 in 36ms
+ GET / 200 in 33ms
+ GET /deposit 200 in 52ms
+ ⨯ ./src/app/(main)/deposit/page.tsx
+Error:   [31mx[0m Expected '</', got 'deposit'
+     ,-[[36;1;4mC:\Users\benjo\Documents\Codex\2026-06-07\codex-claude-code-cursor-devin-50\fifa-arbitrage\src\app\(main)\deposit\page.tsx[0m:192:1]
+ [2m189[0m |               <h3 className="text-sm font-medium text-white/70 mb-4">{t('deposit.subtitle', language)}</h3>
+ [2m190[0m |               <div className="space-y-0">
+ [2m191[0m |                 {[
+ [2m192[0m |                   { step: '01', text: '{t('deposit.step1', language)}' },
+     : [35;1m                                           ^^^^^^^[0m
+ [2m193[0m |                   { step: '02', text: '{t('deposit.step2', language)}' },
+ [2m194[0m |                   { step: '03', text: '{t('deposit.step3', language)}' },
+ [2m195[0m |                   { step: '04', text: '{t('deposit.step4', language)}' },
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/app/(main)/deposit/page.tsx
+ GET /deposit 500 in 38ms
+ GET /deposit 500 in 77ms
+ GET /deposit 500 in 53ms
+ GET /deposit 500 in 36ms
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ GET /deposit 500 in 1586ms
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ GET /deposit 500 in 1771ms
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ✓ Compiled in 8.9s (2528 modules)
+ GET /deposit 200 in 664ms
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ GET /deposit 200 in 680ms
+ GET /deposit 200 in 588ms
+ GET /deposit 200 in 588ms
+ ✓ Compiled in 915ms (2542 modules)
+ GET /deposit 200 in 2081ms
+ GET /deposit 200 in 2082ms
+ GET / 200 in 64ms
+ GET /matches 200 in 65ms
+ GET /opportunities 200 in 50ms
+ ○ Compiling /leaderboard ...
+ ✓ Compiled /leaderboard in 6.9s (1077 modules)
+ GET /deposit 200 in 926ms
+ GET /deposit 200 in 5252ms
+ GET /leaderboard 200 in 7945ms
+ GET /deposit 200 in 145ms
+ GET /deposit 200 in 147ms
+ ✓ Compiled in 2.7s (1471 modules)
+ ✓ Compiled in 576ms (1471 modules)
+ GET /deposit 200 in 615ms
+ GET /deposit 200 in 466ms
+ GET /deposit 200 in 127ms
+ GET /deposit 200 in 104ms
+ ✓ Compiled in 498ms (1471 modules)
+ GET /deposit 200 in 83ms
+ GET /deposit 200 in 83ms
+ ✓ Compiled in 429ms (1471 modules)
+ GET /deposit 200 in 95ms
+ GET /deposit 200 in 96ms
+ ✓ Compiled in 460ms (1471 modules)
+ GET /deposit 200 in 102ms
+ GET /deposit 200 in 83ms
+ ✓ Compiled in 487ms (1471 modules)
+ GET /deposit 200 in 83ms
+ GET /deposit 200 in 84ms
+ ✓ Compiled in 380ms (1471 modules)
+ GET /deposit 200 in 79ms
+ GET /deposit 200 in 78ms
+ ✓ Compiled in 13.8s (2562 modules)
+ GET /deposit 200 in 283ms
+ GET /deposit 200 in 260ms
+ GET /deposit 200 in 964ms
+ GET /deposit 200 in 290ms
+ ⨯ ./src/lib/i18n.ts
+Error:   [31mx[0m Expected ';', '}' or <eof>
+     ,-[[36;1;4mC:\Users\benjo\Documents\Codex\2026-06-07\codex-claude-code-cursor-devin-50\fifa-arbitrage\src\lib\i18n.ts[0m:401:1]
+ [2m398[0m | 
+ [2m399[0m | 
+ [2m400[0m |   auth: {
+ [2m401[0m |     login: { en: 'Log In', zh: '登录' },
+     : [35;1m                 ^^^^^^|^^^^^[0m[33;1m^[0m
+     :                        [35;1m`-- [35;1mThis is the expression part of an expression statement[0m[0m
+ [2m402[0m |     register: { en: 'Register', zh: '注册' },
+ [2m403[0m |     logout: { en: 'Log Out', zh: '退出登录' },
+ [2m404[0m |     createAccount: { en: 'Create Account', zh: '创建账户' },
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/lib/i18n.ts
+./src/app/(main)/support/page.tsx
+ GET / 500 in 43ms
+ ⨯ ./src/lib/i18n.ts
+Error:   [31mx[0m Expected ';', '}' or <eof>
+   ,-[[36;1;4mC:\Users\benjo\Documents\Codex\2026-06-07\codex-claude-code-cursor-devin-50\fifa-arbitrage\src\lib\i18n.ts[0m:3:1]
+ [2m1[0m | 
+ [2m2[0m |   auth: {
+ [2m3[0m |     login: { en: 'Log In', zh: '\u767b\u5f55' },
+   : [35;1m                 ^^^^^^|^^^^^[0m[33;1m^[0m
+   :                        [35;1m`-- [35;1mThis is the expression part of an expression statement[0m[0m
+ [2m4[0m |     register: { en: 'Register', zh: '\u6ce8\u518c' },
+ [2m5[0m |     logout: { en: 'Log Out', zh: '\u9000\u51fa\u767b\u5f55' },
+ [2m6[0m |     createAccount: { en: 'Create Account', zh: '\u521b\u5efa\u8d26\u6237' },
+   `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/lib/i18n.ts
+./src/app/(main)/support/page.tsx
+ ⨯ ./src/lib/i18n.ts
+Error:   [31mx[0m Unexpected token `,`. Expected identifier, string literal, numeric literal or [ for the computed key
+     ,-[[36;1;4mC:\Users\benjo\Documents\Codex\2026-06-07\codex-claude-code-cursor-devin-50\fifa-arbitrage\src\lib\i18n.ts[0m:308:1]
+ [2m305[0m |     viewDetails: { en: 'View Details', zh: '查看详情' },
+ [2m306[0m |     loading: { en: 'Loading...', zh: '加载中...' },
+ [2m307[0m |     error: { en: 'Error', zh: '错误' },
+ [2m308[0m |   },,
+     : [35;1m    ^[0m
+ [2m309[0m |   auth: {
+ [2m310[0m |     login: { en: 'Log In', zh: '\u767b\u5f55' },
+ [2m311[0m |     register: { en: 'Register', zh: '\u6ce8\u518c' },
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/lib/i18n.ts
+./src/app/(main)/support/page.tsx
+ GET /deposit 500 in 27ms
+ ⨯ ./src/lib/i18n.ts
+Error:   [31mx[0m Expected ';', '}' or <eof>
+     ,-[[36;1;4mC:\Users\benjo\Documents\Codex\2026-06-07\codex-claude-code-cursor-devin-50\fifa-arbitrage\src\lib\i18n.ts[0m:439:1]
+ [2m436[0m | 
+ [2m437[0m | 
+ [2m438[0m |   auth: {
+ [2m439[0m |     login: { en: 'Log In', zh: '登录' },
+     : [35;1m                 ^^^^^^|^^^^^[0m[33;1m^[0m
+     :                        [35;1m`-- [35;1mThis is the expression part of an expression statement[0m[0m
+ [2m440[0m |     register: { en: 'Register', zh: '注册' },
+ [2m441[0m |     logout: { en: 'Log Out', zh: '退出登录' },
+ [2m442[0m |     createAccount: { en: 'Create Account', zh: '创建账户' },
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/lib/i18n.ts
+./src/app/(main)/support/page.tsx
+ GET / 500 in 24ms
+ GET /deposit 500 in 23ms
+ GET / 500 in 3203ms
+ ✓ Compiled in 7.4s (2589 modules)
+ GET /deposit 200 in 494ms
+ GET / 200 in 67ms
+ GET /deposit 200 in 154ms
+ ○ Compiling /referral ...
+ ✓ Compiled /referral in 11.1s (2584 modules)
+ ○ Compiling /my-opportunities ...
+ ✓ Compiled /my-opportunities in 1392ms (2597 modules)
+ GET /my-opportunities 200 in 1962ms
+ GET /profile 200 in 167ms
+ GET /opportunities 200 in 469ms
+ ○ Compiling /leaderboard ...
+ ✓ Compiled /leaderboard in 3.8s (1115 modules)
+ GET /leaderboard 200 in 4372ms
+ GET /referral 200 in 132ms
+ GET / 200 in 39ms
+ GET / 200 in 48ms
+ GET / 200 in 42ms
+ GET / 200 in 36ms
+ GET /deposit 200 in 71ms
+ GET / 200 in 35ms
+ GET /deposit 200 in 35ms
+ GET /deposit 200 in 32ms
+ GET /deposit 200 in 28ms
+ ○ Compiling /support ...
+ ✓ Compiled /support in 9s (1105 modules)
+ GET / 200 in 7873ms
+ GET /support 200 in 10012ms
+ GET / 200 in 80ms
+ GET / 200 in 42ms
+ GET / 200 in 42ms
+ GET / 200 in 33ms
+ GET / 200 in 28ms
+ GET / 200 in 36ms
+ GET / 200 in 60ms
+ GET / 200 in 62ms
+ GET / 200 in 58ms
+ GET / 200 in 52ms
+ GET / 200 in 58ms
+ GET / 200 in 304ms
+ GET /profile 200 in 75ms
+ ✓ Compiled in 14.5s (2592 modules)
+ GET /profile 200 in 217ms
+ GET / 200 in 218ms
+ GET / 200 in 55ms
+ GET /deposit 200 in 303ms
+ GET /opportunities 200 in 368ms
+ ✓ Compiled /leaderboard in 387ms (1098 modules)
+ GET /leaderboard 200 in 856ms
+ GET /profile 200 in 172ms
+ ○ Compiling /referral ...
+ ✓ Compiled /referral in 3.9s (1104 modules)
+ GET /referral 200 in 4247ms
+ ✓ Compiled /my-opportunities in 450ms (1112 modules)
+ GET /my-opportunities 200 in 990ms
+ ○ Compiling /support ...
+ ✓ Compiled /support in 5.9s (1123 modules)
+ GET /support 200 in 6403ms
+ ○ Compiling /ai-center ...
+ ✓ Compiled /ai-center in 5.6s (1688 modules)
+ GET /ai-center 200 in 6239ms
+ GET /profile 200 in 237ms
+ GET / 200 in 44ms
+ GET / 200 in 49ms
+ GET /opportunities 200 in 67ms
+ GET /leaderboard 200 in 65ms
+ GET /ai-center 200 in 41ms
+ GET /support 200 in 57ms
+ GET /ai-center 200 in 33ms
+ GET /deposit 200 in 62ms
+ GET /profile 200 in 52ms
+ GET /profile 200 in 220ms
+ GET /deposit 200 in 35ms
+ GET /leaderboard 200 in 35ms
+ GET /opportunities 200 in 42ms
+ GET /profile 200 in 50ms
+ GET /profile 200 in 383ms
+ GET / 200 in 52ms
+ GET / 200 in 2011ms
+ ✓ Compiled in 8s (3154 modules)
+ GET / 200 in 444ms
+ ✓ Compiled in 1210ms (3140 modules)
+ GET / 200 in 126ms
+ GET / 200 in 309ms
+ ✓ Compiled in 1292ms (3140 modules)
+ GET / 200 in 80ms
+ ✓ Compiled in 6.3s (3154 modules)
+ GET / 200 in 1795ms
+ ○ Compiling /dashboard ...
+ ✓ Compiled /dashboard in 8.5s (3151 modules)
+ GET /dashboard 200 in 9154ms
+ ○ Compiling /vip ...
+ ✓ Compiled /vip in 1944ms (3162 modules)
+ ⨯ ReferenceError: DollarSign is not defined
+    at eval (src\app\(main)\vip\page.tsx:89:18)
+    at Array.map (<anonymous>)
+    at VIPPage (src\app\(main)\vip\page.tsx:82:70)
+  87 |             <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4'>
+  88 |               <div className='p-4 rounded-xl bg-white/[0.02] border border-white/[0.04]'>
+> 89 |                 <DollarSign size={18} className='text-[#00ff88] mb-2' />
+     |                  ^
+  90 |                 <div className='text-sm text-white/70'>{isZh ? '解锁折扣' : 'Unlock Discount'}</div>
+  91 |                 <div className='text-lg font-bold text-[#00ff88]'>{tier.discount === 0 ? '-' : tier.discount}</div>
+  92 |               </div> {
+  digest: '4122553389'
+}
+ GET /vip 500 in 2338ms
+ ○ Compiling /opportunities ...
+ ✓ Compiled /opportunities in 2.7s (1673 modules)
+ GET /opportunities 200 in 3418ms
+ ⨯ ReferenceError: DollarSign is not defined
+    at eval (src\app\(main)\vip\page.tsx:89:18)
+    at Array.map (<anonymous>)
+    at VIPPage (src\app\(main)\vip\page.tsx:82:70)
+  87 |             <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4'>
+  88 |               <div className='p-4 rounded-xl bg-white/[0.02] border border-white/[0.04]'>
+> 89 |                 <DollarSign size={18} className='text-[#00ff88] mb-2' />
+     |                  ^
+  90 |                 <div className='text-sm text-white/70'>{isZh ? '解锁折扣' : 'Unlock Discount'}</div>
+  91 |                 <div className='text-lg font-bold text-[#00ff88]'>{tier.discount === 0 ? '-' : tier.discount}</div>
+  92 |               </div> {
+  digest: '4122553389'
+}
+ GET /vip 500 in 120ms
+ ⨯ ReferenceError: DollarSign is not defined
+    at eval (src\app\(main)\vip\page.tsx:89:18)
+    at Array.map (<anonymous>)
+    at VIPPage (src\app\(main)\vip\page.tsx:82:70)
+  87 |             <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4'>
+  88 |               <div className='p-4 rounded-xl bg-white/[0.02] border border-white/[0.04]'>
+> 89 |                 <DollarSign size={18} className='text-[#00ff88] mb-2' />
+     |                  ^
+  90 |                 <div className='text-sm text-white/70'>{isZh ? '解锁折扣' : 'Unlock Discount'}</div>
+  91 |                 <div className='text-lg font-bold text-[#00ff88]'>{tier.discount === 0 ? '-' : tier.discount}</div>
+  92 |               </div> {
+  digest: '4122553389'
+}
+ GET /vip 500 in 110ms
+ ✓ Compiled in 17.8s (3169 modules)
+ ✓ Compiled in 1ms (1661 modules)
+ GET /vip 200 in 3857ms
+ GET / 200 in 1782ms
+ GET /vip 200 in 321ms
+ ○ Compiling /dashboard ...
+ ✓ Compiled /dashboard in 2.5s (1668 modules)
+ GET /dashboard 200 in 3103ms
+ ○ Compiling /opportunities ...
+ ✓ Compiled /opportunities in 6.8s (1673 modules)
+ GET /opportunities 200 in 7891ms
+ GET /opportunities 200 in 712ms
+ ○ Compiling /my-opportunities ...
+ ✓ Compiled /my-opportunities in 4.6s (1681 modules)
+ GET /my-opportunities 200 in 5207ms
+ ○ Compiling /referral ...
+ ✓ Compiled /referral in 2.8s (1687 modules)
+ GET /referral 200 in 3206ms
+ GET / 200 in 97ms
+ GET /opportunities 200 in 52ms
+ ○ Compiling /leaderboard ...
+ ✓ Compiled /leaderboard in 9.9s (1665 modules)
+ GET /leaderboard 200 in 10408ms
+ GET /leaderboard 200 in 52ms
+ GET /leaderboard 200 in 44ms
+ ✓ Compiled /my-opportunities in 483ms (1099 modules)
+ GET /my-opportunities 200 in 795ms
+ GET /opportunities 200 in 54ms
+ GET /deposit 200 in 50ms
+ GET /support 200 in 52ms
+ ✓ Compiled /profile in 467ms (1108 modules)
+ GET /profile 200 in 673ms
+ GET /deposit 200 in 55ms
+ GET / 200 in 62ms
+ GET /deposit 200 in 425ms
+ GET / 200 in 26ms
+ GET / 200 in 39ms
+ GET /deposit 200 in 51ms
+ GET / 200 in 47ms
+ GET / 200 in 120ms
+ GET /opportunities 200 in 55ms
+ GET / 200 in 35ms
+ ○ Compiling /referral ...
+ ✓ Compiled /referral in 2.5s (1100 modules)
+ GET /referral 200 in 2754ms
+ ✓ Compiled /my-opportunities in 370ms (1097 modules)
+ GET /my-opportunities 200 in 626ms
+ GET /deposit 200 in 47ms
+ GET /profile 200 in 43ms
+ GET / 200 in 65ms
+ GET /opportunities 200 in 85ms
+ GET / 200 in 36ms
+ ○ Compiling /leaderboard ...
+ ✓ Compiled /leaderboard in 2s (1098 modules)
+ GET /leaderboard 200 in 2141ms
+ GET /leaderboard 200 in 33ms
+ GET /opportunities 200 in 51ms
+ GET / 200 in 35ms
+ GET /opportunities 200 in 32ms
+ GET /leaderboard 200 in 29ms
+ GET / 200 in 34ms
+ ○ Compiling /ai-center ...
+ ✓ Compiled /support in 12s (1663 modules)
+ ✓ Compiled (1674 modules)
+ GET /leaderboard 200 in 9024ms
+ GET /opportunities 200 in 7458ms
+ GET /support 200 in 9158ms
+ GET /ai-center 200 in 12989ms
+ GET / 200 in 6924ms
+ GET / 200 in 5894ms
+ GET / 200 in 62ms
+ GET /opportunities 200 in 37ms
+ GET /leaderboard 200 in 41ms
+ GET /ai-center 200 in 844ms
+ GET /support 200 in 255ms
+ GET /ai-center 200 in 30ms
+ GET /support 200 in 46ms
+ GET / 200 in 35ms
+ GET / 200 in 88ms
+ GET / 200 in 73ms
+ GET / 200 in 99ms
+ ✓ Compiled in 11.4s (2606 modules)
+ GET / 200 in 1554ms
+ GET / 200 in 492ms
+ GET / 200 in 501ms
+ GET / 200 in 62ms
+ GET / 200 in 71ms
+ ✓ Compiled /opportunities in 379ms (1103 modules)
+ GET /opportunities 200 in 701ms
+ GET /opportunities 200 in 49ms
+ GET /opportunities 200 in 40ms
+ GET /opportunities 200 in 30ms
+ GET /opportunities 200 in 27ms
+ ✓ Compiled in 5s (2603 modules)
+ GET / 200 in 363ms
+ GET /opportunities 200 in 375ms
+ GET /opportunities 200 in 36ms
+ GET /profile 200 in 79ms
+ ○ Compiling /ai-center ...
+ ✓ Compiled /ai-center in 9.4s (1660 modules)
+ GET /ai-center 200 in 11325ms
+ GET /profile 200 in 8392ms
+ GET /support 200 in 77ms
+ GET /ai-center 200 in 65ms
