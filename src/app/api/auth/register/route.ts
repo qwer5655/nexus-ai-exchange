@@ -1,9 +1,9 @@
 ﻿import { NextResponse } from 'next/server'
 import { supabaseAdmin } from '@/lib/supabase'
 
-var _sKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRjZndsZHh3eXZ2b3R2ZmRueXd5Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc4MDg1MDcyNiwiZXhwIjoyMDk2NDI2NzI2fQ.dATPuFYs8YF0esN0tk7dATxTEIo_dZambcYJkJ3gEU0'
-var _aKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRjZndsZHh3eXZ2b3R2ZmRueXd5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA4NTA3MjYsImV4cCI6MjA5NjQyNjcyNn0.hoVRtNWXr0nzYLaQlR3yTlnOXUOlgBTYPMM1WdFBXjk'
-var _suUrl = 'https://dcfwldxwyvvotvfdnywy.supabase.co'
+var _sKey = process.env.SUPABASE_SERVICE_ROLE_KEY || ''
+var _aKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || ''
+var _suUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || ''
 
 export async function POST(req: Request) {
   try {
@@ -57,7 +57,7 @@ export async function POST(req: Request) {
     } catch(e: any) {}
 
     return NextResponse.json({ error: 'Registration failed. DB function may not exist yet.' }, { status: 500 })
-  } catch(e: any) { return NextResponse.json({ error: e.message }, { status: 500 }) }
+  } catch(e: any) { return NextResponse.json({ error: (e as Error).message }, { status: 500 }) }
 }
 
 

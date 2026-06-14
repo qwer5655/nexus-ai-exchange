@@ -23,6 +23,6 @@ export async function GET(req: Request) {
 
     return NextResponse.json({ logs: logs || [], total: total || 0, page, limit })
   } catch(e: any) {
-    return NextResponse.json({ error: e.message }, { status: 500 })
+    return NextResponse.json({ error: (e as Error).message }, { status: 500 })
   }
 }

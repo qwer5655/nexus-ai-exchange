@@ -19,5 +19,5 @@ export async function GET(req: Request) {
       cohorts.push(row)
     }
     return NextResponse.json({ cohorts })
-  } catch(e: any) { return NextResponse.json({ error: e.message }, { status: 500 }) }
+  } catch(e: any) { return NextResponse.json({ error: (e as Error).message }, { status: 500 }) }
 }

@@ -12,7 +12,7 @@ export async function GET(req: Request) {
     var { data, error } = await query.order('feature', { ascending: true })
     if (error) return NextResponse.json({ error: error.message }, { status: 500 })
     return NextResponse.json({ permissions: data || [] })
-  } catch(e: any) { return NextResponse.json({ error: e.message }, { status: 500 }) }
+  } catch(e: any) { return NextResponse.json({ error: (e as Error).message }, { status: 500 }) }
 }
 
 export async function POST(req: Request) {
@@ -27,7 +27,7 @@ export async function POST(req: Request) {
     ).select().single()
     if (error) return NextResponse.json({ error: error.message }, { status: 500 })
     return NextResponse.json({ permission: data })
-  } catch(e: any) { return NextResponse.json({ error: e.message }, { status: 500 }) }
+  } catch(e: any) { return NextResponse.json({ error: (e as Error).message }, { status: 500 }) }
 }
 
 export async function DELETE(req: Request) {
@@ -39,6 +39,6 @@ export async function DELETE(req: Request) {
     var { error } = await supabaseAdmin.from('enterprise_permissions').delete().eq('id', id)
     if (error) return NextResponse.json({ error: error.message }, { status: 500 })
     return NextResponse.json({ success: true })
-  } catch(e: any) { return NextResponse.json({ error: e.message }, { status: 500 }) }
+  } catch(e: any) { return NextResponse.json({ error: (e as Error).message }, { status: 500 }) }
 }
 

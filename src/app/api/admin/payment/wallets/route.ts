@@ -9,7 +9,7 @@ export async function GET(req: Request) {
     var { data, error } = await supabaseAdmin.from('wallets').select('*').order('created_at', { ascending: false })
     if (error) return NextResponse.json({ error: error.message }, { status: 500 })
     return NextResponse.json({ wallets: data || [] })
-  } catch(e: any) { return NextResponse.json({ error: e.message }, { status: 500 }) }
+  } catch(e: any) { return NextResponse.json({ error: (e as Error).message }, { status: 500 }) }
 }
 
 export async function POST(req: Request) {
@@ -26,7 +26,7 @@ export async function POST(req: Request) {
     if (error) return NextResponse.json({ error: error.message }, { status: 500 })
     await emitEvent('wallet.created', auth.userId, { wallet_id: data.id, coin: data.coin })
     return NextResponse.json({ wallet: data })
-  } catch(e: any) { return NextResponse.json({ error: e.message }, { status: 500 }) }
+  } catch(e: any) { return NextResponse.json({ error: (e as Error).message }, { status: 500 }) }
 }
 
 export async function PATCH(req: Request) {
@@ -44,7 +44,7 @@ export async function PATCH(req: Request) {
     if (error) return NextResponse.json({ error: error.message }, { status: 500 })
     await emitEvent(enabled ? 'wallet.updated' : (updates.enabled === false ? 'wallet.disabled' : 'wallet.updated'), auth.userId, { wallet_id: id })
     return NextResponse.json({ wallet: data })
-  } catch(e: any) { return NextResponse.json({ error: e.message }, { status: 500 }) }
+  } catch(e: any) { return NextResponse.json({ error: (e as Error).message }, { status: 500 }) }
 }
 
 export async function DELETE(req: Request) {
@@ -56,6 +56,6 @@ export async function DELETE(req: Request) {
     if (error) return NextResponse.json({ error: error.message }, { status: 500 })
     await emitEvent('wallet.deleted', auth.userId, { wallet_id: id })
     return NextResponse.json({ success: true })
-  } catch(e: any) { return NextResponse.json({ error: e.message }, { status: 500 }) }
+  } catch(e: any) { return NextResponse.json({ error: (e as Error).message }, { status: 500 }) }
 }
 

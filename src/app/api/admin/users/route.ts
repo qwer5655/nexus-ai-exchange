@@ -19,7 +19,7 @@ export async function GET(req: Request) {
     var { data, count, error } = await query
     if (error) return NextResponse.json({ error: error.message }, { status: 500 })
     return NextResponse.json({ users: data || [], total: count || 0, page, limit })
-  } catch(e: any) { return NextResponse.json({ error: e.message }, { status: 500 }) }
+  } catch(e: any) { return NextResponse.json({ error: (e as Error).message }, { status: 500 }) }
 }
 
 export async function PATCH(req: Request) {
@@ -82,7 +82,7 @@ export async function PATCH(req: Request) {
       return NextResponse.json(patchRes)
     }
     return NextResponse.json({ error: 'No changes applied' }, { status: 400 })
-  } catch(e: any) { return NextResponse.json({ error: e.message }, { status: 500 }) }
+  } catch(e: any) { return NextResponse.json({ error: (e as Error).message }, { status: 500 }) }
 }
 
 
@@ -93,7 +93,7 @@ export async function POST(req) {
     var { data, error } = await supabaseAdmin.from('profiles').insert(body).select().single()
     if (error) return NextResponse.json({ error: error.message }, { status: 500 })
     return NextResponse.json({ data: data })
-  } catch(e) { return NextResponse.json({ error: e.message }, { status: 500 }) }
+  } catch(e) { return NextResponse.json({ error: (e as Error).message }, { status: 500 }) }
 }
 
 export async function DELETE(req) {
@@ -104,5 +104,5 @@ export async function DELETE(req) {
     var { error } = await supabaseAdmin.from('profiles').delete().eq('id', id)
     if (error) return NextResponse.json({ error: error.message }, { status: 500 })
     return NextResponse.json({ success: true })
-  } catch(e) { return NextResponse.json({ error: e.message }, { status: 500 }) }
+  } catch(e) { return NextResponse.json({ error: (e as Error).message }, { status: 500 }) }
 }

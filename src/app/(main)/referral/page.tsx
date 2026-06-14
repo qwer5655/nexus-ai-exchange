@@ -1,5 +1,5 @@
 'use client'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { Gift, Copy, Check, Users, TrendingUp, Trophy, Share2, DollarSign, BarChart3, Link2 } from 'lucide-react'
 import { useAuthStore } from '@/store/authStore'
@@ -7,11 +7,12 @@ import { useStore } from '@/store/useStore'
 import { t } from '@/lib/i18n'
 
 export default function ReferralPage() {
-  var { getReferralStats, user } = useAuthStore();
+  var { user } = useAuthStore();
   var { language } = useStore();
   var isZh = language === 'zh';
-  var stats = getReferralStats();
+  var [stats, setStats] = useState<any>({ totalReferrals: 0, activeReferrals: 0, totalCommission: 0, todayCommission: 0, referralCode: '', referralLink: '', rank: 0 });
   var [copied, setCopied] = useState(false);
+  useEffect(function() { if (user?.userId) fetch('/api/referrals?userId=' + user.userId).then(function(r){return r.json()}).then(function(d){ setStats({ totalReferrals: d.total_referrals || 0, activeReferrals: d.active_referrals || 0, totalCommission: d.total_commission || 0, todayCommission: 0, referralCode: d.referral_code || '', referralLink: 'https://arbitrage.ai/ref/' + (d.referral_code || ''), rank: 0 }) }).catch(function(){}) }, [user?.userId])
 
   function copyLink() {
     navigator.clipboard.writeText(stats.referralLink);

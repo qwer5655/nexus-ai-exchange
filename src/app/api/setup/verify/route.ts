@@ -7,6 +7,6 @@ export async function GET() {
     var { data } = await supabase.from('profiles').select('id').limit(1)
     return NextResponse.json({ ready: true, message: 'Database is ready! Tables exist.' })
   } catch(e: any) {
-    return NextResponse.json({ ready: false, error: e.message, hint: 'Run the SQL migration first' })
+    return NextResponse.json({ ready: false, error: (e as Error).message, hint: 'Run the SQL migration first' })
   }
 }

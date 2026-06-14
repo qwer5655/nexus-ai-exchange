@@ -19,7 +19,7 @@ export async function GET(req: Request) {
     var { count: unreadCount } = await supabaseAdmin.from('notifications').select('*', { count: 'exact', head: true }).eq('user_id', userId).eq('is_read', false)
 
     return NextResponse.json({ notifications: data || [], total: count || 0, unread: unreadCount || 0, page, limit })
-  } catch(e: any) { return NextResponse.json({ error: e.message }, { status: 500 }) }
+  } catch(e: any) { return NextResponse.json({ error: (e as Error).message }, { status: 500 }) }
 }
 
 export async function PATCH(req: Request) {
@@ -30,5 +30,5 @@ export async function PATCH(req: Request) {
     }
     await supabaseAdmin.from('notifications').update({ is_read: true }).in('id', notificationIds)
     return NextResponse.json({ success: true })
-  } catch(e: any) { return NextResponse.json({ error: e.message }, { status: 500 }) }
+  } catch(e: any) { return NextResponse.json({ error: (e as Error).message }, { status: 500 }) }
 }

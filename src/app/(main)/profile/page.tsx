@@ -5,12 +5,11 @@ import { useStore } from '@/store/useStore'
 import { t } from '@/lib/i18n'
 import { useState, useEffect } from 'react'
 import { formatCurrency } from '@/lib/utils'
-import { useState, useEffect } from 'react'
 import { useAuthStore } from '@/store/authStore'
 
 function LoginHistoryView() {
   var { user } = useAuthStore()
-  var [logs, setLogs] = useState<any[]>([]); var [achvs, setAchvs] = useState<any[]>([])
+  var [logs, setLogs] = useState<any[]>([])
   var [stats, setStats] = useState<any>({})
   var [loading, setLoading] = useState(true)
   useEffect(function() {
@@ -29,7 +28,7 @@ export default function ProfilePage() {
   var [referralCopied, setReferralCopied] = useState(false)
   var [notifs, setNotifs] = useState<any[]>([])
   var [notifUnread, setNotifUnread] = useState(0)
-  var [notifLoading, setNotifLoading] = useState(true)
+  var [notifLoading, setNotifLoading] = useState(true); var [achvs, setAchvs] = useState<any[]>([])
 
   useEffect(function() { fetch('/api/notifications?userId=' + (user as any)?.id + '&limit=10').then(function(r) { return r.json() }).then(function(d) { setNotifs(d.notifications || []); setNotifUnread(d.unread || 0); setNotifLoading(false) }).catch(function() { setNotifLoading(false) }) }, [(user as any)?.id])
 
@@ -111,8 +110,8 @@ export default function ProfilePage() {
         <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} className="space-y-6">
           {/* Achievements */}
           <div className="glass-card rounded-xl p-6 border border-white/5">
-            {useEffect(function(){if(user?.userId){fetch("/api/public/achievements?userId="+user.userId).then(function(r){return r.json()}).then(function(d){setAchvs(d.achievements||[])}).catch(function(){})}},[user?.userId])}<div className="flex items-center gap-2 mb-4"><Award size={18} className="text-[#ffd700]" /><h3 className="text-lg font-orbitron font-bold text-white">{t('profile.achievements', language)}</h3></div>
-            <div className="space-y-3">{(achvs||achievements).map((a) => (<div key={a.id} className="flex items-center gap-3 p-3 rounded-lg bg-white/5 transition-all hover:bg-white/[0.08]"><div className="text-xl">{a.icon}</div><div><div className="text-sm text-white/80">{t('achv.' + a.id + '_name', language)}</div><div className="text-[10px] text-white/30">{t('achv.' + a.id + '_desc', language)}</div></div><div className="ml-auto">{a.unlocked ? <Check size={16} className="text-[#00ff88]" /> : <div className="w-2 h-2 rounded-full bg-white/20" />}</div></div>))}</div>
+            <div className="flex items-center gap-2 mb-4"><Award size={18} className="text-[#ffd700]" /><h3 className="text-lg font-orbitron font-bold text-white">{t('profile.achievements', language)}</h3></div>
+            <div className="space-y-3">{(achvs||[]).map((a) => (<div key={a.id} className="flex items-center gap-3 p-3 rounded-lg bg-white/5 transition-all hover:bg-white/[0.08]"><div className="text-xl">{a.icon}</div><div><div className="text-sm text-white/80">{t('achv.' + a.id + '_name', language)}</div><div className="text-[10px] text-white/30">{t('achv.' + a.id + '_desc', language)}</div></div><div className="ml-auto">{a.unlocked ? <Check size={16} className="text-[#00ff88]" /> : <div className="w-2 h-2 rounded-full bg-white/20" />}</div></div>))}</div>
           </div>
           {/* Notifications */}
           <div className="glass-card rounded-xl p-6 border border-white/5">

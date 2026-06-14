@@ -68,5 +68,5 @@ export async function POST(req: Request) {
       try { await supabaseAdmin.from('idempotency_keys').insert({ key: idempotencyKey, user_id: userId, action_type: 'unlock', response: result }) } catch(e) {}
     }
     return NextResponse.json(result)
-  } catch(e: any) { return NextResponse.json({ error: e.message }, { status: 500 }) }
+  } catch(e: any) { return NextResponse.json({ error: (e as Error).message }, { status: 500 }) }
 }

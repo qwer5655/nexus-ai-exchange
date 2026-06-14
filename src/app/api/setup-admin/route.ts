@@ -8,5 +8,5 @@ export async function GET() {
     var user = users[0]
     await supabaseAdmin.from('profiles').update({ role: 'admin' }).eq('id', user.id)
     return NextResponse.json({ success: true, user: user.email + ' is now admin' })
-  } catch(e: any) { return NextResponse.json({ error: e.message }, { status: 500 }) }
+  } catch(e: any) { return NextResponse.json({ error: (e as Error).message }, { status: 500 }) }
 }

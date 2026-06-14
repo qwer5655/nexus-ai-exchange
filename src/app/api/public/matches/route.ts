@@ -20,5 +20,5 @@ export async function GET() {
       return { id: d.id, homeTeam: d.home_team, awayTeam: d.away_team, score, time, competition: d.league || 'League', status }
     })
     return NextResponse.json({ matches })
-  } catch(e: any) { return NextResponse.json({ error: e.message }, { status: 500 }) }
+  } catch(e: any) { return NextResponse.json({ error: (e as Error).message }, { status: 500 }) }
 }

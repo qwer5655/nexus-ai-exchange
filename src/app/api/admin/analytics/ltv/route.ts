@@ -48,5 +48,5 @@ export async function GET(req: Request) {
       new_users_30d: newUsers30d?.count || 0,
       est_monthly_marketing: estMonthlyMarketingCost
     })
-  } catch(e: any) { return NextResponse.json({ error: e.message }, { status: 500 }) }
+  } catch(e: any) { return NextResponse.json({ error: (e as Error).message }, { status: 500 }) }
 }

@@ -72,7 +72,7 @@ export async function POST(req: Request) {
 
       return NextResponse.json({ received: true })
     } catch(e: any) {
-      return NextResponse.json({ error: e.message }, { status: 400 })
+      return NextResponse.json({ error: (e as Error).message }, { status: 400 })
     }
   }
 
@@ -96,7 +96,7 @@ export async function POST(req: Request) {
     }
     return NextResponse.json({ received: true, dev_mode: true })
   } catch(e: any) {
-    return NextResponse.json({ error: e.message }, { status: 500 })
+    return NextResponse.json({ error: (e as Error).message }, { status: 500 })
   }
 }
 

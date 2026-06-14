@@ -30,6 +30,6 @@ export async function GET(req: Request) {
       stats: { totalLogins: totalLogins || 0, lastLogin: lastLogin?.[0] || null, last30Days: last30Days || 0 }
     })
   } catch(e: any) {
-    return NextResponse.json({ error: e.message, logs: [] }, { status: 500 })
+    return NextResponse.json({ error: (e as Error).message, logs: [] }, { status: 500 })
   }
 }

@@ -22,5 +22,5 @@ export async function GET(req: Request) {
 
     var { data, count } = await q.range(from, to)
     return NextResponse.json({ opportunities: data || [], count: count || 0, page, limit })
-  } catch(e: any) { return NextResponse.json({ error: e.message }, { status: 500 }) }
+  } catch(e: any) { return NextResponse.json({ error: (e as Error).message }, { status: 500 }) }
 }

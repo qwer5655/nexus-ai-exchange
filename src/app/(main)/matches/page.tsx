@@ -13,6 +13,8 @@ function StatusIndicator({ status, language }: { status: string; language: strin
 
 export default function MatchesPage() {
   const { language } = useStore()
+  var [matches, setMatches] = useState<any[]>([])
+  useEffect(function() { fetch('/api/public/matches').then(function(r){return r.json()}).then(function(d){setMatches(d.matches||[])}).catch(function(){}) }, [])
   return (
     <div className="space-y-6">
       <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }}>

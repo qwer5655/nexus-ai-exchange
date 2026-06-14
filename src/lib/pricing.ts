@@ -73,3 +73,6 @@ export async function getUserTier(userId: string): Promise<{ tier: Tier; credits
     return { tier: currentTier, credits, vipLevel }
   } catch { return { tier: 'free', credits: 0, vipLevel: 0 } }
 }
+
+
+export function calculatePrice(base: number) { return base }

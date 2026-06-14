@@ -8,7 +8,7 @@ export async function GET(req: Request) {
     var { data, error } = await supabaseAdmin.from('referrals').select('*').order('created_at', { ascending: false })
     if (error) return NextResponse.json({ error: error.message }, { status: 500 })
     return NextResponse.json({ data: data || [] })
-  } catch(e: any) { return NextResponse.json({ error: e.message }, { status: 500 }) }
+  } catch(e: any) { return NextResponse.json({ error: (e as Error).message }, { status: 500 }) }
 }
 
 export async function POST(req: Request) {
@@ -18,7 +18,7 @@ export async function POST(req: Request) {
     var { data, error } = await supabaseAdmin.from('referrals').insert(body).select().single()
     if (error) return NextResponse.json({ error: error.message }, { status: 500 })
     return NextResponse.json({ data: data })
-  } catch(e: any) { return NextResponse.json({ error: e.message }, { status: 500 }) }
+  } catch(e: any) { return NextResponse.json({ error: (e as Error).message }, { status: 500 }) }
 }
 
 export async function PATCH(req: Request) {
@@ -30,7 +30,7 @@ export async function PATCH(req: Request) {
     var { data, error } = await supabaseAdmin.from('referrals').update(updates).eq('id', id).select().single()
     if (error) return NextResponse.json({ error: error.message }, { status: 500 })
     return NextResponse.json({ data: data })
-  } catch(e: any) { return NextResponse.json({ error: e.message }, { status: 500 }) }
+  } catch(e: any) { return NextResponse.json({ error: (e as Error).message }, { status: 500 }) }
 }
 
 export async function DELETE(req: Request) {
@@ -41,6 +41,6 @@ export async function DELETE(req: Request) {
     var { error } = await supabaseAdmin.from('referrals').delete().eq('id', id)
     if (error) return NextResponse.json({ error: error.message }, { status: 500 })
     return NextResponse.json({ success: true })
-  } catch(e: any) { return NextResponse.json({ error: e.message }, { status: 500 }) }
+  } catch(e: any) { return NextResponse.json({ error: (e as Error).message }, { status: 500 }) }
 }
 

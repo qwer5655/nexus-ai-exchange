@@ -7,5 +7,5 @@ export async function GET() {
       return { id: a.id, title: a.title, summary: a.message || a.content || '', image: a.image_url || '', category: a.category || 'Platform', date: (a.created_at || '').split('T')[0], aiSummary: a.ai_summary || a.content || '' }
     })
     return NextResponse.json({ news })
-  } catch(e: any) { return NextResponse.json({ error: e.message }, { status: 500 }) }
+  } catch(e: any) { return NextResponse.json({ error: (e as Error).message }, { status: 500 }) }
 }

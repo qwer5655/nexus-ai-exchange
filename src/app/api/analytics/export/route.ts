@@ -29,5 +29,5 @@ export async function GET(req: Request) {
       status: 200,
       headers: { 'Content-Type': 'text/csv', 'Content-Disposition': 'attachment; filename=' + type + '_export.csv' },
     })
-  } catch(e: any) { return NextResponse.json({ error: e.message }, { status: 500 }) }
+  } catch(e: any) { return NextResponse.json({ error: (e as Error).message }, { status: 500 }) }
 }

@@ -20,7 +20,7 @@ export async function GET(req: Request) {
       users: { total: totalUsers, by_plan: byPlan },
       revenue: { monthly: Object.entries(byPlan).reduce(function(s: number, e: any) { return s + (plans[e[0]]?.monthly_price || 0) * e[1] }, 0) }
     })
-  } catch(e: any) { return NextResponse.json({ error: e.message }, { status: 500 }) }
+  } catch(e: any) { return NextResponse.json({ error: (e as Error).message }, { status: 500 }) }
 }
 
 export async function POST(req: Request) {
@@ -33,7 +33,7 @@ export async function POST(req: Request) {
       .upsert({ name, price, credits, features: features || {}, limits: limits || {} }, { onConflict: 'name' })
       .select().single()
     return NextResponse.json({ plan: data })
-  } catch(e: any) { return NextResponse.json({ error: e.message }, { status: 500 }) }
+  } catch(e: any) { return NextResponse.json({ error: (e as Error).message }, { status: 500 }) }
 }
 
 
@@ -47,7 +47,7 @@ export async function PATCH(req) {
     var { data, error } = await supabaseAdmin.from('subscription_plans').update(updates).eq('id', id).select().single()
     if (error) return NextResponse.json({ error: error.message }, { status: 500 })
     return NextResponse.json({ data: data })
-  } catch(e) { return NextResponse.json({ error: e.message }, { status: 500 }) }
+  } catch(e) { return NextResponse.json({ error: (e as Error).message }, { status: 500 }) }
 }
 
 export async function DELETE(req) {
@@ -58,5 +58,5 @@ export async function DELETE(req) {
     var { error } = await supabaseAdmin.from('subscription_plans').delete().eq('id', id)
     if (error) return NextResponse.json({ error: error.message }, { status: 500 })
     return NextResponse.json({ success: true })
-  } catch(e) { return NextResponse.json({ error: e.message }, { status: 500 }) }
+  } catch(e) { return NextResponse.json({ error: (e as Error).message }, { status: 500 }) }
 }

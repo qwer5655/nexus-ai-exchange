@@ -13,6 +13,6 @@ export async function POST(req: Request) {
     await supabaseAdmin.from('wallets').update({ icon_url: '', updated_at: new Date().toISOString() }).eq('id', wallet_id)
     await emitEvent('wallet.icon_deleted', auth.userId, { wallet_id })
     return NextResponse.json({ success: true })
-  } catch(e: any) { return NextResponse.json({ error: e.message }, { status: 500 }) }
+  } catch(e: any) { return NextResponse.json({ error: (e as Error).message }, { status: 500 }) }
 }
 

@@ -10,6 +10,6 @@ export async function GET(req: Request) {
     var { data } = await supabaseAdmin.from('unlocks').select('id,created_at').eq('user_id', userId).eq('opportunity_id', opportunityId).maybeSingle()
     return NextResponse.json({ unlocked: !!data, data: data || null })
   } catch(e: any) {
-    return NextResponse.json({ error: e.message }, { status: 500 })
+    return NextResponse.json({ error: (e as Error).message }, { status: 500 })
   }
 }

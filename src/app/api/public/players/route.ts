@@ -10,5 +10,5 @@ export async function GET() {
     }
     // Fallback: return derived data from opportunities (teams/players mentioned)
     return NextResponse.json({ players: [] })
-  } catch(e: any) { return NextResponse.json({ error: e.message }, { status: 500 }) }
+  } catch(e: any) { return NextResponse.json({ error: (e as Error).message }, { status: 500 }) }
 }

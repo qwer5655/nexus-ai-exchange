@@ -47,7 +47,7 @@ export default function RechargeRecords() {
       } else {
         alert('Action failed: ' + (data.error || 'Unknown error'))
       }
-    } catch(e: any) { alert('Error: ' + e.message) }
+    } catch(e: any) { alert('Error: ' + (e as Error).message) }
   }
 
   function statusStyle(status: string) {

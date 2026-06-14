@@ -3,7 +3,7 @@ import type { NextRequest } from 'next/server'
 import { checkRateLimit, cleanupRateStore, recordEvent } from '@/lib/rate-limit'
 
 var SU = 'https://dcfwldxwyvvotvfdnywy.supabase.co'
-var SK = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRjZndsZHh3eXZ2b3R2ZmRueXd5Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc4MDg1MDcyNiwiZXhwIjoyMDk2NDI2NzI2fQ.dATPuFYs8YF0esN0tk7dATxTEIo_dZambcYJkJ3gEU0'
+var SK = process.env.SUPABASE_SERVICE_ROLE_KEY || ''
 
 export async function middleware(req: NextRequest) {
   var path = req.nextUrl.pathname

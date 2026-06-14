@@ -47,6 +47,6 @@ export async function GET(req: Request) {
       stripe_customer_id: profile?.stripe_customer_id || null,
       subscription_id: profile?.stripe_subscription_id || null
     })
-  } catch(e: any) { return NextResponse.json({ error: e.message }, { status: 500 }) }
+  } catch(e: any) { return NextResponse.json({ error: (e as Error).message }, { status: 500 }) }
 }
 

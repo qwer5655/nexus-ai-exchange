@@ -35,5 +35,5 @@ export async function GET(req: Request) {
     ;(totals || []).forEach(function(t: any) { if (summary[t.type] !== undefined) summary[t.type] += t.amount })
 
     return NextResponse.json({ transactions: enriched, total: count || 0, page, limit, summary })
-  } catch(e: any) { return NextResponse.json({ error: e.message }, { status: 500 }) }
+  } catch(e: any) { return NextResponse.json({ error: (e as Error).message }, { status: 500 }) }
 }

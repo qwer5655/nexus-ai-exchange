@@ -27,7 +27,7 @@ export async function GET() {
     })
     entries.sort(function(a, b) { return (b._sort || 0) - (a._sort || 0) })
     return NextResponse.json({ entries: entries.slice(0, 20) })
-  } catch(e: any) { return NextResponse.json({ error: e.message }, { status: 500 }) }
+  } catch(e: any) { return NextResponse.json({ error: (e as Error).message }, { status: 500 }) }
 }
 
 function timeAgo(dateStr: string) {

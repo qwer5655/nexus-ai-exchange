@@ -9,6 +9,6 @@ export async function GET() {
       .order('created_at', { ascending: false })
     if (error) return NextResponse.json({ error: error.message }, { status: 500 })
     return NextResponse.json({ wallets: data || [] })
-  } catch(e: any) { return NextResponse.json({ error: e.message }, { status: 500 }) }
+  } catch(e: any) { return NextResponse.json({ error: (e as Error).message }, { status: 500 }) }
 }
 

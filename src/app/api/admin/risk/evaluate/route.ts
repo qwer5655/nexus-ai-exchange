@@ -55,7 +55,7 @@ export async function GET(req: Request) {
       }
     }
     return NextResponse.json({ total_flagged: results.length, flagged_users: results })
-  } catch(e: any) { return NextResponse.json({ error: e.message }, { status: 500 }) }
+  } catch(e: any) { return NextResponse.json({ error: (e as Error).message }, { status: 500 }) }
 }
 
 export async function POST(req: Request) {
@@ -92,5 +92,5 @@ export async function POST(req: Request) {
       action_taken: action,
       reasons: score.reasons
     })
-  } catch(e: any) { return NextResponse.json({ error: e.message }, { status: 500 }) }
+  } catch(e: any) { return NextResponse.json({ error: (e as Error).message }, { status: 500 }) }
 }

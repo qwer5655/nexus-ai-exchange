@@ -18,7 +18,7 @@ export async function GET(req: Request) {
       .range(from, to)
     if (error) return NextResponse.json({ error: error.message }, { status: 500 })
     return NextResponse.json({ notifications: data || [], total: count || 0, page, limit })
-  } catch(e: any) { return NextResponse.json({ error: e.message }, { status: 500 }) }
+  } catch(e: any) { return NextResponse.json({ error: (e as Error).message }, { status: 500 }) }
 }
 
 export async function POST(req: Request) {
@@ -38,7 +38,7 @@ export async function POST(req: Request) {
     await supabaseAdmin.from('notifications').insert({ user_id: userId, title, message })
     await logAdminAction(auth.userId!, 'send_notification', 'user', userId)
     return NextResponse.json({ success: true })
-  } catch(e: any) { return NextResponse.json({ error: e.message }, { status: 500 }) }
+  } catch(e: any) { return NextResponse.json({ error: (e as Error).message }, { status: 500 }) }
 }
 
 export async function DELETE(req: Request) {
@@ -51,5 +51,5 @@ export async function DELETE(req: Request) {
     if (error) return NextResponse.json({ error: error.message }, { status: 500 })
     await logAdminAction(auth.userId!, 'delete_notification', 'notification', notificationId)
     return NextResponse.json({ success: true })
-  } catch(e: any) { return NextResponse.json({ error: e.message }, { status: 500 }) }
+  } catch(e: any) { return NextResponse.json({ error: (e as Error).message }, { status: 500 }) }
 }

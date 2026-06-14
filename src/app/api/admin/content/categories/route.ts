@@ -9,7 +9,7 @@ export async function GET(req: Request) {
     var { data, error } = await supabaseAdmin.from('categories').select('*').order('name', { ascending: true })
     if (error) return NextResponse.json({ error: error.message }, { status: 500 })
     return NextResponse.json({ categories: data || [] })
-  } catch(e: any) { return NextResponse.json({ error: e.message }, { status: 500 }) }
+  } catch(e: any) { return NextResponse.json({ error: (e as Error).message }, { status: 500 }) }
 }
 
 export async function POST(req: Request) {
@@ -21,7 +21,7 @@ export async function POST(req: Request) {
     if (error) return NextResponse.json({ error: error.message }, { status: 500 })
     await emitEvent('category.created', auth.userId, { name })
     return NextResponse.json({ category: data })
-  } catch(e: any) { return NextResponse.json({ error: e.message }, { status: 500 }) }
+  } catch(e: any) { return NextResponse.json({ error: (e as Error).message }, { status: 500 }) }
 }
 
 export async function PATCH(req: Request) {
@@ -36,7 +36,7 @@ export async function PATCH(req: Request) {
     if (error) return NextResponse.json({ error: error.message }, { status: 500 })
     await emitEvent('category.updated', auth.userId, { id, name })
     return NextResponse.json({ category: data })
-  } catch(e: any) { return NextResponse.json({ error: e.message }, { status: 500 }) }
+  } catch(e: any) { return NextResponse.json({ error: (e as Error).message }, { status: 500 }) }
 }
 
 export async function DELETE(req: Request) {
@@ -48,5 +48,5 @@ export async function DELETE(req: Request) {
     if (error) return NextResponse.json({ error: error.message }, { status: 500 })
     await emitEvent('category.deleted', auth.userId, { id })
     return NextResponse.json({ success: true })
-  } catch(e: any) { return NextResponse.json({ error: e.message }, { status: 500 }) }
+  } catch(e: any) { return NextResponse.json({ error: (e as Error).message }, { status: 500 }) }
 }

@@ -29,5 +29,5 @@ export async function GET(req: Request) {
       { id: 'A8', name: 'VIP Member', description: 'Reach VIP level 1', icon: '💎', unlocked: isVip },
     ]
     return NextResponse.json({ achievements })
-  } catch(e: any) { return NextResponse.json({ error: e.message }, { status: 500 }) }
+  } catch(e: any) { return NextResponse.json({ error: (e as Error).message }, { status: 500 }) }
 }

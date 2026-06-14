@@ -13,7 +13,7 @@ export async function GET(req: Request) {
 
     var { data } = await supabaseAdmin.from('deposits').select('*').eq('user_id', userId).order('created_at', { ascending: false })
     return NextResponse.json({ deposits: data || [] })
-  } catch(e: any) { return NextResponse.json({ error: e.message }, { status: 500 }) }
+  } catch(e: any) { return NextResponse.json({ error: (e as Error).message }, { status: 500 }) }
 }
 
 export async function POST(req: Request) {
@@ -34,5 +34,5 @@ export async function POST(req: Request) {
     if (auth.userId !== userId) { logAdminAction(auth.userId!, 'create_deposit_for_user', 'deposit', data?.id, { userId, coin, amount }) }
 
     return NextResponse.json({ deposit: data })
-  } catch(e: any) { return NextResponse.json({ error: e.message }, { status: 500 }) }
+  } catch(e: any) { return NextResponse.json({ error: (e as Error).message }, { status: 500 }) }
 }

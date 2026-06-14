@@ -1,9 +1,9 @@
 ﻿import { NextResponse } from 'next/server'
 import { supabaseAdmin } from '@/lib/supabase'
 
-var SUPABASE_URL = 'https://dcfwldxwyvvotvfdnywy.supabase.co'
-var SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRjZndsZHh3eXZ2b3R2ZmRueXd5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA4NTA3MjYsImV4cCI6MjA5NjQyNjcyNn0.hoVRtNWXr0nzYLaQlR3yTlnOXUOlgBTYPMM1WdFBXjk'
-var SUPABASE_SERVICE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRjZndsZHh3eXZ2b3R2ZmRueXd5Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc4MDg1MDcyNiwiZXhwIjoyMDk2NDI2NzI2fQ.dATPuFYs8YF0esN0tk7dATxTEIo_dZambcYJkJ3gEU0'
+var SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL || ''
+var SUPABASE_ANON_KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || ''
+var SUPABASE_SERVICE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY || ''
 
 function parseUA(ua) {
   var b = "Unknown", o = "Unknown", d = "Unknown"
@@ -92,7 +92,7 @@ export async function POST(req) {
       access_token: accessToken
     })
   } catch(e: any) {
-    return NextResponse.json({ error: e.message }, { status: 500 })
+    return NextResponse.json({ error: (e as Error).message }, { status: 500 })
   }
 }
 

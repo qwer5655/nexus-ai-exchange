@@ -51,5 +51,5 @@ export async function GET(req: Request) {
         weak_count: enhanced.filter(function(r: any) { return r.status === 'weak' }).length
       }
     })
-  } catch(e: any) { return NextResponse.json({ error: e.message }, { status: 500 }) }
+  } catch(e: any) { return NextResponse.json({ error: (e as Error).message }, { status: 500 }) }
 }

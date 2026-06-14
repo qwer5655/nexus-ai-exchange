@@ -50,5 +50,5 @@ export async function POST(req: Request) {
     } catch(e: any) {}
 
     return NextResponse.json({ error: 'All auth methods failed' }, { status: 500 })
-  } catch(e: any) { return NextResponse.json({ error: e.message }, { status: 500 }) }
+  } catch(e: any) { return NextResponse.json({ error: (e as Error).message }, { status: 500 }) }
 }
