@@ -3,7 +3,7 @@ import { useStore } from '@/store/useStore'
 import { t, translateTeam, translateCompetition } from '@/lib/i18n'
 import { motion } from 'framer-motion'
 import { CalendarDays, Clock, MapPin } from 'lucide-react'
-import { matchSchedule } from '@/data/matches'
+import { useState, useEffect } from 'react'
 
 function StatusIndicator({ status, language }: { status: string; language: string }) {
   if (status === 'live') return <span className="px-2 py-0.5 rounded-full text-[10px] font-orbitron bg-[#ff4d4f]/20 text-[#ff4d4f] border border-[#ff4d4f]/30">{t('matches.live', language as any)}</span>
@@ -26,7 +26,7 @@ export default function MatchesPage() {
       </motion.div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        {matchSchedule.map((match, i) => (
+        {matches.map((match, i) => (
           <motion.div
             key={match.id}
             initial={{ opacity: 0, y: 20 }}
