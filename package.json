@@ -5,21 +5,26 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "test:acceptance": "npx tsx scripts/full-flow-acceptance.ts"
   },
   "dependencies": {
     "@supabase/ssr": "^0.10.3",
     "@supabase/supabase-js": "^2.107.0",
+    "bcryptjs": "^3.0.3",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
     "echarts": "^5.6.0",
     "echarts-for-react": "^3.0.2",
     "framer-motion": "^12.0.0",
+    "iconv-lite": "^0.7.2",
     "lucide-react": "^0.468.0",
     "next": "^15.2.0",
+    "pg": "^8.21.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-hook-form": "^7.54.0",
+    "stripe": "^22.2.0",
     "swiper": "^11.2.0",
     "tailwind-merge": "^2.6.0",
     "zod": "^3.24.0",

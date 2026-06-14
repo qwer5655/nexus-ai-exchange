@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { X, Check, Copy, CreditCard, Banknote } from 'lucide-react'
 import CryptoIcon from './CryptoIcon'
 import { useStore } from '@/store/useStore'
+import { useAuthStore } from '@/store/authStore'
 import { t } from '@/lib/i18n'
 import { depositPlans, paymentMethods } from '@/data/deposit'
 import { formatCurrency } from '@/lib/utils'
@@ -20,6 +21,9 @@ export default function DepositModal() {
     setStep('success')
     setTimeout(() => {
       addDeposit(selectedAmount)
+      // Refresh user totalDeposits for immediate feedback
+      var authUser = useAuthStore.getState().user
+      if (authUser) useAuthStore.getState().setUser({ ...authUser, totalDeposits: (authUser.totalDeposits || 0) + selectedAmount })
       addNotification('success', 'Deposit of ' + formatCurrency(selectedAmount) + ' completed successfully!')
       setShowDepositModal(false)
       setStep('select')

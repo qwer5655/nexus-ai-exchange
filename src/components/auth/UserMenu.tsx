@@ -24,6 +24,7 @@ export default function UserMenu() {
   var levelColors = { 1: '#8B8B8B', 2: '#52c41a', 3: '#00d9ff', 4: '#ffd700', 5: '#ff4d4f' };
   var levelNames = isZh ? ['', '探险家', '交易者', '专业型', '精英', '传奇'] : ['', 'Explorer', 'Trader', 'Professional', 'Elite', 'Legend'];
 
+  var isAdmin = user.role === 'admin' || user.role === 'super_admin';
   var menuItems = [
     { label: isZh ? '个人中心' : 'Profile', icon: User, href: '/profile' },
     { label: isZh ? '充值中心' : 'Deposit Center', icon: Coins, href: '/deposit' },

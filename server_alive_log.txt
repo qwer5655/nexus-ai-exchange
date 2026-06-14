@@ -1,7 +1,0 @@
-   ▲ Next.js 15.5.19
-   - Local:        http://localhost:3007
-   - Network:      http://192.168.5.11:3007
-   - Environments: .env.local
-
- ✓ Starting...
- ✓ Ready in 2.5s

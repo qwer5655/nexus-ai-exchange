@@ -47,7 +47,13 @@ export default function OpportunityDetailPage() {
     if (!user) { openAuthModal('register'); return }
     setUnlockLoading(true); setUnlockError('')
     unlockOpportunity(user.userId, params.id as string, opp?.requiredCapital || 10)
-      .then(function() { setUnlocked(true); setUnlockLoading(false) })
+      .then(function() {
+      setUnlocked(true); setUnlockLoading(false)
+      getOpportunities({ page: 1, limit: 100 }).then(function(r2) {
+        var f2 = r2.data.find(function(o2: any) { return o2.id === params.id; });
+        if (f2) setOpp(f2)
+      })
+    })
       .catch(function(e: any) { setUnlockError(e.message); setUnlockLoading(false) })
   }
 

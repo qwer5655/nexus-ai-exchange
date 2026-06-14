@@ -4,7 +4,7 @@ import { t } from '@/lib/i18n'
 ﻿
 import { motion } from 'framer-motion'
 import { Trophy, TrendingUp, Award } from 'lucide-react'
-import { leaderboardUsers } from '@/data/leaderboard'
+import { useState, useEffect } from 'react'
 import { formatCurrency } from '@/lib/utils'
 
 function RankBadge({ rank }: { rank: number }) {
@@ -16,7 +16,8 @@ function RankBadge({ rank }: { rank: number }) {
 
 export default function LeaderboardTable() {
   const { language } = useStore()
-  const topUsers = leaderboardUsers.slice(0, 10)
+  var [topUsers, setTopUsers] = useState<any[]>([])
+  useEffect(function() { fetch('/api/public/leaderboard').then(function(r){return r.json()}).then(function(d){setTopUsers((d.leaderboard||[]).slice(0,10))}).catch(function(){}) }, [])
 
   return (
     <section className="py-16 relative z-10">

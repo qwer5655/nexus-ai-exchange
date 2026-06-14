@@ -46,7 +46,7 @@ export const useStore = create<AppState>((set) => ({
   showMatchModal: false,
   selectedOpportunity: null,
   notifications: [],
-  language: 'zh',
+  language: 'en',
   
   stats: {
     todayOpportunities: 1283,
@@ -90,4 +90,11 @@ export const useStore = create<AppState>((set) => ({
   })),
   setAuthenticated: (val: boolean) => set({ isAuthenticated: val }),
   setLanguage: (lang: 'en' | 'zh') => set({ language: lang }),
+  fetchStats: async function() {
+    try {
+      var r = await fetch('/api/health');
+      var d = await r.json();
+      if (d && d.stats) set({ stats: d.stats });
+    } catch(e) {}
+  },
 }))

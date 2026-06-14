@@ -1,0 +1,4 @@
+'use client'
+import { adminFetch } from '@/lib/admin-fetch'
+import { useEffect,useState } from 'react'
+export default function RevenueChart(){var[d,setD]=useState<any>({loading:true});useEffect(function(){adminFetch('/api/admin/stats').then(function(r){return r.json()}).then(function(r){setD({...r,loading:false})})},[]);return<div><h1 className='text-xl font-bold text-white mb-1'>Revenue Analytics</h1><p className='text-sm text-white/30 mb-6'>Revenue trends and projections</p>{!d.loading&&<div className='bg-[#0A0E1A] border border-white/[0.04] rounded-xl p-6'><p className='text-white/20 text-sm'>Revenue charts will render here using ECharts integration.</p><div className='mt-4 text-white/60 text-sm'>Total Revenue: <span className='text-[#00ff88] font-mono'>${(d.stats?.totalRevenue||0).toLocaleString()}</span></div></div>}</div>}

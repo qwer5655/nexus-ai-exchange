@@ -1,37 +1,51 @@
 ﻿'use client'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import CryptoIcon from '@/components/deposit/CryptoIcon'
 import { Banknote, Check, Copy } from 'lucide-react'
 import { useStore } from '@/store/useStore'
+import { useAuthStore } from '@/store/authStore'
 import { t } from '@/lib/i18n'
-import { depositPlans, paymentMethods } from '@/data/deposit'
+import { depositPlans } from '@/data/deposit'
 import { formatCurrency } from '@/lib/utils'
 
 export default function DepositPage() {
   const { addDeposit, addNotification, language } = useStore()
+  const { user } = useAuthStore() as any
+  const [wallets, setWallets] = useState<any[]>([])
+  useEffect(function() {
+    void fetch('/api/public/wallets').then(function(r){return r.json()}).then(function(d){setWallets(d.wallets||[])}).catch(function(){})
+  }, [])
   const [selectedAmount, setSelectedAmount] = useState<number | null>(null)
   const [selectedMethod, setSelectedMethod] = useState<string | null>(null)
   const [processing, setProcessing] = useState(false)
   const [done, setDone] = useState(false)
 
-  function generateAddress(network: string): string {
-    var addr = "0x"
-    var chars = "0123456789abcdef"
-    for (var i = 0; i < 40; i++) addr += chars[Math.floor(Math.random() * chars.length)]
-    return addr + network.substring(0, 4).toUpperCase()
+  function getWalletAddress(coinId: string): string {
+    var w = wallets.find(function(x){return x.coin===coinId||x.name===coinId})
+    return w?.address||'Unavailable'
   }
 
   function handleDeposit() {
     if (!selectedAmount || !selectedMethod) return
     setProcessing(true)
-    setTimeout(() => {
+    var userId = user?.userId
+    if (!userId) { setProcessing(false); return }
+    fetch('/api/deposits', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ userId, coin: selectedMethod, amount: selectedAmount, walletAddress: getWalletAddress(selectedMethod) })
+    }).then(function(r){return r.json()}).then(function(d){
+      if (d.error) { addNotification('error', d.error); setProcessing(false); return }
       addDeposit(selectedAmount)
-      addNotification('success', 'Deposit of ' + formatCurrency(selectedAmount) + ' completed!')
+      addNotification('success', 'Deposit of ' + formatCurrency(selectedAmount) + ' submitted!')
       setProcessing(false)
       setDone(true)
-      setTimeout(() => setDone(false), 3000)
-    }, 1500)
+      setTimeout(function(){ setDone(false) }, 3000)
+    }).catch(function(){
+      addNotification('error', 'Network error')
+      setProcessing(false)
+    })
   }
 
   return (
@@ -159,14 +173,14 @@ export default function DepositPage() {
                       <span className="text-[#00C087]">{t('deposit.network', language)}:</span> {selectedMethod === 'USDT_TRC20' ? 'TRC20' : selectedMethod === 'USDT_ERC20' || selectedMethod === 'ETH' ? 'ERC20' : selectedMethod === 'SOL' ? 'SOL' : selectedMethod === 'BNB' ? 'BEP20' : 'BTC'}
                     </div>
                     <div className="bg-black/30 rounded-xl p-3 border border-white/[0.06] mb-3">
-                      <span className="font-mono text-xs text-white/60 break-all leading-relaxed">{generateAddress(selectedMethod)}</span>
+                      <span className="font-mono text-xs text-white/60 break-all leading-relaxed">{getWalletAddress(selectedMethod)}</span>
                     </div>
                     <div className="flex items-center justify-between">
                       <div className="text-[11px] text-white/30">
                         {t('deposit.minDepositLabel', language)}: <span className="text-white/60">10 {selectedMethod === 'USDT_TRC20' || selectedMethod === 'USDT_ERC20' ? 'USDT' : selectedMethod}</span>
                       </div>
                       <button onClick={function() {
-                        var a = generateAddress(selectedMethod)
+                        var a = getWalletAddress(selectedMethod)
                         navigator.clipboard.writeText(a)
                         alert('已复制')
                       }} className="flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-[#F5C542]/10 border border-[#F5C542]/20 text-[#F5C542] text-xs font-medium hover:bg-[#F5C542]/20 transition-all">
@@ -256,3 +270,9 @@ export default function DepositPage() {
     </div>
   )
 }
+
+
+
+
+
+

@@ -1,0 +1,8 @@
+'use client'
+import { useState } from 'react'
+import { Save, Globe, Mail, CreditCard } from 'lucide-react'
+export default function AdminSettings(){return<div><h1 className='text-xl font-bold text-white mb-1'>Settings</h1><p className='text-sm text-white/30 mb-6'>Platform configuration</p><div className='grid grid-cols-1 md:grid-cols-3 gap-4'>
+<a href='/admin/settings/site' className='bg-[#0A0E1A] border border-white/[0.04] rounded-xl p-5 hover:border-[#00ff88]/20 transition-all group'><div className='flex items-center gap-3 mb-3'><Globe size={20} className='text-[#00ff88]' /><h3 className='text-white font-semibold group-hover:text-[#00ff88]'>Site Settings</h3></div><p className='text-sm text-white/40'>Configure site name, logo, and contact info</p></a>
+<a href='/admin/settings/email' className='bg-[#0A0E1A] border border-white/[0.04] rounded-xl p-5 hover:border-[#00d9ff]/20 transition-all group'><div className='flex items-center gap-3 mb-3'><Mail size={20} className='text-[#00d9ff]' /><h3 className='text-white font-semibold group-hover:text-[#00d9ff]'>Email Settings</h3></div><p className='text-sm text-white/40'>Configure SMTP and email templates</p></a>
+<a href='/admin/settings/payment' className='bg-[#0A0E1A] border border-white/[0.04] rounded-xl p-5 hover:border-[#ffd700]/20 transition-all group'><div className='flex items-center gap-3 mb-3'><CreditCard size={20} className='text-[#ffd700]' /><h3 className='text-white font-semibold group-hover:text-[#ffd700]'>Payment Settings</h3></div><p className='text-sm text-white/40'>Configure deposit limits and allowed coins</p></a>
+</div></div>}

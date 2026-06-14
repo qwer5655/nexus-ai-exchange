@@ -2,11 +2,7 @@ import type { Metadata } from 'next'
 // Fonts disabled - using local fonts
 import './globals.css'
 
-var inter = '';
-
-var montserrat = '';
-
-var orbitron = '';
+// Fonts loaded via Google Fonts link tags
 
 export const metadata: Metadata = {
   title: 'FIFA 2026 AI Arbitrage Exchange | World Cup Sports Trading Platform',
@@ -19,7 +15,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={['', montserrat, ''].filter(Boolean).join(' ')}>
+    <html lang="en" className="">
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />

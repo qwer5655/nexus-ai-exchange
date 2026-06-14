@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { X, Eye, EyeOff, Mail, Lock } from 'lucide-react'
 import { useAuthStore } from '@/store/authStore'
+import { useRouter } from 'next/navigation'
 import { useStore } from '@/store/useStore'
 
 export default function LoginModal() {
@@ -16,14 +17,21 @@ export default function LoginModal() {
   var [remember, setRemember] = useState(true);
   var [loading, setLoading] = useState(false);
   var [error, setError] = useState('');
+  var router = useRouter();
 
-  async function handleSubmit(e: any) {
+  async function handleSubmit(e: any) { e.preventDefault();
     if (!email || !password) { setError(isZh ? '请填写邮箱和密码' : 'Please enter email and password'); return }
     setLoading(true);
     setError('');
     try {
       await login(email, password);
       setLoading(false);
+      var lu = useAuthStore.getState().user;
+      if (lu?.role === 'admin' || lu?.role === 'super_admin') {
+        router.push('/admin');
+      } else {
+        router.push('/');
+      }
     } catch(e: any) {
       setError(e.message || (isZh ? '登录失败' : 'Login failed'));
       setLoading(false);

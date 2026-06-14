@@ -3,7 +3,7 @@ import { useStore } from '@/store/useStore'
 import { t } from '@/lib/i18n'
 import { useEffect, useState } from 'react'
 import { TrendingUp } from 'lucide-react'
-import { initialWinningEntries, generateWinningEntry } from '@/data/winning-feed'
+
 import type { WinningEntry } from '@/types'
 
 export default function WinningFeed() {

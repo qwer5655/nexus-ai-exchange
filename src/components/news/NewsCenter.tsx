@@ -4,10 +4,12 @@ import { t } from '@/lib/i18n'
 ﻿
 import { motion } from 'framer-motion'
 import { Newspaper, Sparkles } from 'lucide-react'
-import { newsItems } from '@/data/news'
+import { useState, useEffect } from 'react'
 
 export default function NewsCenter() {
   const { language } = useStore()
+  var [newsItems, setNewsItems] = useState<any[]>([])
+  useEffect(function() { fetch('/api/public/news').then(function(r){return r.json()}).then(function(d){setNewsItems(d.news||[])}).catch(function(){}) }, [])
   return (
     <div className="space-y-6">
       <motion.div

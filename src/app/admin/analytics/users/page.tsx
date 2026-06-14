@@ -1,0 +1,4 @@
+'use client'
+import { adminFetch } from '@/lib/admin-fetch'
+import { useEffect,useState } from 'react'
+export default function UserGrowth(){var[d,setD]=useState<any>({loading:true});useEffect(function(){adminFetch('/api/admin/stats').then(function(r){return r.json()}).then(function(r){setD({...r,loading:false})})},[]);return<div><h1 className='text-xl font-bold text-white mb-1'>User Growth Analytics</h1><p className='text-sm text-white/30 mb-6'>User registration and activity trends</p>{!d.loading&&<div className='grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6'>{[{l:'Total Users',v:d.stats?.totalUsers||0},{l:'Today',v:d.stats?.todayUsers||0},{l:'VIP Users',v:d.stats?.vipUsers||0},{l:'Yesterday',v:d.stats?.yesterdayUsers||0}].map(function(s,i){return<div key={i} className='bg-[#0A0E1A] border border-white/[0.04] rounded-xl p-4'><div className='text-xs text-white/40'>{s.l}</div><div className='text-xl font-bold text-white mt-1'>{s.v}</div></div>})}</div>}</div>}

@@ -1,7 +1,7 @@
 export type VipLevel = 0 | 1 | 2 | 3 | 4 | 5
 export type DepositStatus = 'pending' | 'approved' | 'rejected'
 export type OpportunityStatus = 'draft' | 'published' | 'hidden'
-export type UserRole = 'user' | 'admin'
+export type UserRole = 'user' | 'admin' | 'super_admin'
 
 export interface DBProfile {
   id: string; email: string; username: string; avatar_url: string | null; country: string;

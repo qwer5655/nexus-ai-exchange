@@ -1,8 +1,4 @@
-import { createClient } from '@supabase/supabase-js'
-
-var _supabaseUrl = 'https://dcfwldxwyvvotvfdnywy.supabase.co'
-var _supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRjZndsZHh3eXZ2b3R2ZmRueXd5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA4NTA3MjYsImV4cCI6MjA5NjQyNjcyNn0.hoVRtNWXr0nzYLaQlR3yTlnOXUOlgBTYPMM1WdFBXjk'
-var supabase = createClient(_supabaseUrl, _supabaseKey)
+import { supabase, supabaseAdmin } from '@/lib/supabase'
 import type { Opportunity } from '@/types'
 
 function mapDBToOpportunity(d: any): Opportunity {

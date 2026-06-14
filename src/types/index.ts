@@ -111,6 +111,7 @@ export interface AuthUser {
   winRate: number;
   referralCode: string;
   isLoggedIn: boolean;
+  role?: 'user' | 'admin' | 'super_admin';
 }
 
 export interface NotificationItem {

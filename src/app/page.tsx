@@ -17,6 +17,7 @@ const WinningFeed = dynamic(() => import('@/components/layout/WinningFeed'), { s
 const Notifications = dynamic(() => import('@/components/layout/Notifications'), { ssr: false })
 const MatchModal = dynamic(() => import('@/components/opportunities/MatchModal'), { ssr: false })
 const DepositModal = dynamic(() => import('@/components/deposit/DepositModal'), { ssr: false })
+const AuthModalManager = dynamic(() => import('@/components/auth/AuthModalManager'), { ssr: false })
 const Footer = dynamic(() => import('@/components/layout/Footer'), { ssr: false })
 
 export default function HomePage() {
@@ -80,6 +81,7 @@ export default function HomePage() {
       <Notifications />
       <MatchModal />
       <DepositModal />
+      <AuthModalManager />
     </>
   )
 }

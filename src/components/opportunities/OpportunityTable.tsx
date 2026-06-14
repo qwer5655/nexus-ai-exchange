@@ -27,14 +27,13 @@ const [sortField, setSortField] = useState<keyof Opportunity>('yield');
   const [filter, setFilter] = useState('all');
 useEffect(() => {    setLoading(true); setError('');
     getOpportunities({ page, limit: 20, search }).then(function(result) {      setData(result.data); setTotal(result.count); setLoading(false)    }).catch(function(e) {      setError(e.message || 'Failed to load'); setLoading(false)    })  }, [page, search]);
-function updateTime(time: string) {    const parts = time.split(/[hms]/);
-let hours = parseInt(parts[0]) || 0;
+function updateTime(time: string) {
+  const parts = time.split(/[hms]/);
+  let hours = parseInt(parts[0]) || 0;
   let mins = parseInt(parts[1]) || 0;
-  const secs = parseInt(parts[2]) || 0;
-  if (secs > 0) { mins -= 1; if (mins < 0) { mins = 59; hours -= 1 } }
-    if (hours < 0) return 'Expired';
-    if (hours === 0 && mins <= 5) return mins + 'm ' + Math.floor(Math.random() * 60) + 's';
-    return hours + 'h ' + mins + 'm'  }
+  if (hours < 0) return 'Expired';
+  if (hours === 0) return mins + 'm';
+  return hours + 'h ' + mins + 'm'}
 const filtered = useMemo(() => {    let result = [...data];
   if (filter !== 'all') result = result.filter((o) => o.status === filter.toUpperCase());
     result.sort((a, b) => {      const aVal = a[sortField] as number;
