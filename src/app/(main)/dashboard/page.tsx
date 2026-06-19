@@ -28,11 +28,19 @@ export default function DashboardPage() {
   }
 
   var stats = [
+<<<<<<< Updated upstream
     { label: isZh ? '总余额' : 'Total Balance', value: '$' + user.balance.toFixed(2), change: '+$0.00', icon: Wallet, color: '#00ff88' },
     { label: isZh ? '今日收益' : "Today's Profit", value: '$0.00', change: '+0%', icon: TrendingUp, color: '#00d9ff' },
     { label: isZh ? '总收益' : 'Total Profit', value: '$' + user.totalProfit.toFixed(2), change: '+' + user.winRate + '% win rate', icon: DollarSign, color: '#ffd700' },
     { label: isZh ? 'VIP 等级' : 'VIP Level', value: 'VIP ' + (user.level || 0), change: isZh ? '下一级: $1,000' : 'Next: $1,000', icon: Award, color: '#a855f7' },
     { label: isZh ? '邀请收益' : 'Referral Earnings', value: '$47.85', change: '+$3.20 ' + (isZh ? '今日' : 'today'), icon: Gift, color: '#ff6b6b' },
+=======
+    { label: isZh ? '总余额' : 'Total Balance', value: formatCurrency(summary.balance), change: '', icon: Wallet, color: '#00ff88' },
+    { label: isZh ? '今日收益' : "Today's Profit", value: formatCurrency(summary.totalProfit), change: '+' + summary.profitPercent.toFixed(1) + '%', icon: TrendingUp, color: '#00d9ff' },
+    { label: isZh ? '总收益' : 'Total Profit', value: formatCurrency(summary.totalProfit), change: '+' + (user?.winRate ?? 0) + '% win rate', icon: DollarSign, color: '#ffd700' },
+    { label: isZh ? 'VIP 等级' : 'VIP Level', value: 'VIP ' + summary.vipLevel, change: isZh ? '下一级: $1,000' : 'Next: $1,000', icon: Award, color: '#a855f7' },
+    { label: isZh ? '邀请收益' : 'Referral Earnings', value: '$0.00', change: '', icon: Gift, color: '#ff6b6b' },
+>>>>>>> Stashed changes
     { label: isZh ? '已解锁机会' : 'Unlocked Opps', value: '0', change: '3 ' + (isZh ? '待解锁' : 'pending'), icon: Zap, color: '#06b6d4' },
   ];
 
