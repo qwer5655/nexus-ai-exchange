@@ -33,7 +33,7 @@ export default function LoginModal() {
         router.push('/');
       }
     } catch(e: any) {
-      setError((e as Error).message || (isZh ? '登录失败' : 'Login failed'));
+      setError(e.message || (isZh ? '登录失败' : 'Login failed'));
       setLoading(false);
     }
   }

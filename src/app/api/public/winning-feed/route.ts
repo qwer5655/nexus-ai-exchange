@@ -1,5 +1,5 @@
-﻿import { NextResponse } from 'next/server'
-import { supabaseAdmin } from '@/lib/supabase/server'
+import { NextResponse } from 'next/server'
+import { supabaseAdmin } from '@/lib/supabase'
 
 export async function GET() {
   try {
@@ -26,8 +26,8 @@ export async function GET() {
       entries.push({ id: 'dep-' + d.id, type: 'deposit', text: 'Deposited', amount: d.amount || 0, time: timeAgo(d.created_at) })
     })
     entries.sort(function(a, b) { return (b._sort || 0) - (a._sort || 0) })
-    return NextResponse.json({ success: true, data: { entries: entries.slice(0, 20) }, error: null, timestamp: new Date().toISOString() })
-  } catch(e: any) { return NextResponse.json({ success: false, data: null, error: (e as Error).message, timestamp: new Date().toISOString() }, { status: 500 }) }
+    return NextResponse.json({ entries: entries.slice(0, 20) })
+  } catch(e: any) { return NextResponse.json({ error: e.message }, { status: 500 }) }
 }
 
 function timeAgo(dateStr: string) {

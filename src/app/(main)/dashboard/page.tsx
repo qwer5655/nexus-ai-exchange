@@ -5,15 +5,10 @@ import { Wallet, TrendingUp, DollarSign, Award, Gift, Star, Clock, Activity, Bar
 import { useAuthStore } from '@/store/authStore'
 import { useStore } from '@/store/useStore'
 import { t } from '@/lib/i18n'
-import { formatCurrency } from '@/lib/utils'
 import Link from 'next/link'
-import { useSafeApi, SUMMARY_FALLBACK, assertSummary } from '@/lib/use-safe-api'
 
 export default function DashboardPage() {
-  var { user } = useAuthStore()
-var token = (useAuthStore.getState() as any).accessToken
-var raw = useSafeApi('/api/ledger/summary', SUMMARY_FALLBACK, token)
-var summary = assertSummary(raw.data) as any;
+  var { user } = useAuthStore() as any;
   var { language } = useStore();
   var isZh = language === 'zh';
   var [chartPeriod, setChartPeriod] = useState<'7d' | '30d' | '90d' | 'all'>('30d');
@@ -33,11 +28,11 @@ var summary = assertSummary(raw.data) as any;
   }
 
   var stats = [
-    { label: isZh ? '总余额' : 'Total Balance', value: formatCurrency(summary.balance), change: '+$0.00', icon: Wallet, color: '#00ff88' },
-    { label: isZh ? '今日收益' : "Today's Profit", value: formatCurrency(summary.totalProfit), change: '+' + summary.profitPercent.toFixed(1) + '%', icon: TrendingUp, color: '#00d9ff' },
-    { label: isZh ? '总收益' : 'Total Profit', value: formatCurrency(summary.totalProfit), change: '+' + (user?.winRate ?? 0) + '% win rate', icon: DollarSign, color: '#ffd700' },
-    { label: isZh ? 'VIP 等级' : 'VIP Level', value: 'VIP ' + summary.vipLevel, change: isZh ? '下一级: $1,000' : 'Next: $1,000', icon: Award, color: '#a855f7' },
-    { label: isZh ? '邀请收益' : 'Referral Earnings', value: '$0.00', change: '+$3.20 ' + (isZh ? '今日' : 'today'), icon: Gift, color: '#ff6b6b' },
+    { label: isZh ? '总余额' : 'Total Balance', value: '$' + user.balance.toFixed(2), change: '+$0.00', icon: Wallet, color: '#00ff88' },
+    { label: isZh ? '今日收益' : "Today's Profit", value: '$0.00', change: '+0%', icon: TrendingUp, color: '#00d9ff' },
+    { label: isZh ? '总收益' : 'Total Profit', value: '$' + user.totalProfit.toFixed(2), change: '+' + user.winRate + '% win rate', icon: DollarSign, color: '#ffd700' },
+    { label: isZh ? 'VIP 等级' : 'VIP Level', value: 'VIP ' + (user.level || 0), change: isZh ? '下一级: $1,000' : 'Next: $1,000', icon: Award, color: '#a855f7' },
+    { label: isZh ? '邀请收益' : 'Referral Earnings', value: '$47.85', change: '+$3.20 ' + (isZh ? '今日' : 'today'), icon: Gift, color: '#ff6b6b' },
     { label: isZh ? '已解锁机会' : 'Unlocked Opps', value: '0', change: '3 ' + (isZh ? '待解锁' : 'pending'), icon: Zap, color: '#06b6d4' },
   ];
 
@@ -47,9 +42,9 @@ var summary = assertSummary(raw.data) as any;
   ];
 
   var summaryData = [
-    { label: isZh ? '总交易' : 'Total Trades', value: summary.transactionCount },
-    { label: isZh ? '充值次数' : 'Deposits', value: summary.transactionCount },
-    { label: isZh ? '胜率' : 'Win Rate', value: summary.profitPercent.toFixed(1) + '%' },
+    { label: isZh ? '总交易' : 'Total Trades', value: user.tradeCount || 0 },
+    { label: isZh ? '充值次数' : 'Deposits', value: user.totalDeposits || 0 },
+    { label: isZh ? '胜率' : 'Win Rate', value: user.winRate + '%' },
     { label: isZh ? '等级' : 'Level', value: 'Lv.' + user.level },
   ];
 
@@ -77,7 +72,7 @@ var summary = assertSummary(raw.data) as any;
         {stats.map(function(s, i) {
           var Icon = s.icon;
           return (
-            <motion.div key={s.label} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.05 + i * 0.03 }}
+            <motion.div key={i} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.05 + i * 0.03 }}
               className='bg-[#141C2F]/80 rounded-xl p-4 border border-white/[0.04] hover:border-white/[0.08] transition-all group'>
               <div className='flex items-center gap-2 mb-3'>
                 <div className='p-1.5 rounded-lg bg-white/[0.03]'>
@@ -110,10 +105,10 @@ var summary = assertSummary(raw.data) as any;
           </div>
           <div className='h-[200px] flex items-end justify-between gap-1 px-2'>
             {Array.from({ length: 30 }, function(_, i) {
-              var h = 20 + ((i * 37 + 13) % 40); // stable hash
+              var h = 20 + Math.sin(i * 0.5) * 30 + Math.random() * 30;
               var gradient = i > 20 ? 'from-[#00ff88] to-[#00d9ff]' : 'from-[#00ff88]/40 to-[#00d9ff]/40';
               return (
-                <motion.div key={'bar-' + i} initial={{ height: 0 }} animate={{ height: h }} transition={{ delay: i * 0.02 }}
+                <motion.div key={i} initial={{ height: 0 }} animate={{ height: h }} transition={{ delay: i * 0.02 }}
                   className={'flex-1 rounded-t-sm bg-gradient-to-t ' + gradient + ' min-w-[6px]'}
                   style={{ height: h + 'px', opacity: 0.3 + (h / 100) * 0.7 }} />
               );
@@ -127,7 +122,7 @@ var summary = assertSummary(raw.data) as any;
           <div className='space-y-3'>
             {summaryData.map(function(d, i) {
               return (
-                <div key={d.label} className='flex items-center justify-between p-3 rounded-lg bg-white/[0.02] border border-white/[0.03]'>
+                <div key={i} className='flex items-center justify-between p-3 rounded-lg bg-white/[0.02] border border-white/[0.03]'>
                   <span className='text-xs text-white/50'>{d.label}</span>
                   <span className='text-sm font-semibold text-white/80'>{d.value}</span>
                 </div>
@@ -157,7 +152,7 @@ var summary = assertSummary(raw.data) as any;
         <div className='space-y-2'>
           {recentActivity.map(function(a, i) {
             return (
-              <div key={a.type} className='flex items-center gap-3 p-3 rounded-lg hover:bg-white/[0.02] transition-all'>
+              <div key={i} className='flex items-center gap-3 p-3 rounded-lg hover:bg-white/[0.02] transition-all'>
                 <span className='text-lg'>{a.icon}</span>
                 <div className='flex-1'>
                   <div className='text-sm text-white/70'>{a.text}</div>

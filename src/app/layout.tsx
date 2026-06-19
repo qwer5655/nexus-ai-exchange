@@ -1,7 +1,6 @@
 import type { Metadata } from 'next'
 // Fonts disabled - using local fonts
 import './globals.css'
-import { Providers } from '@/lib/data/providers'
 
 // Fonts loaded via Google Fonts link tags
 
@@ -22,7 +21,7 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       </head>
       <body className="antialiased">
-        <Providers>{children}</Providers>
+        {children}
       </body>
     </html>
   )

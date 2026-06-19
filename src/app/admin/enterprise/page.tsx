@@ -1,6 +1,5 @@
 ﻿'use client'
 import { useState, useEffect } from 'react'
-import { adminFetch } from '@/lib/admin-fetch'
 
 export default function EnterprisePage() {
   var [tab, setTab] = useState('customers')
@@ -12,18 +11,18 @@ export default function EnterprisePage() {
   var [adminId, setAdminId] = useState('')
 
   useEffect(function() {
-    adminFetch('/api/admin/enterprise/customers').then(function(r){return r.json()}).then(function(d){setCustomers(d.customers||[])}).catch(function(){})
-    adminFetch('/api/admin/enterprise/audit').then(function(r){return r.json()}).then(function(d){setLogs(d.logs||[])}).catch(function(){})
+    fetch('/api/admin/enterprise/customers').then(function(r){return r.json()}).then(function(d){setCustomers(d.customers||[])}).catch(function(){})
+    fetch('/api/admin/enterprise/audit').then(function(r){return r.json()}).then(function(d){setLogs(d.logs||[])}).catch(function(){})
   }, [])
 
   function loadPermissions(userId?: string) {
     var url = '/api/admin/enterprise/permissions'
     if (userId) url += '?user_id=' + userId
-    adminFetch(url).then(function(r){return r.json()}).then(function(d){setPermissions(d.permissions||[])}).catch(function(){})
+    fetch(url).then(function(r){return r.json()}).then(function(d){setPermissions(d.permissions||[])}).catch(function(){})
   }
 
   function createCustomer() {
-    adminFetch('/api/admin/enterprise/customers', {
+    fetch('/api/admin/enterprise/customers', {
       method: 'POST', headers: {'Content-Type':'application/json'},
       body: JSON.stringify({company_name: companyName, admin_user_id: adminId})
     }).then(function(r){return r.json()}).then(function(d){
@@ -76,5 +75,3 @@ export default function EnterprisePage() {
     </div>
   )
 }
-
-

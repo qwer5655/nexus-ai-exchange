@@ -1,10 +1,9 @@
 'use client'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Crown, DollarSign, Gift, Zap, Shield, Star, TrendingUp, Check } from 'lucide-react'
 import { useAuthStore } from '@/store/authStore'
 import { useStore } from '@/store/useStore'
-import { api } from '@/lib/api-client'
 
 var tiers = [
   { lv:0, en:'Explorer', zh:'\u63a2\u9669\u8005', color:'#8B8B8B', min:0, discount:'0%', bonus:'5%', signals:1, support:'Standard' },
@@ -16,12 +15,6 @@ var tiers = [
 ];
 
 export default function VIPPage() {
-  var [plans, setPlans] = useState<any[]>([])
-  useEffect(function() {
-    api.get('/public/plans').then(function(d:any){
-      if (d.plans) setPlans(d.plans)
-    }).catch(function(){})
-  }, [])
   var { user } = useAuthStore();
   var { language } = useStore();
   var isZh = language === 'zh';

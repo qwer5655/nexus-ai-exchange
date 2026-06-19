@@ -1,4 +1,5 @@
 'use client'
+import { AnimatePresence } from 'framer-motion'
 import { useAuthStore } from '@/store/authStore'
 import RegisterModal from './RegisterModal'
 import LoginModal from './LoginModal'
@@ -13,9 +14,11 @@ export default function AuthModalManager() {
 
   return (
     <>
-      {isAuthModalOpen && authModalType === 'register' && <RegisterModal />}
-      {isAuthModalOpen && authModalType === 'login' && <LoginModal />}
-      {isAuthModalOpen && authModalType === 'forgot' && <ForgotPasswordModal />}
+      <AnimatePresence>
+        {isAuthModalOpen && authModalType === 'register' && <RegisterModal />}
+        {isAuthModalOpen && authModalType === 'login' && <LoginModal />}
+        {isAuthModalOpen && authModalType === 'forgot' && <ForgotPasswordModal />}
+      </AnimatePresence>
       <WelcomeBonus />
     </>
   );

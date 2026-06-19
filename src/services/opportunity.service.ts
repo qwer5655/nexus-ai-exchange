@@ -1,4 +1,4 @@
-﻿import { supabase } from '@/lib/supabase/client'
+import { supabase, supabaseAdmin } from '@/lib/supabase'
 import type { Opportunity } from '@/types'
 
 function mapDBToOpportunity(d: any): Opportunity {

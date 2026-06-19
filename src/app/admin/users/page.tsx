@@ -40,7 +40,7 @@ export default function AdminUsers() {
       .on('postgres_changes',
         { event: '*', schema: 'public', table: 'profiles' },
         function(payload) {
-          console.log('[Realtime] profiles changed:', payload.eventType, (payload.new as any)?.id?.substring(0, 8));
+          console.log('[Realtime] profiles changed:', payload.eventType, payload.new?.id?.substring(0, 8));
           loadUsers();
         }
       )

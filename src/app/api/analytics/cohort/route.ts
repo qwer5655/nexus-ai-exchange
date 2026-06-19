@@ -1,5 +1,5 @@
-﻿import { NextResponse } from 'next/server'
-import { supabaseAdmin } from '@/lib/supabase/server'
+import { NextResponse } from 'next/server'
+import { supabaseAdmin } from '@/lib/supabase'
 import { verifyAdmin } from '@/lib/admin-auth'
 
 export async function GET(req: Request) {
@@ -19,5 +19,5 @@ export async function GET(req: Request) {
       cohorts.push(row)
     }
     return NextResponse.json({ cohorts })
-  } catch(e: any) { return NextResponse.json({ error: (e as Error).message }, { status: 500 }) }
+  } catch(e: any) { return NextResponse.json({ error: e.message }, { status: 500 }) }
 }

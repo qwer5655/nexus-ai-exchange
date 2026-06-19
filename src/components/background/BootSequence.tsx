@@ -133,7 +133,7 @@ export default function BootSequence({ onComplete }: any) {
 
   function handleEnter() {
     setPhase('done')
-
+    setTimeout(onComplete, 600)
   }
 
   // Get current step label
@@ -148,7 +148,7 @@ export default function BootSequence({ onComplete }: any) {
   var currentStep = getCurrentStep()
 
   return (
-    <AnimatePresence onExitComplete={function() { if (phase === "done") onComplete(); }}>
+    <AnimatePresence>
       {phase !== 'done' ? (
         <motion.div
           initial={{ opacity: 0 }}
@@ -165,7 +165,7 @@ export default function BootSequence({ onComplete }: any) {
           {matchFloats.map(function(m, i) {
             return (
               <motion.div
-                key={m.match}
+                key={i}
                 className="absolute pointer-events-none"
                 style={{ left: m.x + '%', top: m.y + '%' }}
                 animate={{ y: [0, -25, 0], opacity: [0.06, 0.1, 0.06] }}
@@ -198,7 +198,7 @@ export default function BootSequence({ onComplete }: any) {
                       var isCurrent = currentStep.label === step.label
                       return (
                         <motion.div
-                          key={step.label}
+                          key={i}
                           className={'flex items-start gap-2.5 transition-all duration-300 ' + (isActive ? '' : 'opacity-30')}
                         >
                           <div className={'w-1.5 h-1.5 rounded-full mt-1.5 flex-shrink-0 ' + (isCurrent ? 'bg-[#00ff88] shadow-[0_0_6px_rgba(0,255,136,0.6)]' : 'bg-white/20')} />
@@ -293,7 +293,7 @@ export default function BootSequence({ onComplete }: any) {
                       {[
                         [125,60,118,53],[118,53,115,72],[125,60,115,72],[125,60,110,63],[110,63,105,57],[118,53,105,57]
                       ].map(function(line, i) {
-                        return <line key={line[0] + '-' + line[1]} x1={line[0]} y1={line[1]} x2={line[2]} y2={line[3]} stroke="rgba(0,217,255,0.04)" strokeWidth="0.5" />
+                        return <line key={i} x1={line[0]} y1={line[1]} x2={line[2]} y2={line[3]} stroke="rgba(0,217,255,0.04)" strokeWidth="0.5" />
                       })}
 
                       {/* Trophy */}

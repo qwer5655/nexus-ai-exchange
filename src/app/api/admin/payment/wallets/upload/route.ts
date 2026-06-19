@@ -31,5 +31,5 @@ export async function POST(req: Request) {
     var qrUrl = SU + '/storage/v1/object/public/wallet-qrcodes/' + fileName
     await emitEvent('wallet.qrcode_uploaded', auth.userId, { wallet_id: walletId, file: fileName })
     return NextResponse.json({ success: true, url: qrUrl })
-  } catch(e: any) { return NextResponse.json({ error: (e as Error).message }, { status: 500 }) }
+  } catch(e: any) { return NextResponse.json({ error: e.message }, { status: 500 }) }
 }
