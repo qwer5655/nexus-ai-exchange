@@ -21,16 +21,16 @@ function LoginHistoryView() {
 }
 
 export default function ProfilePage() {
-  const { userBalance, userDeposits, language } = useStore()
+  const { language } = useStore()
   var { user } = useAuthStore()
   var [refData, setRefData] = useState<any>(null)
   var [refLoading, setRefLoading] = useState(true)
-  var [referralCopied, setReferralCopied] = useState(false)
+  var [copyState, setCopyState] = useState('idle')
   var [notifs, setNotifs] = useState<any[]>([])
   var [notifUnread, setNotifUnread] = useState(0)
-  var [notifLoading, setNotifLoading] = useState(true); var [achvs, setAchvs] = useState<any[]>([])
+  var [notifLoading, setNotifLoading] = useState(true); var [achvs, setAchvs] = useState<any[]>([]);var [summary, setSummary] = useState({ balance: 0, totalDeposit: 0, totalProfit: 0, profitPercent: 0, transactionCount: 0, vipLevel: 0 })
 
-  useEffect(function() { fetch('/api/notifications?userId=' + (user as any)?.id + '&limit=10').then(function(r) { return r.json() }).then(function(d) { setNotifs(d.notifications || []); setNotifUnread(d.unread || 0); setNotifLoading(false) }).catch(function() { setNotifLoading(false) }) }, [(user as any)?.id])
+  useEffect(function() { if (!(user as any)?.id) return; fetch('/api/notifications?userId=' + (user as any)?.id + '&limit=10').then(function(r) { return r.json() }).then(function(d) { setNotifs(d.notifications || []); setNotifUnread(d.unread || 0); setNotifLoading(false) }).catch(function() { setNotifLoading(false) }) }, [(user as any)?.id])
 
   function markAllRead() { var ids = notifs.filter(function(n) { return !n.is_read }).map(function(n) { return n.id }); if (ids.length === 0) return; fetch('/api/notifications', { method: 'PATCH', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ notificationIds: ids }) }).then(function() { setNotifs(notifs.map(function(n) { return { ...n, is_read: true } })); setNotifUnread(0) }) }
 
@@ -39,12 +39,17 @@ export default function ProfilePage() {
     fetch('/api/referrals?userId=' + (user as any)?.id).then(function(r) { return r.json() }).then(function(d) { setRefData(d); setRefLoading(false) }).catch(function() { setRefLoading(false) })
   }, [(user as any)?.id])
 
-  var referralLink = refData?.referral_code ? window.location.origin + '/register?ref=' + refData.referral_code : 'https://proodd.com/register?ref=' + ((user as any)?.id?.substring(0,8) || '')
+  var referralLink = '/?ref=' + (refData?.referral_code || (user as any)?.id?.substring(0,8) || '')
 
-  function copyReferral() {
-    navigator.clipboard.writeText(referralLink)
-    setReferralCopied(true)
-    setTimeout(() => setReferralCopied(false), 2000)
+  async function handleCopy() {
+    try {
+      await navigator.clipboard.writeText(window.location.origin + referralLink)
+      setCopyState('copied')
+      setTimeout(function() { setCopyState('idle') }, 1200)
+    } catch(e) {
+      setCopyState('error')
+      setTimeout(function() { setCopyState('idle') }, 1200)
+    }
   }
 
   return (
@@ -64,8 +69,8 @@ export default function ProfilePage() {
               <div><h2 className="text-xl font-bold text-white">{t('profile.title', language)}</h2><p className="text-sm text-white/40">{t('profile.memberSince', language)} June 2026</p></div>
             </div>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              <div className="glass-card rounded-xl p-4 text-center"><div className="text-2xl font-orbitron font-bold text-[#00ff88]">{formatCurrency(userBalance)}</div><div className="text-xs text-white/40 mt-1">{t('profile.balance', language)}</div></div>
-              <div className="glass-card rounded-xl p-4 text-center"><div className="text-2xl font-orbitron font-bold text-[#00d9ff]">{userDeposits.length}</div><div className="text-xs text-white/40 mt-1">{t('profile.deposits', language)}</div></div>
+              <div className="glass-card rounded-xl p-4 text-center"><div className="text-2xl font-orbitron font-bold text-[#00ff88]">{formatCurrency(summary.balance)}</div><div className="text-xs text-white/40 mt-1">{t('profile.balance', language)}</div></div>
+              <div className="glass-card rounded-xl p-4 text-center"><div className="text-2xl font-orbitron font-bold text-[#00d9ff]">{summary.transactionCount}</div><div className="text-xs text-white/40 mt-1">{t('profile.deposits', language)}</div></div>
               <div className="glass-card rounded-xl p-4 text-center"><div className="text-2xl font-orbitron font-bold text-[#ffd700]">0</div><div className="text-xs text-white/40 mt-1">{t('profile.trades', language)}</div></div>
               <div className="glass-card rounded-xl p-4 text-center"><div className="text-2xl font-orbitron font-bold text-[#ff4d4f]">0%</div><div className="text-xs text-white/40 mt-1">{t('profile.winRate', language)}</div></div>
             </div>
@@ -77,7 +82,7 @@ export default function ProfilePage() {
             <p className="text-sm text-white/40 mb-3">{t('profile.referralDesc', language)}</p>
             <div className="flex items-center gap-3 mb-4">
               <div className="flex-1 p-3 rounded-lg bg-white/5 border border-white/10 font-mono text-xs text-white/60 truncate">{referralLink}</div>
-              <button onClick={copyReferral} className="flex items-center gap-2 px-4 py-3 rounded-lg bg-[#00ff88]/10 text-[#00ff88] text-sm font-medium hover:bg-[#00ff88]/20 transition-all">{referralCopied ? <Check size={16} /> : <Copy size={16} />}{referralCopied ? t('profile.copied', language) : t('profile.copy', language)}</button>
+              <button onClick={handleCopy} className="flex items-center gap-2 px-4 py-3 rounded-lg bg-[#00ff88]/10 text-[#00ff88] text-sm font-medium hover:bg-[#00ff88]/20 transition-all"><Copy size={16} className={copyState !== 'idle' ? 'hidden' : 'block'} /><Check size={16} className={copyState === 'copied' ? 'block' : 'hidden'} /><span className={copyState === 'copied' ? 'block' : 'hidden'}>{t('profile.copied', language)}</span><span className={copyState !== 'copied' ? 'block' : 'hidden'}>{t('profile.copy', language)}</span></button>
             </div>
             {!refLoading && refData && <div className="grid grid-cols-3 gap-3 mb-3">
               <div className="bg-white/5 rounded-lg p-3 text-center"><div className="text-lg font-bold text-[#00ff88]">{refData.total_referrals}</div><div className="text-[10px] text-white/40">Invites</div></div>

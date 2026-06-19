@@ -1,4 +1,4 @@
-import { supabase } from './supabase'
+﻿import { supabase } from './supabase'
 import { useAuthStore } from '@/store/authStore'
 
 export async function adminFetch(url: string, opts?: RequestInit) {
@@ -21,9 +21,6 @@ export async function adminFetch(url: string, opts?: RequestInit) {
     var state = useAuthStore.getState() as any
     if (state.accessToken) {
       headers['Authorization'] = 'Bearer ' + state.accessToken
-    }
-    if (!headers['Authorization'] && state.user?.email && state.user?.role === 'admin') {
-      headers['x-admin-email'] = state.user.email
     }
   } catch(e: any) {}
 

@@ -1,5 +1,6 @@
 ﻿'use client'
 import { useState, useEffect } from 'react'
+import { adminFetch } from '@/lib/admin-fetch'
 
 export default function BillingDashboard() {
   var [plans, setPlans] = useState<any[]>([])
@@ -7,7 +8,7 @@ export default function BillingDashboard() {
   var [revenue, setRevenue] = useState(0)
 
   useEffect(function() {
-    fetch('/api/admin/billing/plans')
+    adminFetch('/api/admin/billing/plans')
       .then(function(r) { return r.json() })
       .then(function(d) { setPlans(d.plans || []); setUsers(d.users || {}); setRevenue(d.revenue?.monthly || 0) })
       .catch(function() {})
@@ -63,3 +64,5 @@ export default function BillingDashboard() {
     </div>
   )
 }
+
+

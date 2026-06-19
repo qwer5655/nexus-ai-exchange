@@ -1,5 +1,5 @@
 ﻿import { NextResponse } from 'next/server'
-import { supabaseAdmin } from '@/lib/supabase'
+import { supabaseAdmin } from '@/lib/supabase/server'
 import { getCredits, deductCredits, addCredits } from '@/lib/credits'
 
 export async function GET(req: Request) {

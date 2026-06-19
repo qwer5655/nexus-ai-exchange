@@ -1,5 +1,5 @@
 ﻿import { NextResponse } from 'next/server'
-import { supabaseAdmin } from '@/lib/supabase'
+import { supabaseAdmin } from '@/lib/supabase/server'
 import { verifyAdmin, logAdminAction } from '@/lib/admin-auth'
 import { emitEvent } from '@/lib/business-events'
 import { createRecharge, approveRecharge, rejectRecharge } from '@/lib/payment-engine'

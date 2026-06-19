@@ -5,11 +5,13 @@ import { Bell, X, CheckCheck, TrendingUp, Banknote, Gift } from 'lucide-react'
 import { useAuthStore } from '@/store/authStore'
 import { useStore } from '@/store/useStore'
 
-var mockNotifs = [
+// mock data removed - using store only
+/*
   { id: 'm1', title: 'New Opportunity Unlocked', description: 'Canada vs Costa Rica report is now available', time: '2 min ago', icon: '📈', read: false },
   { id: 'm2', title: 'Deposit Approved', description: 'Your 100 USDT deposit has been approved', time: '15 min ago', icon: '💰', read: false },
   { id: 'm3', title: 'Welcome Bonus', description: '5 USDT demo credit has been added to your account', time: '1 hour ago', icon: '🎁', read: false },
 ]
+*/
 
 export default function NotificationCenter() {
   var { user, notifications, markNotificationRead, clearNotifications } = useAuthStore();
@@ -18,7 +20,7 @@ export default function NotificationCenter() {
   var [open, setOpen] = useState(false);
   var ref = useRef<HTMLDivElement>(null);
   // Use mock if store has no notifications
-  var displayNotifs = notifications.length > 0 ? notifications : mockNotifs
+  var displayNotifs = notifications
 
   useEffect(function() {
     function handleClick(e: any) { if (ref.current && !ref.current.contains(e.target)) setOpen(false); }

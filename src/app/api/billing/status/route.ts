@@ -1,5 +1,5 @@
 ﻿import { NextResponse } from 'next/server'
-import { supabaseAdmin } from '@/lib/supabase'
+import { supabaseAdmin } from '@/lib/supabase/server'
 import { getUserTier } from '@/lib/pricing'
 
 export async function GET(req: Request) {
@@ -19,11 +19,11 @@ export async function GET(req: Request) {
   if (!userId) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
 
   try {
-    var { data: profile } = await supabaseAdmin.from('profiles').select('vip_level,vip_expires_at,vip_src,stripe_customer_id,stripe_subscription_id')
+    var { data: userProfile } = await supabaseAdmin.from('profiles').select('vip_level,vip_expires_at,vip_src,stripe_customer_id,stripe_subscription_id')
       .eq('id', userId).maybeSingle()
-    var vipLevel = profile?.vip_level || 0
-    var expiresAt = profile?.vip_expires_at || null
-    var src = profile?.vip_src || 'manual'
+    var vipLevel = userProfile?.vip_level || 0
+    var expiresAt = userProfile?.vip_expires_at || null
+    var src = userProfile?.vip_src || 'manual'
     var expired = expiresAt ? new Date(expiresAt) < new Date() : false
     var active = vipLevel > 0 && !expired
 
@@ -44,8 +44,8 @@ export async function GET(req: Request) {
       expires_at: expiresAt,
       source: active ? (src || 'manual') : null,
       credits: credits,
-      stripe_customer_id: profile?.stripe_customer_id || null,
-      subscription_id: profile?.stripe_subscription_id || null
+      stripe_customer_id: userProfile?.stripe_customer_id || null,
+      subscription_id: userProfile?.stripe_subscription_id || null
     })
   } catch(e: any) { return NextResponse.json({ error: (e as Error).message }, { status: 500 }) }
 }

@@ -1,5 +1,5 @@
-import { NextResponse } from 'next/server'
-import { supabaseAdmin } from '@/lib/supabase'
+﻿import { NextResponse } from 'next/server'
+import { supabaseAdmin } from '@/lib/supabase/server'
 export async function GET(req: Request) {
   try {
     var url = new URL(req.url)
@@ -28,6 +28,6 @@ export async function GET(req: Request) {
       { id: 'A7', name: 'Unlock Master', description: 'Unlock 10 opportunities', icon: '🔓', unlocked: (unlockCount || 0) >= 10 },
       { id: 'A8', name: 'VIP Member', description: 'Reach VIP level 1', icon: '💎', unlocked: isVip },
     ]
-    return NextResponse.json({ achievements })
-  } catch(e: any) { return NextResponse.json({ error: (e as Error).message }, { status: 500 }) }
+    return NextResponse.json({ success: true, data: { achievements }, error: null, timestamp: new Date().toISOString() })
+  } catch(e: any) { return NextResponse.json({ success: false, data: null, error: (e as Error).message, timestamp: new Date().toISOString() }, { status: 500 }) }
 }

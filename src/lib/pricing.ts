@@ -1,4 +1,4 @@
-﻿import { supabaseAdmin } from './supabase'
+﻿import { supabaseAdmin } from '@/lib/supabase/server'
 
 export type Tier = 'free' | 'pro' | 'enterprise'
 
@@ -48,7 +48,7 @@ export async function updateUserTier(userId: string): Promise<Tier> {
   try {
     var { data: profile } = await supabaseAdmin.from('profiles').select('vip_level,vip_expires_at').eq('id', userId).maybeSingle()
     if (!profile) return 'free'
-    var credits = profile.credits || 0
+    var credits = 0
     var vipLevel = profile.vip_level || 0
 
     // Get actual credits from user_credits table

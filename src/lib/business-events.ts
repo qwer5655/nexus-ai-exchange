@@ -1,6 +1,6 @@
 ﻿// Business Events — unified event emitter for all admin modules
 // Usage: import { emitEvent } from '@/lib/business-events'
-import { supabaseAdmin } from './supabase'
+import { supabaseAdmin } from '@/lib/supabase/server'
 
 export async function emitEvent(eventType: string, userId: string | null, metadata: any = {}) {
   try {

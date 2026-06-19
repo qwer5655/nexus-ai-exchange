@@ -1,4 +1,5 @@
 'use client'
+import { api } from '@/lib/api-client'
 import { useStore } from '@/store/useStore'
 import { t } from '@/lib/i18n'
 ﻿
@@ -11,7 +12,7 @@ import { useState, useEffect } from 'react'
 export default function PlayersSection() {
   const { language } = useStore()
   var [players, setPlayers] = useState<any[]>([])
-  useEffect(function() { fetch('/api/public/players').then(function(r){return r.json()}).then(function(d){setPlayers(d.players||[])}).catch(function(){}) }, [])
+  useEffect(function() { api.get<any>('/public/players').then(function(d){setPlayers(d.players||[])}).catch(function(){}) }, [])
   const scrollRef = useRef<HTMLDivElement>(null)
 
   const scroll = (dir: 'left' | 'right') => {

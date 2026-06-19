@@ -1,5 +1,5 @@
 ﻿import { NextResponse } from 'next/server'
-import { supabaseAdmin } from '@/lib/supabase'
+import { supabaseAdmin } from '@/lib/supabase/server'
 import { verifyAdmin } from '@/lib/admin-auth'
 import { calculateRiskScore, trackAbuse } from '@/lib/abuse-control'
 import { updateUserTier } from '@/lib/pricing'

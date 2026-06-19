@@ -1,5 +1,6 @@
 ﻿'use client'
 import { useEffect, useState, useCallback } from 'react'
+import { adminFetch } from '@/lib/admin-fetch'
 
 export default function RechargeRecords() {
   var [recharges, setRecharges] = useState<any[]>([])
@@ -16,7 +17,7 @@ export default function RechargeRecords() {
       var params = new URLSearchParams()
       if (search) params.set('search', search)
       if (statusFilter) params.set('status', statusFilter)
-      var res = await fetch('/api/admin/payment/recharges?' + params.toString(), {
+      var res = await adminFetch('/api/admin/payment/recharges?' + params.toString(), {
         cache: 'no-store', headers: { 'x-admin-email': 'benjoka912@gmail.com' }
       })
       var data = await res.json()
@@ -31,7 +32,7 @@ export default function RechargeRecords() {
   async function handleAction() {
     if (!actionId || !actionType) return
     try {
-      var res = await fetch('/api/admin/payment/recharges', {
+      var res = await adminFetch('/api/admin/payment/recharges', {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json', 'x-admin-email': 'benjoka912@gmail.com' },
         body: JSON.stringify({
@@ -147,3 +148,4 @@ export default function RechargeRecords() {
     </div>
   )
 }
+

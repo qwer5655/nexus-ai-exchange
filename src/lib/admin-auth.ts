@@ -1,4 +1,4 @@
-import { supabaseAdmin } from './supabase'
+﻿import { supabaseAdmin } from '@/lib/supabase/server'
 
 export interface AuthResult {
   authorized: boolean;
@@ -15,14 +15,6 @@ export async function verifyAuth(req: Request): Promise<AuthResult> {
     try {
       var { data: { user } } = await supabaseAdmin.auth.getUser(token)
       if (user) return { authorized: true, userId: user.id, status: 200 }
-    } catch(e: any) {}
-  }
-  // Fallback: check x-admin-email (used when GoTrue is unavailable)
-  var adminEmail = req.headers.get('x-admin-email')
-  if (adminEmail) {
-    try {
-      var { data: profile } = await supabaseAdmin.from('profiles').select('id,role').eq('email', adminEmail).single()
-      if (profile) return { authorized: true, userId: profile.id, status: 200 }
     } catch(e: any) {}
   }
   return { authorized: false, error: 'Unauthorized', status: 401 }

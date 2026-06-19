@@ -1,4 +1,4 @@
-﻿import { supabaseAdmin } from './supabase'
+﻿import { supabaseAdmin } from '@/lib/supabase/server'
 import { updateUserTier } from './pricing'
 import type { Tier } from './pricing'
 

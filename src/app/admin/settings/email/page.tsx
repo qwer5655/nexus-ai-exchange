@@ -1,14 +1,15 @@
 ﻿'use client'
 import { useState, useEffect } from 'react'
+import { adminFetch } from '@/lib/admin-fetch'
 import { Save } from 'lucide-react'
 export default function EmailSettings() {
   var [form, setForm] = useState<any>({}); var [saved, setSaved] = useState(false)
   useEffect(function() {
-    fetch('/api/admin/settings/email', { headers:{'x-admin-email':'benjoka912@gmail.com'} })
+    adminFetch('/api/admin/settings/email', { headers:{} })
       .then(function(r){return r.json()}).then(function(d){if(d.settings)setForm(d.settings)}).catch(function(){})
   }, [])
   function save() {
-    fetch('/api/admin/settings/email', { method:'POST', headers:{'Content-Type':'application/json','x-admin-email':'benjoka912@gmail.com'}, body:JSON.stringify(form) })
+    adminFetch('/api/admin/settings/email', { method:'POST', headers:{'Content-Type':'application/json',}, body:JSON.stringify(form) })
       .then(function(){setSaved(true);setTimeout(function(){setSaved(false)},2000)}).catch(function(){})
   }
   return <div><h1 className='text-xl font-bold text-white mb-1'>Email Settings</h1><p className='text-sm text-white/30 mb-6'>Configure SMTP</p>
@@ -18,3 +19,5 @@ export default function EmailSettings() {
       <button onClick={save} className='flex items-center gap-2 bg-[#00ff88] text-black px-5 py-2.5 rounded-lg text-sm font-semibold'><Save size={16}/>Save</button>
     </div></div>
 }
+
+

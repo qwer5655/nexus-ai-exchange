@@ -1,5 +1,5 @@
 ﻿import { NextResponse } from 'next/server'
-import { supabaseAdmin } from '@/lib/supabase'
+import { supabaseAdmin } from '@/lib/supabase/server'
 
 export async function POST(req: Request) {
   var stripeKey = process.env.STRIPE_SECRET_KEY

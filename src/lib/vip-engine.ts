@@ -1,4 +1,4 @@
-﻿import { supabaseAdmin } from './supabase'
+﻿import { supabaseAdmin } from '@/lib/supabase/server'
 import { emitEvent } from './business-events'
 
 // VIP tier definitions

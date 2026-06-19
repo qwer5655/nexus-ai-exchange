@@ -1,10 +1,10 @@
-import { NextResponse } from 'next/server'
-import { supabaseAdmin } from '@/lib/supabase'
+﻿import { NextResponse } from 'next/server'
+import { supabaseAdmin } from '@/lib/supabase/server'
 
 export async function GET(req: Request) {
   try {
     var url = new URL(req.url)
-    var email = url.searchParams.get('email') || req.headers.get('x-admin-email')
+    var email = url.searchParams.get('email')
     if (!email) return NextResponse.json({ error: 'Unauthorized', logs: [] }, { status: 401 })
 
     var { data: profile } = await supabaseAdmin.from('profiles').select('id').eq('email', email).single()

@@ -1,4 +1,5 @@
 'use client'
+import { api } from '@/lib/api-client'
 import { useStore } from '@/store/useStore'
 import { t } from '@/lib/i18n'
 ﻿
@@ -17,7 +18,7 @@ function RankBadge({ rank }: { rank: number }) {
 export default function LeaderboardTable() {
   const { language } = useStore()
   var [topUsers, setTopUsers] = useState<any[]>([])
-  useEffect(function() { fetch('/api/public/leaderboard').then(function(r){return r.json()}).then(function(d){setTopUsers((d.leaderboard||[]).slice(0,10))}).catch(function(){}) }, [])
+  useEffect(function() { api.get<any>('/public/leaderboard').then(function(d){setTopUsers((d.leaderboard||[]).slice(0,10))}).catch(function(){}) }, [])
 
   return (
     <section className="py-16 relative z-10">

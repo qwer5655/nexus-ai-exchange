@@ -1,5 +1,5 @@
-import { NextResponse } from 'next/server'
-import { supabaseAdmin } from '@/lib/supabase'
+﻿import { NextResponse } from 'next/server'
+import { supabaseAdmin } from '@/lib/supabase/server'
 
 export async function GET() {
   try {
@@ -30,6 +30,6 @@ export async function GET() {
         totalProfit: profit, todayProfit, winRate, unlocks: unlockCounts[p.id] || 0, vip_level: p.vip_level || 0
       }
     })
-    return NextResponse.json({ leaderboard })
-  } catch(e: any) { return NextResponse.json({ error: (e as Error).message }, { status: 500 }) }
+    return NextResponse.json({ success: true, data: { leaderboard }, error: null, timestamp: new Date().toISOString() })
+  } catch(e: any) { return NextResponse.json({ success: false, data: null, error: (e as Error).message, timestamp: new Date().toISOString() }, { status: 500 }) }
 }

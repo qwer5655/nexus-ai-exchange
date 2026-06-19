@@ -1,6 +1,6 @@
 ﻿import { NextResponse } from 'next/server'
 import { verifyAdmin } from '@/lib/admin-auth'
-import { supabaseAdmin } from '@/lib/supabase'
+import { supabaseAdmin } from '@/lib/supabase/server'
 
 export async function GET(req: Request) {
   var auth = await verifyAdmin(req); if (!auth.authorized) return NextResponse.json({ error: auth.error }, { status: auth.status })

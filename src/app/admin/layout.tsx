@@ -1,6 +1,7 @@
-﻿'use client'
+'use client'
 import { useState, useEffect } from 'react'
 import { usePathname, useRouter } from 'next/navigation'
+import { useAuthUser } from '@/lib/use-auth-user'
 import { useAuthStore } from '@/store/authStore'
 import {
   LayoutDashboard, Users, Shield, Settings, BarChart3,
@@ -110,25 +111,28 @@ const navGroups: { group: string; items: NavItem[] }[] = [
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname()
   const router = useRouter()
-  const { user, logout, init } = useAuthStore()
-  const [sidebarOpen, setSidebarOpen] = useState(false)
-  const [expandedGroups, setExpandedGroups] = useState<Record<string, boolean>>({})
-  const [mounted, setMounted] = useState(false)
+const { user, logout, init } = useAuthStore()
+const [sidebarOpen, setSidebarOpen] = useState(false)
+const [expandedGroups, setExpandedGroups] = useState<Record<string, boolean>>({})
+const [mounted, setMounted] = useState(false)
+const { user: authUser, loading: authLoading } = useAuthUser()
 
-  useEffect(() => { init() }, [])
+useEffect(() => { init() }, [])
 
-  useEffect(() => {
-    if (!user) return
-    if (user.role !== 'admin' && user.role !== 'super_admin') { router.push('/'); return }
-    setMounted(true)
-    // Auto-expand current group
-    const currentGroup = navGroups.find(g =>
-      g.items.some(i => i.href && pathname.startsWith(i.href))
-    )
+useEffect(() => {
+  if (authLoading) return
+  var effectiveUser = authUser || user
+  if (!effectiveUser) { router.push('/'); return }
+  if (effectiveUser.role !== 'admin' && effectiveUser.role !== 'super_admin') { router.push('/'); return }
+  setMounted(true)
+  // Auto-expand current group
+  const currentGroup = navGroups.find(g =>
+    g.items.some(i => i.href && pathname.startsWith(i.href))
+  )
     if (currentGroup) {
       setExpandedGroups(prev => ({ ...prev, [currentGroup.group]: true }))
     }
-  }, [user, pathname])
+  }, [user, authUser, authLoading, pathname])
 
   const toggleGroup = (group: string) => {
     setExpandedGroups(prev => ({ ...prev, [group]: !prev[group] }))

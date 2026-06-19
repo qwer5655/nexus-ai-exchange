@@ -45,7 +45,7 @@ export default function UserMenu() {
         </div>
         <div className="hidden md:block text-left">
           <div className="text-xs font-medium text-white/80 leading-tight">{user.username}</div>
-          <div className="text-[9px] text-white/30 leading-tight">{'$'}{user.balance.toFixed(2)}</div>
+          <div className="text-[9px] text-white/30 leading-tight">{'$'}{(user?.balance ?? 0).toFixed(2)}</div>
         </div>
       </button>
 
@@ -70,7 +70,7 @@ export default function UserMenu() {
               </div>
               <div className="mt-3 flex items-center justify-between px-3 py-2 bg-white/[0.03] rounded-xl">
                 <span className="text-[10px] text-white/40">{isZh ? '余额' : 'Balance'}</span>
-                <span className="text-sm font-bold text-[#00ff88]">{'$'}{user.balance.toFixed(2)}</span>
+                <span className="text-sm font-bold text-[#00ff88]">{'$'}{(user?.balance ?? 0).toFixed(2)}</span>
               </div>
             </div>
 

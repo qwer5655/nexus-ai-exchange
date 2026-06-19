@@ -11,34 +11,29 @@ export default function ReferralPage() {
   var { language } = useStore();
   var isZh = language === 'zh';
   var [stats, setStats] = useState<any>({ totalReferrals: 0, activeReferrals: 0, totalCommission: 0, todayCommission: 0, referralCode: '', referralLink: '', rank: 0 });
-  var [copied, setCopied] = useState(false);
-  useEffect(function() { if (user?.userId) fetch('/api/referrals?userId=' + user.userId).then(function(r){return r.json()}).then(function(d){ setStats({ totalReferrals: d.total_referrals || 0, activeReferrals: d.active_referrals || 0, totalCommission: d.total_commission || 0, todayCommission: 0, referralCode: d.referral_code || '', referralLink: 'https://arbitrage.ai/ref/' + (d.referral_code || ''), rank: 0 }) }).catch(function(){}) }, [user?.userId])
-
-  function copyLink() {
-    navigator.clipboard.writeText(stats.referralLink);
-    setCopied(true);
-    setTimeout(function() { setCopied(false); }, 2000);
-  }
-
+  var [copyState, setCopyState] = useState('idle')
+  useEffect(function() { if (user?.userId) fetch('/api/referrals?userId=' + user.userId).then(function(r){return r.json()}).then(function(d){ setStats({ totalReferrals: d.total_referrals || 0, activeReferrals: d.active_referrals || 0, totalCommission: d.total_commission || 0, todayCommission: 0, referralCode: d.referral_code || '', referralLink: '/?ref=' + (d.referral_code || ''), rank: 0 }) }).catch(function(){}) }, [user?.userId])
+async function handleCopy() {
+    try {
+      await navigator.clipboard.writeText(window.location.origin + stats.referralLink)
+      setCopyState('copied')
+      setTimeout(function() { setCopyState('idle') }, 1200)
+    } catch(e) {
+      setCopyState('error')
+      setTimeout(function() { setCopyState('idle') }, 1200)
+    }
+}
   return (
-    <div>
-      <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
-        <div className='flex items-center gap-3 mb-6'>
-          <Gift size={24} className='text-[#ffd700]' />
-          <h1 className='text-2xl md:text-3xl font-orbitron font-bold text-gradient-primary'>{isZh ? '邀请返佣' : 'Referral Program'}</h1>
-        </div>
-      </motion.div>
-
       <div className='grid grid-cols-1 lg:grid-cols-3 gap-6'>
         <div className='lg:col-span-2 space-y-6'>
           <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className='glass-card rounded-xl p-6 border border-white/5'>
             <h3 className='text-lg font-orbitron font-bold text-white mb-4'>{isZh ? '我的邀请链接' : 'My Referral Link'}</h3>
             <div className='flex items-center gap-3 mb-4'>
               <div className='flex-1 p-3 rounded-xl bg-white/5 border border-white/10 font-mono text-xs text-white/60 truncate'>{stats.referralLink}</div>
-              <button onClick={copyLink}
+              <button onClick={handleCopy}
                 className='flex items-center gap-2 px-4 py-3 rounded-xl bg-[#00ff88]/10 text-[#00ff88] text-sm font-medium hover:bg-[#00ff88]/20 transition-all'>
-                {copied ? <Check size={16} /> : <Copy size={16} />}
-                {copied ? (isZh ? '已复制' : 'Copied') : (isZh ? '复制链接' : 'Copy Link')}
+                <Copy size={16} className={copyState !== 'idle' ? 'hidden' : 'block'} /><Check size={16} className={copyState === 'copied' ? 'block' : 'hidden'} />
+                {copyState === 'copied' ? (isZh ? '已复制' : 'Copied') : (isZh ? '复制链接' : 'Copy Link')}
               </button>
             </div>
             <div className='p-4 rounded-xl bg-gradient-to-r from-[#ffd700]/5 to-transparent border border-[#ffd700]/10'>
@@ -80,6 +75,5 @@ export default function ReferralPage() {
           </div>
         </motion.div>
       </div>
-    </div>
   );
 }

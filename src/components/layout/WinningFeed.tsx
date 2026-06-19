@@ -1,4 +1,5 @@
-﻿'use client'
+'use client'
+import { api } from '@/lib/api-client'
 import { useStore } from '@/store/useStore'
 import { t } from '@/lib/i18n'
 import { useEffect, useState } from 'react'
@@ -10,7 +11,7 @@ export default function WinningFeed() {
   const { language } = useStore()
   const [entries, setEntries] = useState<WinningEntry[]>([])
 
-  function loadFeed() { fetch('/api/public/winning-feed').then(r=>r.json()).then(d=>setEntries(d.entries||[])).catch(()=>{}) }; useEffect(() => { loadFeed(); const iv = setInterval(loadFeed, 15000); return () => clearInterval(iv) }, [])
+  function loadFeed() { api.get<any>('/public/winning-feed').then(d=>setEntries(d.entries||[])).catch(()=>{}) }; useEffect(() => { loadFeed(); const iv = setInterval(loadFeed, 15000); return () => clearInterval(iv) }, [])
 
   return (
     <div className="fixed bottom-0 left-0 right-0 z-40 overflow-hidden h-10 pointer-events-none">

@@ -1,4 +1,5 @@
-import { supabase, supabaseAdmin } from '@/lib/supabase'
+﻿import { supabase } from '@/lib/supabase/client'
+import { api } from '@/lib/api-client'
 
 export async function checkUnlocked(userId: string, oppId: string): Promise<boolean> {
   var { data } = await supabase.from('unlocks').select('id').eq('user_id', userId).eq('opportunity_id', oppId).maybeSingle()
@@ -6,18 +7,9 @@ export async function checkUnlocked(userId: string, oppId: string): Promise<bool
 }
 
 export async function unlockOpportunity(userId: string, oppId: string, price: number) {
-  var already = await checkUnlocked(userId, oppId)
-  if (already) throw new Error('Already Unlocked')
-  var { data: profile, error: pErr } = await supabaseAdmin.from('profiles').select('balance').eq('id', userId).single()
-  if (pErr || !profile) throw new Error('User not found')
-  if (profile.balance < price) throw new Error("Insufficient Balance")
-  var { error: dErr } = await supabaseAdmin.rpc('deduct_balance', { user_id: userId, amount: price })
-  if (dErr) throw dErr
-  var { data: unlock, error: uErr } = await supabaseAdmin.from('unlocks').insert({ user_id: userId, opportunity_id: oppId, unlock_price: price }).select().single()
-  if (uErr) throw uErr
-  await supabaseAdmin.from('activity_feed').insert({ type: 'opportunity_unlock', message: 'User unlocked opportunity ' + oppId })
-  await supabaseAdmin.from('notifications').insert({ user_id: userId, title: 'Opportunity Unlocked', message: 'You have successfully unlocked a report.' })
-  return unlock
+  // Delegates to the API route for secure server-side processing
+  var result = await api.post('/unlocks', { userId, opportunityId: oppId })
+  return result
 }
 
 export async function getMyUnlocks(userId: string) {

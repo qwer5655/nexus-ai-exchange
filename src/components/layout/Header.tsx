@@ -75,7 +75,7 @@ function BalanceBadge() {
       className='flex items-center gap-3 px-3.5 py-1.5 rounded-xl bg-white/[0.03] border border-white/[0.06] hover:bg-white/[0.05] hover:border-white/[0.1] transition-all group'>
       <div>
         <div className='text-[9px] text-white/30 tracking-wider'>{isZh ? '余额' : 'Balance'}</div>
-        <div className='text-sm font-bold text-white/90 leading-tight'>{'$'}{user.balance.toFixed(2)}</div>
+        <div className='text-sm font-bold text-white/90 leading-tight'>{'$'}{(user?.balance ?? 0).toFixed(2)}</div>
       </div>
       <div className='px-2 py-1 rounded-md bg-gradient-to-r from-[#00ff88] to-[#00d9ff] text-[#05070c] text-[10px] font-bold opacity-0 group-hover:opacity-100 transition-opacity'>
         {isZh ? '充值' : 'Deposit'}

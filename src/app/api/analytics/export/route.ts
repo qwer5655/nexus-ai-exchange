@@ -1,8 +1,11 @@
 import { NextResponse } from 'next/server'
-import { supabaseAdmin } from '@/lib/supabase'
+import { supabaseAdmin } from '@/lib/supabase/server'
+import { verifyAdmin } from '@/lib/admin-auth'
 
 export async function GET(req: Request) {
   try {
+    var auth = await verifyAdmin(req)
+    if (!auth.authorized) return NextResponse.json({ error: auth.error }, { status: auth.status })
     var url = new URL(req.url)
     var type = url.searchParams.get('type') || 'users'
     var since = url.searchParams.get('since') || new Date(Date.now() - 30*86400000).toISOString()
