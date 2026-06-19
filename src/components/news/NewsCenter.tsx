@@ -1,5 +1,4 @@
 'use client'
-import { api } from '@/lib/api-client'
 import { useStore } from '@/store/useStore'
 import { t } from '@/lib/i18n'
 ﻿
@@ -10,7 +9,7 @@ import { useState, useEffect } from 'react'
 export default function NewsCenter() {
   const { language } = useStore()
   var [newsItems, setNewsItems] = useState<any[]>([])
-  useEffect(function() { api.get<any>('/public/news').then(function(d){setNewsItems(d.news||[])}).catch(function(){}) }, [])
+  useEffect(function() { fetch('/api/public/news').then(function(r){return r.json()}).then(function(d){setNewsItems(d.news||[])}).catch(function(){}) }, [])
   return (
     <div className="space-y-6">
       <motion.div

@@ -1,5 +1,5 @@
-﻿import { NextResponse } from 'next/server'
-import { supabaseAdmin } from '@/lib/supabase/server'
+import { NextResponse } from 'next/server'
+import { supabaseAdmin } from '@/lib/supabase'
 var startTime = Date.now()
 
 export async function GET() {
@@ -11,7 +11,7 @@ export async function GET() {
       var { data } = await supabaseAdmin.from(tbl).select('id').limit(1).maybeSingle()
       results.push({ table: tbl, exists: true })
     } catch(e: any) {
-      results.push({ table: tbl, exists: false, error: (e as Error).message })
+      results.push({ table: tbl, exists: false, error: e.message })
       dbOk = false
     }
   }

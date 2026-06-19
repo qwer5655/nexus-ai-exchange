@@ -1,5 +1,5 @@
 ﻿import { NextResponse } from 'next/server'
-import { supabaseAdmin } from '@/lib/supabase/server'
+import { supabaseAdmin } from '@/lib/supabase'
 import { getPlan, getFeatureAccess, checkLimit } from '@/lib/plans'
 
 export async function GET(req: Request) {
@@ -19,8 +19,8 @@ export async function GET(req: Request) {
   if (!userId) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
 
   try {
-    var { data: vipProfile } = await supabaseAdmin.from('profiles').select('vip_level').eq('id', userId).maybeSingle()
-    var vipLevel = vipProfile?.vip_level || 0
+    var { data: profile } = await supabaseAdmin.from('profiles').select('vip_level').eq('id', userId).maybeSingle()
+    var vipLevel = profile?.vip_level || 0
     var planName = vipLevel >= 2 ? 'enterprise' : vipLevel >= 1 ? 'pro' : 'free'
     var plan = getPlan(planName)
     if (!plan) return NextResponse.json({ error: 'Plan not found' }, { status: 500 })
@@ -30,5 +30,5 @@ export async function GET(req: Request) {
       features: plan.features,
       limits: plan.limits
     })
-  } catch(e: any) { return NextResponse.json({ error: (e as Error).message }, { status: 500 }) }
+  } catch(e: any) { return NextResponse.json({ error: e.message }, { status: 500 }) }
 }

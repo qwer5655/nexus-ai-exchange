@@ -20,6 +20,6 @@ export async function POST(req: Request) {
     var url = SU + '/storage/v1/object/public/wallet-icons/' + fileName
     await emitEvent('wallet.icon_uploaded', auth.userId, { wallet_id: walletId, file: fileName })
     return NextResponse.json({ success: true, url: url })
-  } catch(e: any) { return NextResponse.json({ error: (e as Error).message }, { status: 500 }) }
+  } catch(e: any) { return NextResponse.json({ error: e.message }, { status: 500 }) }
 }
 

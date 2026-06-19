@@ -1,6 +1,6 @@
 ﻿import { NextResponse } from 'next/server'
 import { verifyAdmin } from '@/lib/admin-auth'
-import { supabaseAdmin } from '@/lib/supabase/server'
+import { supabaseAdmin } from '@/lib/supabase'
 
 export async function GET(req: Request) {
   var auth = await verifyAdmin(req)
@@ -33,6 +33,6 @@ export async function GET(req: Request) {
       }
     })
   } catch(e: any) {
-    return NextResponse.json({ error: (e as Error).message }, { status: 500 })
+    return NextResponse.json({ error: e.message }, { status: 500 })
   }
 }

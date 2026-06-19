@@ -1,5 +1,5 @@
 ﻿import { NextResponse } from 'next/server'
-import { supabaseAdmin } from '@/lib/supabase/server'
+import { supabaseAdmin } from '@/lib/supabase'
 import { verifyAdmin } from '@/lib/admin-auth'
 import { emitEvent } from '@/lib/business-events'
 
@@ -9,7 +9,7 @@ export async function GET(req: Request) {
     var { data, error } = await supabaseAdmin.from('tags').select('*').order('name', { ascending: true })
     if (error) return NextResponse.json({ error: error.message }, { status: 500 })
     return NextResponse.json({ tags: data || [] })
-  } catch(e: any) { return NextResponse.json({ error: (e as Error).message }, { status: 500 }) }
+  } catch(e: any) { return NextResponse.json({ error: e.message }, { status: 500 }) }
 }
 
 export async function POST(req: Request) {
@@ -21,7 +21,7 @@ export async function POST(req: Request) {
     if (error) return NextResponse.json({ error: error.message }, { status: 500 })
     await emitEvent('tag.created', auth.userId, { name })
     return NextResponse.json({ tag: data })
-  } catch(e: any) { return NextResponse.json({ error: (e as Error).message }, { status: 500 }) }
+  } catch(e: any) { return NextResponse.json({ error: e.message }, { status: 500 }) }
 }
 
 export async function PATCH(req: Request) {
@@ -33,7 +33,7 @@ export async function PATCH(req: Request) {
     if (error) return NextResponse.json({ error: error.message }, { status: 500 })
     await emitEvent('tag.updated', auth.userId, { id, name })
     return NextResponse.json({ tag: data })
-  } catch(e: any) { return NextResponse.json({ error: (e as Error).message }, { status: 500 }) }
+  } catch(e: any) { return NextResponse.json({ error: e.message }, { status: 500 }) }
 }
 
 export async function DELETE(req: Request) {
@@ -45,5 +45,5 @@ export async function DELETE(req: Request) {
     if (error) return NextResponse.json({ error: error.message }, { status: 500 })
     await emitEvent('tag.deleted', auth.userId, { id })
     return NextResponse.json({ success: true })
-  } catch(e: any) { return NextResponse.json({ error: (e as Error).message }, { status: 500 }) }
+  } catch(e: any) { return NextResponse.json({ error: e.message }, { status: 500 }) }
 }

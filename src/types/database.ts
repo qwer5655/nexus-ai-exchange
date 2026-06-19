@@ -44,21 +44,3 @@ export interface DBNotification {
 export interface DBActivityFeed {
   id: string; type: string; message: string; created_at: string;
 }
-
-export type TransactionType = 'deposit' | 'withdrawal' | 'commission' | 'bonus' | 'adjustment' | 'topup' | 'unlock'
-
-
-
-export interface DBBalanceTransaction {
-
-  id: string; user_id: string; type: TransactionType;
-
-  amount: number; balance_before: number; balance_after: number;
-
-  reference_type: string | null; reference_id: string | null;
-
-  description: string | null;
-
-  created_at: string;
-
-}

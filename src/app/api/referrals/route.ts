@@ -1,14 +1,11 @@
 ﻿import { NextResponse } from 'next/server'
-import { supabaseAdmin } from '@/lib/supabase/server'
-import { verifyAuth } from '@/lib/admin-auth'
+import { supabaseAdmin } from '@/lib/supabase'
 
 export async function GET(req: Request) {
   try {
-    var auth = await verifyAuth(req)
-    if (!auth.authorized) return NextResponse.json({ error: auth.error }, { status: auth.status })
     var url = new URL(req.url)
-    var queryUserId = url.searchParams.get('userId')
-    var userId = auth.userId!
+    var userId = url.searchParams.get('userId')
+    if (!userId) return NextResponse.json({ error: 'userId is required' }, { status: 400 })
 
     var { data: referrals } = await supabaseAdmin.from('referrals').select('*').eq('referrer_id', userId).order('created_at', { ascending: false })
     var { data: profile } = await supabaseAdmin.from('profiles').select('referral_code, total_profit').eq('id', userId).single()
@@ -45,7 +42,7 @@ export async function GET(req: Request) {
       referrals: enriched
     })
   } catch(e: any) {
-    return NextResponse.json({ error: (e as Error).message }, { status: 500 })
+    return NextResponse.json({ error: e.message }, { status: 500 })
   }
 }
 

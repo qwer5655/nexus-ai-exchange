@@ -1,5 +1,5 @@
 ﻿import { NextResponse } from 'next/server'
-import { supabaseAdmin } from '@/lib/supabase/server'
+import { supabaseAdmin } from '@/lib/supabase'
 import { verifyAdmin } from '@/lib/admin-auth'
 import { emitEvent } from '@/lib/business-events'
 
@@ -12,7 +12,7 @@ export async function GET(req: Request) {
     var { data, error } = await query
     if (error) return NextResponse.json({ error: error.message }, { status: 500 })
     return NextResponse.json({ announcements: data || [] })
-  } catch(e: any) { return NextResponse.json({ error: (e as Error).message }, { status: 500 }) }
+  } catch(e: any) { return NextResponse.json({ error: e.message }, { status: 500 }) }
 }
 
 export async function POST(req: Request) {
@@ -27,7 +27,7 @@ export async function POST(req: Request) {
     if (error) return NextResponse.json({ error: error.message }, { status: 500 })
         await emitEvent('announcement.created', auth.userId, { title: body.title, status: body.status })
 return NextResponse.json({ announcement: data })
-  } catch(e: any) { return NextResponse.json({ error: (e as Error).message }, { status: 500 }) }
+  } catch(e: any) { return NextResponse.json({ error: e.message }, { status: 500 }) }
 }
 
 export async function PATCH(req: Request) {
@@ -42,7 +42,7 @@ export async function PATCH(req: Request) {
     if (error) return NextResponse.json({ error: error.message }, { status: 500 })
     await emitEvent('announcement.updated', auth.userId, { id: body.id, ...updates })
     return NextResponse.json({ announcement: data })
-  } catch(e: any) { return NextResponse.json({ error: (e as Error).message }, { status: 500 }) }
+  } catch(e: any) { return NextResponse.json({ error: e.message }, { status: 500 }) }
 }
 
 export async function DELETE(req: Request) {
@@ -54,5 +54,5 @@ export async function DELETE(req: Request) {
     if (error) return NextResponse.json({ error: error.message }, { status: 500 })
         await emitEvent('announcement.deleted', auth.userId, { id })
 return NextResponse.json({ success: true })
-  } catch(e: any) { return NextResponse.json({ error: (e as Error).message }, { status: 500 }) }
+  } catch(e: any) { return NextResponse.json({ error: e.message }, { status: 500 }) }
 }

@@ -32,7 +32,7 @@ interface AuthState {
   toggleFavorite: (oppId: string) => void;
   isFavorited: (oppId: string) => boolean;
   setShowWelcomeBonus: (val: boolean) => void;
-  getReferralStats: () => ReferralStats;
+  getReferralStats: () => Promise<ReferralStats> | ReferralStats;
 }
 
 export var useAuthStore = create<AuthState>()(function(set, get) { return {
@@ -140,5 +140,5 @@ export var useAuthStore = create<AuthState>()(function(set, get) { return {
   toggleFavorite: function(oppId) { var f = get().favorites; var e = f.find(function(x) { return x.opportunityId === oppId }); var u = e ? f.map(function(x) { return x.opportunityId === oppId ? { ...x, isFavorite: !x.isFavorite } : x }) : [{ opportunityId: oppId, savedAt: new Date().toISOString(), isFavorite: true, viewedAt: new Date().toISOString() }, ...f]; localStorage.setItem('nexus_favorites', JSON.stringify(u)); set({ favorites: u }); },
   isFavorited: function(oppId) { var f = get().favorites.find(function(x) { return x.opportunityId === oppId }); return f ? f.isFavorite : false; },
   setShowWelcomeBonus: function(val) { set({ showWelcomeBonus: val }); },
-  getReferralStats: function() { var u = get().user; if (!u) return { totalReferrals: 0, activeReferrals: 0, totalCommission: 0, todayCommission: 0, referralCode: '', referralLink: '', rank: 0 }; try { var r = fetch('/api/referrals?userId=' + u.userId).then(function(r){return r.json()}).then(function(d){ var s = get().user; if (s) { var ns = { totalReferrals: d.total_referrals || 0, activeReferrals: d.active_referrals || 0, totalCommission: d.total_commission || 0, todayCommission: 0, referralCode: u.referralCode || 'NEXUSDEFAULT', referralLink: '/?ref=' + (u.referralCode || 'NEXUSDEFAULT'), rank: 0 }; return ns } }).catch(function(){ return get().getReferralStats() }) } catch(e) {} return { totalReferrals: 0, activeReferrals: 0, totalCommission: 0, todayCommission: 0, referralCode: u?.referralCode || '', referralLink: '', rank: 0 }; },
+  getReferralStats: async function() { var u = get().user; if (!u) return { totalReferrals: 0, activeReferrals: 0, totalCommission: 0, todayCommission: 0, referralCode: '', referralLink: '', rank: 0 }; try { var r = await fetch('/api/referrals?userId=' + u.userId); var d = await r.json(); return { totalReferrals: d.total_referrals || 0, activeReferrals: d.active_referrals || 0, totalCommission: d.total_commission || 0, todayCommission: 0, referralCode: u.referralCode || 'NEXUSDEFAULT', referralLink: 'https://arbitrage.ai/ref/' + (u.referralCode || 'NEXUSDEFAULT'), rank: 0 } } catch(e) { return { totalReferrals: 0, activeReferrals: 0, totalCommission: 0, todayCommission: 0, referralCode: u?.referralCode || '', referralLink: '', rank: 0 } }; },
 };});

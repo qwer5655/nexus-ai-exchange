@@ -1,6 +1,6 @@
 ﻿import { NextResponse } from 'next/server'
 import { verifyAdmin } from '@/lib/admin-auth'
-import { supabaseAdmin } from '@/lib/supabase/server'
+import { supabaseAdmin } from '@/lib/supabase'
 
 export async function GET(req: Request) {
   var auth = await verifyAdmin(req); if (!auth.authorized) return NextResponse.json({ error: auth.error }, { status: auth.status })
@@ -21,7 +21,7 @@ export async function GET(req: Request) {
     var { data, error } = await query.order('created_at', { ascending: false }).limit(limit)
     if (error) return NextResponse.json({ error: error.message }, { status: 500 })
     return NextResponse.json({ logs: data || [], total: (data || []).length })
-  } catch(e: any) { return NextResponse.json({ error: (e as Error).message }, { status: 500 }) }
+  } catch(e: any) { return NextResponse.json({ error: e.message }, { status: 500 }) }
 }
 
 export async function POST(req: Request) {
@@ -35,7 +35,7 @@ export async function POST(req: Request) {
     }).select().single()
     if (error) return NextResponse.json({ error: error.message }, { status: 500 })
     return NextResponse.json({ log: data })
-  } catch(e: any) { return NextResponse.json({ error: (e as Error).message }, { status: 500 }) }
+  } catch(e: any) { return NextResponse.json({ error: e.message }, { status: 500 }) }
 }
 
 
@@ -49,7 +49,7 @@ export async function PATCH(req) {
     var { data, error } = await supabaseAdmin.from('enterprise_audit_log').update(updates).eq('id', id).select().single()
     if (error) return NextResponse.json({ error: error.message }, { status: 500 })
     return NextResponse.json({ data: data })
-  } catch(e) { return NextResponse.json({ error: (e as Error).message }, { status: 500 }) }
+  } catch(e) { return NextResponse.json({ error: e.message }, { status: 500 }) }
 }
 
 export async function DELETE(req) {
@@ -60,5 +60,5 @@ export async function DELETE(req) {
     var { error } = await supabaseAdmin.from('enterprise_audit_log').delete().eq('id', id)
     if (error) return NextResponse.json({ error: error.message }, { status: 500 })
     return NextResponse.json({ success: true })
-  } catch(e) { return NextResponse.json({ error: (e as Error).message }, { status: 500 }) }
+  } catch(e) { return NextResponse.json({ error: e.message }, { status: 500 }) }
 }

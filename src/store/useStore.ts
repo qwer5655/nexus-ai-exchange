@@ -1,4 +1,4 @@
-﻿'use client'
+'use client'
 import { create } from 'zustand'
 import type { Opportunity, Stats, LeaderboardUser, WinningEntry, NewsItem } from '@/types'
 
@@ -36,14 +36,6 @@ interface AppState {
   addDeposit: (amount: number) => void
   setAuthenticated: (val: boolean) => void
   setLanguage: (lang: 'en' | 'zh') => void
-  siteSettings: any
-  setSiteSettings: (s: any) => void
-  banners: any[]
-  setBanners: (b: any[]) => void
-  categories: any[]
-  setCategories: (c: any[]) => void
-  tags: any[]
-  setTags: (t: any[]) => void
 }
 
 export const useStore = create<AppState>((set) => ({
@@ -57,12 +49,12 @@ export const useStore = create<AppState>((set) => ({
   language: 'en',
   
   stats: {
-    todayOpportunities: 0,
-    onlineTraders: 0,
-    detectedMarkets: 0,
-    theoreticalProfit: 0,
-    averageYield: 0,
-    countriesConnected: 0,
+    todayOpportunities: 1283,
+    onlineTraders: 3629,
+    detectedMarkets: 87491,
+    theoreticalProfit: 847235,
+    averageYield: 3.87,
+    countriesConnected: 127,
   },
   
   opportunities: [],
@@ -98,14 +90,6 @@ export const useStore = create<AppState>((set) => ({
   })),
   setAuthenticated: (val: boolean) => set({ isAuthenticated: val }),
   setLanguage: (lang: 'en' | 'zh') => set({ language: lang }),
-  siteSettings: null as any,
-  setSiteSettings: (s: any) => set({ siteSettings: s }),
-  banners: [] as any[],
-  setBanners: (b: any[]) => set({ banners: b }),
-  categories: [] as any[],
-  setCategories: (c: any[]) => set({ categories: c }),
-  tags: [] as any[],
-  setTags: (t: any[]) => set({ tags: t }),
   fetchStats: async function() {
     try {
       var r = await fetch('/api/health');
@@ -114,4 +98,3 @@ export const useStore = create<AppState>((set) => ({
     } catch(e) {}
   },
 }))
-

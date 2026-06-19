@@ -1,5 +1,5 @@
 ﻿import { NextResponse } from 'next/server'
-import { supabaseAdmin } from '@/lib/supabase/server'
+import { supabaseAdmin } from '@/lib/supabase'
 import { verifyAdmin } from '@/lib/admin-auth'
 
 export async function GET(req: Request) {
@@ -37,5 +37,5 @@ export async function GET(req: Request) {
 
     var totalRev = results.reduce(function(s, r) { return s + r.revenue_impact }, 0)
     return NextResponse.json({ rules: results, total_revenue_impact: Math.round(totalRev * 100) / 100 })
-  } catch(e: any) { return NextResponse.json({ error: (e as Error).message }, { status: 500 }) }
+  } catch(e: any) { return NextResponse.json({ error: e.message }, { status: 500 }) }
 }

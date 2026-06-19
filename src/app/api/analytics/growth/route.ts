@@ -1,5 +1,5 @@
-﻿import { NextResponse } from 'next/server'
-import { supabaseAdmin } from '@/lib/supabase/server'
+import { NextResponse } from 'next/server'
+import { supabaseAdmin } from '@/lib/supabase'
 import { verifyAdmin } from '@/lib/admin-auth'
 
 export async function GET(req: Request) {
@@ -19,5 +19,5 @@ export async function GET(req: Request) {
     var sources: Record<string, number> = {}; (events || []).forEach(function(e: any) { var src = e.utm_source || 'direct'; sources[src] = (sources[src] || 0) + 1 })
 
     return NextResponse.json({ daily_registrations: Object.entries(dailyRegs).reverse().map(function(e: any) { return { date: e[0], count: e[1] } }), total_registrations: (users || []).length, acquisition_sources: Object.entries(sources).map(function(e: any) { return { source: e[0], count: e[1] } }) })
-  } catch(e: any) { return NextResponse.json({ error: (e as Error).message }, { status: 500 }) }
+  } catch(e: any) { return NextResponse.json({ error: e.message }, { status: 500 }) }
 }

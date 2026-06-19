@@ -1,5 +1,5 @@
-﻿import { NextResponse } from 'next/server'
-import { supabaseAdmin } from '@/lib/supabase/server'
+import { NextResponse } from 'next/server'
+import { supabaseAdmin } from '@/lib/supabase'
 
 export async function GET(req: Request) {
   try {
@@ -45,5 +45,5 @@ export async function GET(req: Request) {
       referrals: { total: (refs || []).length },
       events_count: (events || []).length,
     })
-  } catch(e: any) { return NextResponse.json({ error: (e as Error).message }, { status: 500 }) }
+  } catch(e: any) { return NextResponse.json({ error: e.message }, { status: 500 }) }
 }

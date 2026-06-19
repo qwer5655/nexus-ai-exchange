@@ -1,4 +1,4 @@
-﻿import { supabaseAdmin } from '@/lib/supabase/server'
+﻿import { supabaseAdmin } from './supabase'
 
 // In-memory rate store for abuse detection
 var abuseStore = new Map<string, { count: number; timestamp: number }>()

@@ -1,5 +1,5 @@
 ﻿import { NextResponse } from 'next/server'
-import { supabaseAdmin } from '@/lib/supabase/server'
+import { supabaseAdmin } from '@/lib/supabase'
 import { getCredits, deductCredits, addCredits } from '@/lib/credits'
 
 export async function GET(req: Request) {
@@ -28,7 +28,7 @@ export async function GET(req: Request) {
       .order('created_at', { ascending: false })
       .limit(20)
     return NextResponse.json({ credits: credits, history: events || [] })
-  } catch(e: any) { return NextResponse.json({ error: (e as Error).message }, { status: 500 }) }
+  } catch(e: any) { return NextResponse.json({ error: e.message }, { status: 500 }) }
 }
 
 export async function POST(req: Request) {
@@ -63,5 +63,5 @@ export async function POST(req: Request) {
     }
 
     return NextResponse.json({ error: 'Invalid action' }, { status: 400 })
-  } catch(e: any) { return NextResponse.json({ error: (e as Error).message }, { status: 500 }) }
+  } catch(e: any) { return NextResponse.json({ error: e.message }, { status: 500 }) }
 }

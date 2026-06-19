@@ -1,21 +1,8 @@
 import { NextResponse } from 'next/server'
-import { supabaseAdmin } from '@/lib/supabase/server'
+import { supabaseAdmin } from '@/lib/supabase'
 
 export async function GET(req: Request) {
   try {
-    // Optional VIP check (PUBLIC LIST / PRIVATE DETAILS mode)
-    var isVip = false
-    var authHeader = req.headers.get('authorization')
-    if (authHeader?.startsWith('Bearer ')) {
-      try {
-        var { data: { user } } = await supabaseAdmin.auth.getUser(authHeader.slice(7))
-        if (user) {
-          var { data: profile } = await supabaseAdmin.from('profiles').select('vip_level').eq('id', user.id).single()
-          isVip = (profile?.vip_level || 0) > 0
-        }
-      } catch {}
-    }
-
     var url = new URL(req.url)
     var page = parseInt(url.searchParams.get('page') || '1')
     var limit = parseInt(url.searchParams.get('limit') || '20')
@@ -34,16 +21,6 @@ export async function GET(req: Request) {
     var from = (page - 1) * limit; var to = from + limit - 1
 
     var { data, count } = await q.range(from, to)
-    var result = (data || []).map(function(o: any) {
-      if (isVip) return o
-      return {
-        id: o.id, title: o.title, match_name: o.match_name,
-        home_team: o.home_team, away_team: o.away_team,
-        league: o.league, roi: o.roi,
-        confidence: o.confidence, risk_level: o.risk_level,
-        status: o.status, created_at: o.created_at
-      }
-    })
-    return NextResponse.json({ opportunities: result, count: count || 0, page, limit, vip: isVip })
-  } catch(e: any) { return NextResponse.json({ error: (e as Error).message }, { status: 500 }) }
+    return NextResponse.json({ opportunities: data || [], count: count || 0, page, limit })
+  } catch(e: any) { return NextResponse.json({ error: e.message }, { status: 500 }) }
 }
