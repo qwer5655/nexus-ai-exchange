@@ -1,5 +1,5 @@
 ﻿import { NextResponse } from 'next/server'
-import { supabaseAdmin } from '@/lib/supabase'
+import { supabaseAdmin } from '@/lib/supabase/server'
 
 export async function POST(req: Request) {
   var authHeader = req.headers.get('authorization')
@@ -61,6 +61,6 @@ export async function POST(req: Request) {
     }
     return NextResponse.json({ checkout_url: session.url, session_id: session.id, mode: 'stripe' })
   } catch(e: any) {
-    return NextResponse.json({ error: e.message }, { status: 500 })
+    return NextResponse.json({ error: (e as Error).message }, { status: 500 })
   }
 }

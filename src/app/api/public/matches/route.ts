@@ -1,5 +1,5 @@
-import { NextResponse } from 'next/server'
-import { supabaseAdmin } from '@/lib/supabase'
+﻿import { NextResponse } from 'next/server'
+import { supabaseAdmin } from '@/lib/supabase/server'
 
 export async function GET() {
   try {
@@ -19,6 +19,6 @@ export async function GET() {
       else { status = 'finished'; score = Math.floor(Math.random()*4)+'-'+Math.floor(Math.random()*4); time = 'FT' }
       return { id: d.id, homeTeam: d.home_team, awayTeam: d.away_team, score, time, competition: d.league || 'League', status }
     })
-    return NextResponse.json({ matches })
-  } catch(e: any) { return NextResponse.json({ error: e.message }, { status: 500 }) }
+    return NextResponse.json({ success: true, data: { matches }, error: null, timestamp: new Date().toISOString() })
+  } catch(e: any) { return NextResponse.json({ success: false, data: null, error: (e as Error).message, timestamp: new Date().toISOString() }, { status: 500 }) }
 }

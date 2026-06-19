@@ -1,4 +1,4 @@
-﻿'use client'
+'use client'
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import CryptoIcon from '@/components/deposit/CryptoIcon'
@@ -6,20 +6,30 @@ import { Banknote, Check, Copy } from 'lucide-react'
 import { useStore } from '@/store/useStore'
 import { useAuthStore } from '@/store/authStore'
 import { t } from '@/lib/i18n'
-import { depositPlans } from '@/data/deposit'
 import { formatCurrency } from '@/lib/utils'
+import { api } from '@/lib/api-client'
+import { queryKeys } from '@/lib/data/hooks'
+import { useSafeApi, SUMMARY_FALLBACK, assertSummary } from '@/lib/use-safe-api'
+import { ProfitSkeleton } from '@/components/ui/CardSkeleton'
+import { useQueryClient } from '@tanstack/react-query'
 
 export default function DepositPage() {
+  var qc = useQueryClient()
   const { addDeposit, addNotification, language } = useStore()
   const { user } = useAuthStore() as any
   const [wallets, setWallets] = useState<any[]>([])
   useEffect(function() {
-    void fetch('/api/public/wallets').then(function(r){return r.json()}).then(function(d){setWallets(d.wallets||[])}).catch(function(){})
+    void api.get('/public/wallets').then(function(d:any){setWallets(d.wallets||[])}).catch(function(){})
   }, [])
   const [selectedAmount, setSelectedAmount] = useState<number | null>(null)
   const [selectedMethod, setSelectedMethod] = useState<string | null>(null)
   const [processing, setProcessing] = useState(false)
   const [done, setDone] = useState(false)
+var token = (useAuthStore.getState() as any).accessToken
+var raw = useSafeApi('/api/ledger/summary', SUMMARY_FALLBACK, token)
+var summary = assertSummary(raw.data)
+var summaryLoading = raw.loading
+
 
   function getWalletAddress(coinId: string): string {
     var w = wallets.find(function(x){return x.coin===coinId||x.name===coinId})
@@ -31,13 +41,10 @@ export default function DepositPage() {
     setProcessing(true)
     var userId = user?.userId
     if (!userId) { setProcessing(false); return }
-    fetch('/api/deposits', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ userId, coin: selectedMethod, amount: selectedAmount, walletAddress: getWalletAddress(selectedMethod) })
-    }).then(function(r){return r.json()}).then(function(d){
+    api.post('/deposits', { userId, coin: selectedMethod, amount: selectedAmount, walletAddress: getWalletAddress(selectedMethod) }).then(function(d:any){
       if (d.error) { addNotification('error', d.error); setProcessing(false); return }
-      addDeposit(selectedAmount)
+      // Refetch user balance from server
+      qc.invalidateQueries({ queryKey: queryKeys.user })
       addNotification('success', 'Deposit of ' + formatCurrency(selectedAmount) + ' submitted!')
       setProcessing(false)
       setDone(true)
@@ -61,16 +68,16 @@ export default function DepositPage() {
           <div className="bg-[#141C2F] rounded-2xl p-4 border border-white/[0.04]">
             <div className="text-[10px] text-white/30 tracking-wider mb-1">{t('deposit.balance', language).toUpperCase()}</div>
             <div className="text-lg sm:text-xl font-bold text-white/90">₿0.00</div>
-            <div className="text-[10px] text-white/20 mt-0.5">~ $0.00</div>
+            <div className="text-[10px] text-white/20 mt-0.5">~ {formatCurrency(summary.balance)}</div>
           </div>
           <div className="bg-[#141C2F] rounded-2xl p-4 border border-white/[0.04]">
             <div className="text-[10px] text-white/30 tracking-wider mb-1">{t('deposit.todayProfit', language).toUpperCase()}</div>
-            <div className="text-lg sm:text-xl font-bold text-green-400">+$0.00</div>
-            <div className="text-[10px] text-green-400/30 mt-0.5">+0%</div>
+            <div className="text-lg sm:text-xl font-bold text-green-400">{summary.totalProfit > 0 ? '+' + formatCurrency(summary.totalProfit) : '+$0.00'}</div>
+            <div className="text-[10px] text-green-400/30 mt-0.5">{summary.profitPercent > 0 ? '+' + summary.profitPercent.toFixed(2) + '%' : '+0%'}</div>
           </div>
           <div className="bg-[#141C2F] rounded-2xl p-4 border border-white/[0.04]">
             <div className="text-[10px] text-white/30 tracking-wider mb-1">{t('deposit.vipLevel', language).toUpperCase()}</div>
-            <div className="text-lg sm:text-xl font-bold text-[#F5C542]">VIP 0</div>
+            <div className="text-lg sm:text-xl font-bold text-[#F5C542]">VIP {summary.vipLevel}</div>
             <div className="text-[10px] text-[#F5C542]/30 mt-0.5">Next: $1,000</div>
           </div>
         </motion.div>
@@ -181,7 +188,7 @@ export default function DepositPage() {
                       </div>
                       <button onClick={function() {
                         var a = getWalletAddress(selectedMethod)
-                        navigator.clipboard.writeText(a)
+                        navigator.clipboard.writeText(a).catch(function(err){console.error("Clipboard copy failed",err)})
                         alert('已复制')
                       }} className="flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-[#F5C542]/10 border border-[#F5C542]/20 text-[#F5C542] text-xs font-medium hover:bg-[#F5C542]/20 transition-all">
                         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
@@ -235,24 +242,25 @@ export default function DepositPage() {
 
           {/* ===== RIGHT: STATS AREA ===== */}
           <div className="space-y-4">
+            {summaryLoading ? <ProfitSkeleton /> : (
             <motion.div initial={{ opacity: 0, x: 10 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.2 }}
               className="bg-[#141C2F] rounded-2xl p-5 border border-white/[0.04]"
             >
               <h3 className="text-sm font-medium text-white/70 mb-3">{t('deposit.currentProfit', language)}</h3>
-              <div className="text-2xl font-bold text-[#00C087] mb-1">+$847.23</div>
+            <div className='text-2xl font-bold text-[#00C087] mb-1'>{summary.totalProfit > 0 ? '+' + formatCurrency(summary.totalProfit) : '+$0.00'}</div>
               <div className="flex items-center gap-2 text-[11px]">
-                <span className="text-[#00C087]/60">+3.87%</span>
+            <span className="text-[#00C087]/60">{summary.profitPercent > 0 ? '+' + summary.profitPercent.toFixed(2) + '%' : '+0%'}</span>
                 <span className="text-white/20">•</span>
-                <span className="text-white/30">1283 {t('deposit.txnCount', language)}</span>
+                <span className="text-white/30">{summary.transactionCount} {t('deposit.txnCount', language)}</span>
               </div>
               <div className="mt-4 h-1 bg-white/[0.04] rounded-full overflow-hidden">
-                <div className="h-full w-[67%] bg-gradient-to-r from-[#00C087] to-[#F5C542] rounded-full" />
+                <div style={{width: Math.min(summary.totalDeposit > 0 ? (summary.totalProfit / Math.max(summary.targetProfit, 1)) * 100 : 0, 100) + "%"}} className="h-full bg-gradient-to-r from-[#00C087] to-[#F5C542] rounded-full" />
               </div>
               <div className="flex justify-between text-[10px] text-white/20 mt-1.5">
                 <span>$0</span>
-                <span>$1,247</span>
+                <span>{formatCurrency(summary.targetProfit)}</span>
               </div>
-            </motion.div>
+            </motion.div>)}
 
             <motion.div initial={{ opacity: 0, x: 10 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.3 }}
               className="bg-[#141C2F] rounded-2xl p-5 border border-white/[0.04]"

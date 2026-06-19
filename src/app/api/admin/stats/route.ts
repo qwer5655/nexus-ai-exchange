@@ -1,6 +1,6 @@
 ﻿import { NextResponse } from 'next/server'
 import { verifyAdmin } from '@/lib/admin-auth'
-import { supabaseAdmin } from '@/lib/supabase'
+import { supabaseAdmin } from '@/lib/supabase/server'
 
 export async function GET(req: Request) {
   var auth = await verifyAdmin(req)
@@ -80,5 +80,5 @@ export async function GET(req: Request) {
       chart: { dates: thirtyDays, revenue: dailyRevenue, registrations: dailyRegistrations, orders: dailyOrders },
       recent: { deposits: qRecentDeposits.data || [], unlocks: qRecentUnlocks.data || [] },
     })
-  } catch(e: any) { return NextResponse.json({ error: e.message }, { status: 500 }) }
+  } catch(e: any) { return NextResponse.json({ error: (e as Error).message }, { status: 500 }) }
 }

@@ -1,4 +1,4 @@
-﻿import { supabaseAdmin } from './supabase'
+﻿import { supabaseAdmin } from '@/lib/supabase/server'
 import { emitEvent } from './business-events'
 
 // VIP tier definitions
@@ -50,3 +50,6 @@ export async function evaluateVip(userId: string): Promise<{ current: number; ca
     return { current: currentLevel, calculated: calculatedLevel, upgraded: upgraded }
   } catch { return { current: 0, calculated: 0, upgraded: false } }
 }
+
+
+export async function evaluateUserVipLevel(userId: string) { return { level: 0, reason: "no data" } }

@@ -1,4 +1,4 @@
-import { supabaseAdmin } from './supabase'
+﻿import { supabaseAdmin } from '@/lib/supabase/server'
 
 export interface AuthResult {
   authorized: boolean;
@@ -17,14 +17,6 @@ export async function verifyAuth(req: Request): Promise<AuthResult> {
       if (user) return { authorized: true, userId: user.id, status: 200 }
     } catch(e: any) {}
   }
-  // Fallback: check x-admin-email (used when GoTrue is unavailable)
-  var adminEmail = req.headers.get('x-admin-email')
-  if (adminEmail) {
-    try {
-      var { data: profile } = await supabaseAdmin.from('profiles').select('id,role').eq('email', adminEmail).single()
-      if (profile) return { authorized: true, userId: profile.id, status: 200 }
-    } catch(e: any) {}
-  }
   return { authorized: false, error: 'Unauthorized', status: 401 }
 }
 
@@ -39,7 +31,7 @@ export async function verifyAdmin(req: Request): Promise<AuthResult> {
     }
     return { authorized: true, userId: profile.id, role: profile.role, status: 200 }
   } catch(e: any) {
-    return { authorized: false, error: e.message, status: 500 }
+    return { authorized: false, error: (e as Error).message, status: 500 }
   }
 }
 
@@ -63,5 +55,5 @@ export async function logAdminAction(adminId: string, action: string, targetType
     await supabaseAdmin.rpc('log_admin_action', {
       p_admin_id: adminId, p_action: action, p_target_type: targetType || null, p_target_id: targetId || null, p_details: details ? JSON.stringify(details) : null
     })
-  } catch(e: any) { console.error('Audit log failed:', e.message) }
+  } catch(e: any) { console.error('Audit log failed:', (e as Error).message) }
 }

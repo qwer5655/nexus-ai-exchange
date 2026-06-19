@@ -1,6 +1,7 @@
 'use client'
 import { useEffect, useState, useCallback } from 'react'
 import dynamic from 'next/dynamic'
+import { useAuthStore } from '@/store/authStore'
 
 const BootSequence = dynamic(() => import('@/components/background/BootSequence'), { ssr: false })
 const WorldCupBackground = dynamic(() => import('@/components/background/WorldCupBackground'), { ssr: false })
@@ -21,12 +22,17 @@ const AuthModalManager = dynamic(() => import('@/components/auth/AuthModalManage
 const Footer = dynamic(() => import('@/components/layout/Footer'), { ssr: false })
 
 export default function HomePage() {
-  // Start as 'checking' - show nothing until we decide
   var [state, setState] = useState('checking')
 
   useEffect(function() {
     var params = new URLSearchParams(window.location.search)
     var forceBoot = params.get('boot') === 'true'
+    var refCode = params.get('ref')
+
+    // Store referral code for registration flow
+    if (refCode) {
+      localStorage.setItem('nexus_referral', refCode)
+    }
 
     if (forceBoot) {
       localStorage.removeItem('nexus_boot_completed')
@@ -36,6 +42,17 @@ export default function HomePage() {
       setState(completed ? 'ready' : 'boot')
     }
   }, [])
+
+  // Auto-open registration modal when referral param is present
+  useEffect(function() {
+    if (state === 'ready') {
+      var params = new URLSearchParams(window.location.search)
+      var refCode = params.get('ref')
+      if (refCode) {
+        useAuthStore.getState().openAuthModal('register')
+      }
+    }
+  }, [state])
 
   var handleBootComplete = useCallback(function() {
     localStorage.setItem('nexus_boot_completed', 'true')

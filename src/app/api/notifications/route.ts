@@ -1,11 +1,13 @@
 ﻿import { NextResponse } from 'next/server'
-import { supabaseAdmin } from '@/lib/supabase'
+import { supabaseAdmin } from '@/lib/supabase/server'
+import { verifyAuth } from '@/lib/admin-auth'
 
 export async function GET(req: Request) {
   try {
+    var auth = await verifyAuth(req)
+    if (!auth.authorized) return NextResponse.json({ error: auth.error }, { status: auth.status })
+    var userId = auth.userId!
     var url = new URL(req.url)
-    var userId = url.searchParams.get('userId')
-    if (!userId) return NextResponse.json({ error: 'userId required' }, { status: 400 })
     var unreadOnly = url.searchParams.get('unread') === 'true'
     var page = parseInt(url.searchParams.get('page') || '1')
     var limit = parseInt(url.searchParams.get('limit') || '20')
@@ -19,16 +21,18 @@ export async function GET(req: Request) {
     var { count: unreadCount } = await supabaseAdmin.from('notifications').select('*', { count: 'exact', head: true }).eq('user_id', userId).eq('is_read', false)
 
     return NextResponse.json({ notifications: data || [], total: count || 0, unread: unreadCount || 0, page, limit })
-  } catch(e: any) { return NextResponse.json({ error: e.message }, { status: 500 }) }
+  } catch(e: any) { return NextResponse.json({ error: (e as Error).message }, { status: 500 }) }
 }
 
 export async function PATCH(req: Request) {
   try {
+    var auth = await verifyAuth(req)
+    if (!auth.authorized) return NextResponse.json({ error: auth.error }, { status: auth.status })
     var { notificationIds } = await req.json()
     if (!notificationIds || !Array.isArray(notificationIds) || notificationIds.length === 0) {
       return NextResponse.json({ error: 'notificationIds array required' }, { status: 400 })
     }
     await supabaseAdmin.from('notifications').update({ is_read: true }).in('id', notificationIds)
     return NextResponse.json({ success: true })
-  } catch(e: any) { return NextResponse.json({ error: e.message }, { status: 500 }) }
+  } catch(e: any) { return NextResponse.json({ error: (e as Error).message }, { status: 500 }) }
 }

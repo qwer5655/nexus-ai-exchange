@@ -1,10 +1,10 @@
-import { NextResponse } from 'next/server'
-import { supabaseAdmin } from '@/lib/supabase'
+﻿import { NextResponse } from 'next/server'
+import { supabaseAdmin } from '@/lib/supabase/server'
 
 export async function GET(req: Request) {
   try {
     var url = new URL(req.url)
-    var email = url.searchParams.get('email') || req.headers.get('x-admin-email')
+    var email = url.searchParams.get('email')
     if (!email) return NextResponse.json({ error: 'Unauthorized', logs: [] }, { status: 401 })
 
     var { data: profile } = await supabaseAdmin.from('profiles').select('id').eq('email', email).single()
@@ -30,6 +30,6 @@ export async function GET(req: Request) {
       stats: { totalLogins: totalLogins || 0, lastLogin: lastLogin?.[0] || null, last30Days: last30Days || 0 }
     })
   } catch(e: any) {
-    return NextResponse.json({ error: e.message, logs: [] }, { status: 500 })
+    return NextResponse.json({ error: (e as Error).message, logs: [] }, { status: 500 })
   }
 }

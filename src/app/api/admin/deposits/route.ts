@@ -1,5 +1,5 @@
 ﻿import { NextResponse } from 'next/server'
-import { supabaseAdmin } from '@/lib/supabase'
+import { supabaseAdmin } from '@/lib/supabase/server'
 import { verifyAdmin, logAdminAction } from '@/lib/admin-auth'
 
 export async function GET(req: Request) {
@@ -41,7 +41,7 @@ export async function PUT(req: Request) {
       var beforeVal = bb?.balance || 0
       var newBalance = beforeVal + deposit.amount
       var { error: rpcErr } = await supabaseAdmin.rpc('add_balance', { p_user_id: deposit.user_id, p_amount: deposit.amount, p_type: 'deposit', p_reference_type: 'deposit', p_reference_id: depositId })
-      if (rpcErr) await supabaseAdmin.from('profiles').update({ balance: newBalance }).eq('id', deposit.user_id)
+      if (rpcErr) return NextResponse.json({ error: 'Balance update failed: ' + rpcErr.message }, { status: 500 })
       var { data: ba } = await supabaseAdmin.from('profiles').select('balance').eq('id', deposit.user_id).single()
       var afterVal = ba?.balance || 0
       if (afterVal <= beforeVal) {
@@ -78,4 +78,5 @@ export async function PUT(req: Request) {
     return NextResponse.json({ error: 'Invalid action' }, { status: 400 })
   } catch(e5: any) { return NextResponse.json({ error: e5.message }, { status: 500 }) }
 }
+
 

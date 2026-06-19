@@ -1,5 +1,5 @@
 ﻿import { NextResponse } from 'next/server'
-import { supabaseAdmin } from '@/lib/supabase'
+import { supabaseAdmin } from '@/lib/supabase/server'
 import { verifyAdmin } from '@/lib/admin-auth'
 
 export async function GET(req: Request) {
@@ -30,10 +30,10 @@ export async function GET(req: Request) {
     // CAC: Customer Acquisition Cost (simplified: estimated marketing cost / new users)
     // Assuming  monthly marketing cost (adjustable)
     var estMonthlyMarketingCost = 500
-    var { data: newUsers30d } = await supabaseAdmin.from('profiles')
+    var { count: newUsersCount } = await supabaseAdmin.from('profiles')
       .select('*', { count: 'exact', head: true })
       .gte('created_at', new Date(Date.now() - 30 * 86400000).toISOString())
-    var newUsersCount = newUsers30d?.count || 1
+    /* count already destructured above */
 
     var ltv = Math.round(totalRevenue / userCount * 100) / 100
     var cac = Math.round(estMonthlyMarketingCost / newUsersCount * 100) / 100
@@ -45,8 +45,8 @@ export async function GET(req: Request) {
       ltv_cac_ratio: ltvCacRatio,
       total_revenue: totalRevenue,
       total_users: totalUsers || 0,
-      new_users_30d: newUsers30d?.count || 0,
+      new_users_30d: newUsersCount || 0,
       est_monthly_marketing: estMonthlyMarketingCost
     })
-  } catch(e: any) { return NextResponse.json({ error: e.message }, { status: 500 }) }
+  } catch(e: any) { return NextResponse.json({ error: (e as Error).message }, { status: 500 }) }
 }

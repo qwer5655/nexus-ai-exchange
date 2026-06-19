@@ -1,5 +1,5 @@
 ﻿import { NextResponse } from 'next/server'
-import { supabaseAdmin } from '@/lib/supabase'
+import { supabaseAdmin } from '@/lib/supabase/server'
 import { verifyAdmin } from '@/lib/admin-auth'
 
 export async function GET(req: Request) {
@@ -7,7 +7,7 @@ export async function GET(req: Request) {
   try {
     var { data } = await supabaseAdmin.from('site_settings').select('*').limit(1).maybeSingle()
     return NextResponse.json({ settings: data || {} })
-  } catch(e: any) { return NextResponse.json({ error: e.message }, { status: 500 }) }
+  } catch(e: any) { return NextResponse.json({ error: (e as Error).message }, { status: 500 }) }
 }
 
 export async function POST(req: Request) {
@@ -21,7 +21,7 @@ export async function POST(req: Request) {
     }
     var { data } = await supabaseAdmin.from('site_settings').insert(body).select().single()
     return NextResponse.json({ settings: data })
-  } catch(e: any) { return NextResponse.json({ error: e.message }, { status: 500 }) }
+  } catch(e: any) { return NextResponse.json({ error: (e as Error).message }, { status: 500 }) }
 }
 
 
@@ -34,7 +34,7 @@ export async function PATCH(req) {
     var { data, error } = await supabaseAdmin.from('site_settings').update(updates).eq('id', id).select().single()
     if (error) return NextResponse.json({ error: error.message }, { status: 500 })
     return NextResponse.json({ data: data })
-  } catch(e) { return NextResponse.json({ error: e.message }, { status: 500 }) }
+  } catch(e) { return NextResponse.json({ error: (e as Error).message }, { status: 500 }) }
 }
 
 export async function DELETE(req) {
@@ -45,5 +45,5 @@ export async function DELETE(req) {
     var { error } = await supabaseAdmin.from('site_settings').delete().eq('id', id)
     if (error) return NextResponse.json({ error: error.message }, { status: 500 })
     return NextResponse.json({ success: true })
-  } catch(e) { return NextResponse.json({ error: e.message }, { status: 500 }) }
+  } catch(e) { return NextResponse.json({ error: (e as Error).message }, { status: 500 }) }
 }

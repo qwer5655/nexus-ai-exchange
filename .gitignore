@@ -1,4 +1,4 @@
-# next.js
+﻿# next.js
 .next/
 out/
 
@@ -35,3 +35,20 @@ yarn-error.log*
 # output
 dist/
 build/
+
+# Environment
+.env.production
+
+# Temporary files
+test_boot.js
+patch_helper.ps1
+
+# Node.js binary
+node-v22.14.0-win-x64/
+
+# Reports
+*.md
+
+!RELEASE.md
+!FREEZE.md
+!TECH_DEBT.md

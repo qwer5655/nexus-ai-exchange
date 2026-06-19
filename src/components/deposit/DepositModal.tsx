@@ -1,16 +1,17 @@
-﻿'use client'
+'use client'
 import { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { X, Check, Copy, CreditCard, Banknote } from 'lucide-react'
 import CryptoIcon from './CryptoIcon'
 import { useStore } from '@/store/useStore'
 import { useAuthStore } from '@/store/authStore'
 import { t } from '@/lib/i18n'
-import { depositPlans, paymentMethods } from '@/data/deposit'
 import { formatCurrency } from '@/lib/utils'
 
+var paymentMethods = [{id:'BTC',name:'Bitcoin',icon:'btc'},{id:'ETH',name:'Ethereum',icon:'eth'},{id:'USDT_TRC20',name:'Tether',icon:'usdt'},{id:'BNB',name:'BNB',icon:'bnb'},{id:'SOL',name:'Solana',icon:'sol'}]
 export default function DepositModal() {
   const { showDepositModal, setShowDepositModal, addDeposit, addNotification, language } = useStore()
+var [depositPlans, setDepositPlans] = useState<any[]>([])
   const [selectedAmount, setSelectedAmount] = useState<number | null>(null)
   const [selectedMethod, setSelectedMethod] = useState<string | null>(null)
   const [step, setStep] = useState<'select' | 'confirm' | 'success'>('select')
@@ -35,18 +36,16 @@ export default function DepositModal() {
   if (!showDepositModal) return null
 
   return (
-    <AnimatePresence>
+    <>
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
         className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[80]"
         onClick={() => setShowDepositModal(false)}
       />
       <motion.div
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
-        exit={{ opacity: 0, scale: 0.95 }}
         className="fixed inset-4 md:inset-auto md:top-1/2 md:left-1/2 md:-translate-x-1/2 md:-translate-y-1/2 md:max-w-lg w-full z-[81] overflow-auto"
       >
         <div className="glass-card rounded-2xl p-6 md:p-8 border border-white/10">
@@ -181,6 +180,6 @@ export default function DepositModal() {
           )}
         </div>
       </motion.div>
-    </AnimatePresence>
+    </>
   )
 }

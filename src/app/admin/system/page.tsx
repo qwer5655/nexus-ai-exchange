@@ -1,12 +1,13 @@
 'use client'
 import { useEffect, useState } from 'react'
 import { Server, Clock, Database, Activity, Cpu, Globe } from 'lucide-react'
+import { adminFetch } from '@/lib/admin-fetch'
 
 export default function AdminSystem() {
   var [health, setHealth] = useState<any>({ loading: true })
 
   useEffect(function() {
-    fetch('/api/health').then(function(r) { return r.json() }).then(function(d) {
+    adminFetch('/api/health').then(function(r) { return r.json() }).then(function(d) {
       setHealth({ ...d, loading: false })
     })
   }, [])

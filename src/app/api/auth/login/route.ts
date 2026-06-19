@@ -1,5 +1,5 @@
-import { NextResponse } from 'next/server'
-import { supabaseAdmin } from '@/lib/supabase'
+﻿import { NextResponse } from 'next/server'
+import { supabaseAdmin } from '@/lib/supabase/server'
 
 export async function POST(req: Request) {
   try {
@@ -10,6 +10,6 @@ export async function POST(req: Request) {
     var { data: profile } = await supabaseAdmin.from('profiles').select('*').eq('id', authData.user.id).single()
     return NextResponse.json({ user: { id: authData.user.id, email: authData.user.email, username: profile?.username || email.split('@')[0], country: profile?.country || 'USA', role: profile?.role || 'user' } })
   } catch(e: any) {
-    return NextResponse.json({ error: e.message }, { status: 500 })
+    return NextResponse.json({ error: (e as Error).message }, { status: 500 })
   }
 }

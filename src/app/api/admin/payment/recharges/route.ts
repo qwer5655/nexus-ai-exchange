@@ -1,5 +1,5 @@
 ﻿import { NextResponse } from 'next/server'
-import { supabaseAdmin } from '@/lib/supabase'
+import { supabaseAdmin } from '@/lib/supabase/server'
 import { verifyAdmin, logAdminAction } from '@/lib/admin-auth'
 import { emitEvent } from '@/lib/business-events'
 import { createRecharge, approveRecharge, rejectRecharge } from '@/lib/payment-engine'
@@ -20,7 +20,7 @@ export async function GET(req: Request) {
     var { data, count, error } = await query
     if (error) return NextResponse.json({ error: error.message }, { status: 500 })
     return NextResponse.json({ recharges: data || [], total: count || 0, page, limit })
-  } catch(e: any) { return NextResponse.json({ error: e.message }, { status: 500 }) }
+  } catch(e: any) { return NextResponse.json({ error: (e as Error).message }, { status: 500 }) }
 }
 
 export async function POST(req: Request) {
@@ -32,7 +32,7 @@ export async function POST(req: Request) {
     var recharge = await createRecharge({ user_id, wallet_id, amount, currency: currency || 'USDT', transaction_id })
     await logAdminAction(auth.userId!, 'create_recharge', 'recharge', recharge.id.toString(), { user_id, amount })
     return NextResponse.json({ recharge })
-  } catch(e: any) { return NextResponse.json({ error: e.message }, { status: 500 }) }
+  } catch(e: any) { return NextResponse.json({ error: (e as Error).message }, { status: 500 }) }
 }
 
 export async function PATCH(req: Request) {
@@ -51,7 +51,7 @@ export async function PATCH(req: Request) {
       return NextResponse.json(rejectR)
     }
     return NextResponse.json({ error: 'Invalid action' }, { status: 400 })
-  } catch(e: any) { return NextResponse.json({ error: e.message }, { status: 500 }) }
+  } catch(e: any) { return NextResponse.json({ error: (e as Error).message }, { status: 500 }) }
 }
 
 export async function DELETE(req: Request) {
@@ -64,5 +64,5 @@ export async function DELETE(req: Request) {
     if (error) return NextResponse.json({ error: error.message }, { status: 500 })
     await emitEvent('recharge.deleted', auth.userId, { recharge_id: id })
     return NextResponse.json({ success: true })
-  } catch(e: any) { return NextResponse.json({ error: e.message }, { status: 500 }) }
+  } catch(e: any) { return NextResponse.json({ error: (e as Error).message }, { status: 500 }) }
 }

@@ -1,5 +1,5 @@
 ﻿import { NextResponse } from 'next/server'
-import { supabaseAdmin } from '@/lib/supabase'
+import { supabaseAdmin } from '@/lib/supabase/server'
 import { verifyAdmin, logAdminAction } from '@/lib/admin-auth'
 
 export async function GET(req: Request) {
@@ -27,7 +27,7 @@ export async function GET(req: Request) {
       { name: 'Referral Boost', status: 'active', affected: refSet.size, desc: 'Referrers with no commission earned' },
       { name: 'High Value Detection', status: 'active', affected: highValue || 0, desc: 'Users with total deposit > $1,000' }
     ], total_affected: dormant + noDeposit + refSet.size + (highValue || 0) })
-  } catch(e: any) { return NextResponse.json({ error: e.message }, { status: 500 }) }
+  } catch(e: any) { return NextResponse.json({ error: (e as Error).message }, { status: 500 }) }
 }
 
 export async function POST(req: Request) {
@@ -62,5 +62,5 @@ export async function POST(req: Request) {
     })
     await logAdminAction(auth.userId!, 'run_automation', null, null, t)
     return NextResponse.json({ success: true, triggered: t, total: t.dormant + t.noDeposit + t.referral + t.highValue })
-  } catch(e: any) { return NextResponse.json({ error: e.message }, { status: 500 }) }
+  } catch(e: any) { return NextResponse.json({ error: (e as Error).message }, { status: 500 }) }
 }

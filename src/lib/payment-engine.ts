@@ -1,5 +1,5 @@
 ﻿// Payment Engine — centralized business logic for recharges
-import { supabaseAdmin } from './supabase'
+import { supabaseAdmin } from '@/lib/supabase/server'
 import { emitEvent } from './business-events'
 import { evaluateVip } from './vip-engine'
 
@@ -44,8 +44,8 @@ export async function approveRecharge(params: {
   var newBal = beforeBal + recharge.amount
 
   // Update balance
-  var { error: balErr } = await supabaseAdmin.from('profiles')
-    .update({ balance: newBal }).eq('id', userId)
+  var { error: balErr } = await supabaseAdmin
+    .rpc('add_balance', { p_user_id: userId, p_amount: recharge.amount, p_type: 'deposit', p_reference_type: 'recharge', p_reference_id: params.rechargeId })
   if (balErr) throw new Error('Balance update failed: ' + balErr.message)
 
   // Mark recharge as completed
@@ -68,8 +68,7 @@ export async function approveRecharge(params: {
       var { data: refProf } = await supabaseAdmin.from('profiles')
         .select('balance').eq('id', refBy.referred_by).single()
       var refBal = refProf?.balance || 0
-      await supabaseAdmin.from('profiles').update({ balance: refBal + commAmt })
-        .eq('id', refBy.referred_by)
+      await supabaseAdmin.rpc('add_balance', { p_user_id: refBy.referred_by, p_amount: commAmt, p_type: 'commission', p_reference_type: 'recharge', p_reference_id: params.rechargeId })
       await emitEvent('commission.earned', refBy.referred_by, {
         amount: commAmt, from_user: userId, source: 'recharge', reference_id: params.rechargeId
       })
@@ -122,3 +121,4 @@ export async function listRecharges(params: {
   if (error) throw new Error(error.message)
   return { recharges: data || [], total: count || 0 }
 }
+

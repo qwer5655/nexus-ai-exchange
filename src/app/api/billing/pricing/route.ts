@@ -1,5 +1,5 @@
 ﻿import { NextResponse } from 'next/server'
-import { supabaseAdmin } from '@/lib/supabase'
+import { supabaseAdmin } from '@/lib/supabase/server'
 import { getUserTier, DEFAULT_PRICING } from '@/lib/pricing'
 
 export async function GET(req: Request) {

@@ -1,5 +1,5 @@
 ﻿// P3-3 Usage Tracking — trackUsage, getUsage, checkQuota
-import { supabaseAdmin } from './supabase'
+import { supabaseAdmin } from '@/lib/supabase/server'
 
 export async function getCurrentPeriod(userId: string) {
   var now = new Date()

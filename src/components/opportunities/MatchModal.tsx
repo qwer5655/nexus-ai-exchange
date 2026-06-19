@@ -1,5 +1,5 @@
-﻿'use client'
-import { motion, AnimatePresence } from 'framer-motion'
+'use client'
+import { motion } from 'framer-motion'
 import { X, Lock, TrendingUp, Shield, AlertTriangle, Clock, DollarSign } from 'lucide-react'
 import { useStore } from '@/store/useStore'
 import { t } from '@/lib/i18n'
@@ -11,7 +11,7 @@ export default function MatchModal() {
   if (!opp) return null
 
   return (
-    <AnimatePresence>
+    <>
       {showMatchModal && (
         <>
           <motion.div
@@ -125,7 +125,7 @@ export default function MatchModal() {
           </motion.div>
         </>
       )}
-    </AnimatePresence>
+    </>
   )
 }
 

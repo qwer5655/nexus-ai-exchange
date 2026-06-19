@@ -9,7 +9,7 @@ export async function POST(req: Request) {
     if (!user_id) return NextResponse.json({ error: 'user_id required' }, { status: 400 })
     var result = await evaluateVip(user_id)
     return NextResponse.json(result)
-  } catch(e: any) { return NextResponse.json({ error: e.message }, { status: 500 }) }
+  } catch(e: any) { return NextResponse.json({ error: (e as Error).message }, { status: 500 }) }
 }
 
 export async function GET(req: Request) {
@@ -19,5 +19,5 @@ export async function GET(req: Request) {
     if (!userId) return NextResponse.json({ error: 'user_id required' }, { status: 400 })
     var result = await evaluateVip(userId)
     return NextResponse.json(result)
-  } catch(e: any) { return NextResponse.json({ error: e.message }, { status: 500 }) }
+  } catch(e: any) { return NextResponse.json({ error: (e as Error).message }, { status: 500 }) }
 }

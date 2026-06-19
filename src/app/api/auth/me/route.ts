@@ -1,5 +1,5 @@
-import { NextResponse } from 'next/server'
-import { supabaseAdmin } from '@/lib/supabase'
+﻿import { NextResponse } from 'next/server'
+import { supabaseAdmin } from '@/lib/supabase/server'
 
 export async function GET(req: Request) {
   try {
@@ -11,6 +11,6 @@ export async function GET(req: Request) {
     var { data: profile } = await supabaseAdmin.from('profiles').select('*').eq('id', user.id).single()
     return NextResponse.json({ id: user.id, email: user.email, username: profile?.username || user.email?.split('@')[0], country: profile?.country || 'USA', role: profile?.role || 'user', balance: profile?.balance || 0, vip_level: profile?.vip_level || 0, total_profit: profile?.total_profit || 0, total_deposit: profile?.total_deposit || 0, total_unlocks: profile?.total_unlocks || 0, referral_code: profile?.referral_code || '', created_at: profile?.created_at || user.created_at })
   } catch(e: any) {
-    return NextResponse.json({ error: e.message }, { status: 500 })
+    return NextResponse.json({ error: (e as Error).message }, { status: 500 })
   }
 }

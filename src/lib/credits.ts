@@ -1,4 +1,4 @@
-﻿import { supabaseAdmin } from './supabase'
+﻿import { supabaseAdmin } from '@/lib/supabase/server'
 import { updateUserTier } from './pricing'
 import type { Tier } from './pricing'
 
@@ -35,7 +35,7 @@ export async function deductCredits(userId: string, cost: number): Promise<{ suc
     // Update tier after credit change
     try { await updateUserTier(userId) } catch {}
     return { success: true, remaining: newBalance }
-  } catch(e: any) { return { success: false, remaining: 0, error: e.message } }
+  } catch(e: any) { return { success: false, remaining: 0, error: (e as Error).message } }
 }
 
 export async function addCredits(userId: string, amount: number, reason = 'topup'): Promise<{ success: boolean; balance: number }> {
@@ -58,3 +58,6 @@ export async function addCredits(userId: string, amount: number, reason = 'topup
     return { success: true, balance: newBalance }
   } catch(e: any) { return { success: false, balance: 0 } }
 }
+
+
+export function processAbuseScore(score: number) { return Math.min(100, Math.max(0, score)) }
